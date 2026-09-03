@@ -1,0 +1,242 @@
+.alav-section {
+  --alav-ink: #111111;
+  --alav-muted: #8a8a8a;
+  --alav-line: #e3e3e0;
+  --alav-bg: #f6f5f2;
+  --alav-gold: #a9834f;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: var(--alav-ink);
+  background: var(--alav-bg);
+  padding: 72px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+/* -------------------- Intro -------------------- */
+
+.alav-intro {
+  max-width: 760px;
+}
+
+.alav-intro__eyebrow {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--alav-gold);
+  margin-bottom: 20px;
+}
+
+.alav-intro__heading {
+  font-size: clamp(32px, 4.2vw, 56px);
+  line-height: 1.12;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 24px;
+}
+
+.alav-intro__subtitle {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--alav-muted);
+  margin: 0;
+  max-width: 60ch;
+}
+
+/* -------------------- Card de detalhe -------------------- */
+
+.alav-detail {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+.alav-detail--with-aside {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: center;
+}
+
+.alav-detail__card {
+  border: 1px solid var(--alav-line);
+  background: #fbfaf8;
+  padding: 44px 48px 48px;
+  max-width: 620px;
+  box-shadow: 0 24px 48px -32px rgba(17, 17, 17, 0.18);
+}
+
+.alav-detail__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.alav-detail__number {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--alav-gold);
+}
+
+.alav-detail__icon {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--alav-line);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--alav-ink);
+}
+
+.alav-detail__icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.alav-detail__title {
+  font-size: 32px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 22px;
+}
+
+.alav-detail__desc {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--alav-muted);
+  margin: 0 0 32px;
+}
+
+.alav-detail__bullets {
+  list-style: none;
+  margin: 0 0 36px;
+  padding: 24px 0 0;
+  border-top: 1px solid var(--alav-line);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.alav-detail__bullets li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 14.5px;
+  color: var(--alav-ink);
+}
+
+.alav-detail__bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 10px;
+  height: 1px;
+  background: var(--alav-gold);
+}
+
+.alav-detail__divider {
+  border-top: 1px solid var(--alav-line);
+  margin-bottom: 22px;
+}
+
+.alav-detail__tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--alav-muted);
+}
+
+/* -------------------- Tabela de exemplos (dark / premium) -------------------- */
+
+.credit-table {
+  background: #121212;
+  border: 1px solid #232323;
+  border-radius: 2px;
+  padding: 36px 40px 32px;
+  box-shadow: 0 32px 64px -28px rgba(0, 0, 0, 0.45);
+}
+
+.credit-table__title {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f2f0ea;
+  padding-bottom: 18px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--alav-gold);
+}
+
+.credit-table__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.credit-table__table th {
+  text-align: left;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8a8880;
+  padding: 0 12px 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.credit-table__table td {
+  font-size: 15px;
+  padding: 18px 12px 18px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: #e9e7e0;
+}
+
+.credit-table__table tr:last-child td {
+  border-bottom: none;
+}
+
+.credit-table__table td:first-child {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.credit-table__table td:last-child {
+  font-weight: 700;
+  color: var(--alav-gold);
+}
+
+.credit-table__note {
+  margin: 22px 0 0;
+  font-size: 11.5px;
+  color: #6f6d66;
+}
+
+/* -------------------- Responsivo -------------------- */
+
+@media (max-width: 860px) {
+  .alav-section {
+    padding: 48px 20px;
+    gap: 48px;
+  }
+
+  .alav-detail--with-aside {
+    grid-template-columns: 1fr;
+  }
+
+  .alav-detail__card {
+    max-width: none;
+    padding: 32px 28px 36px;
+  }
+
+  .credit-table {
+    padding: 28px 24px 24px;
+  }
+}

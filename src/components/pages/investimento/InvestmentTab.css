@@ -1,0 +1,451 @@
+/* =========================================================
+   R3 ESTRATÉGIA PATRIMONIAL
+   Página: Investimentos
+   Arquivo: InvestmentTab.css
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   CONTAINER PRINCIPAL
+   --------------------------------------------------------- */
+
+.inv-tab {
+  width: 100%;
+  min-height: 100vh;
+
+  background-color: #ffffff;
+  color: #171717;
+
+  font-family: "Montserrat", Arial, sans-serif;
+
+  padding: 100px 40px 120px;
+
+  box-sizing: border-box;
+}
+
+
+/* ---------------------------------------------------------
+   HERO / CABEÇALHO DA SEÇÃO
+   --------------------------------------------------------- */
+
+.inv-tab__hero {
+  width: 100%;
+  max-width: 1280px;
+
+  margin: 0 auto 70px;
+}
+
+
+/* ---------------------------------------------------------
+   TEXTO PEQUENO
+   NOSSAS ESTRATÉGIAS
+   --------------------------------------------------------- */
+
+.inv-tab__eyebrow {
+  display: block;
+
+  margin: 0 0 24px;
+
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+
+  line-height: 1;
+
+  letter-spacing: 6px;
+  text-transform: uppercase;
+
+  color: #a5a5a5;
+}
+
+
+/* ---------------------------------------------------------
+   TÍTULO PRINCIPAL
+   --------------------------------------------------------- */
+
+.inv-tab__heading {
+  width: 100%;
+  max-width: 900px;
+
+  margin: 0;
+
+  font-family: "Montserrat", Arial, sans-serif;
+
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight: 500;
+
+  line-height: 1.08;
+  letter-spacing: -2px;
+
+  color: #171717;
+}
+
+
+/* ---------------------------------------------------------
+   GRID DOS CARDS
+   --------------------------------------------------------- */
+
+.inv-tab__grid {
+  width: 100%;
+  max-width: 1280px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+
+/* ---------------------------------------------------------
+   CARD
+   --------------------------------------------------------- */
+
+.inv-tab__card {
+  width: 100%;
+  min-height: 330px;
+
+  padding: 34px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  background-color: #ffffff;
+
+  color: #171717;
+
+  border: 1px solid #e4e4e4;
+  border-radius: 4px;
+
+  outline: none;
+
+  text-align: left;
+
+  font-family: "Montserrat", Arial, sans-serif;
+
+  cursor: pointer;
+
+  appearance: none;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* ---------------------------------------------------------
+   CARD HOVER
+   --------------------------------------------------------- */
+
+.inv-tab__card:hover {
+  transform: translateY(-4px);
+
+  border-color: #171717;
+
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.07);
+}
+
+
+/* ---------------------------------------------------------
+   CARD ATIVO
+   --------------------------------------------------------- */
+
+.inv-tab__card--active {
+  background-color: #171717;
+
+  color: #ffffff;
+
+  border-color: #171717;
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ---------------------------------------------------------
+   ÍCONE
+   --------------------------------------------------------- */
+
+.inv-tab__card-icon {
+  width: 34px;
+  height: 34px;
+
+  margin-bottom: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #171717;
+}
+
+
+/* SVG DO ÍCONE */
+
+.inv-tab__card-icon svg {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+}
+
+
+/* ÍCONE DO CARD ATIVO */
+
+.inv-tab__card--active .inv-tab__card-icon {
+  color: #ffffff;
+}
+
+
+/* ---------------------------------------------------------
+   TÍTULO DO CARD
+   --------------------------------------------------------- */
+
+.inv-tab__card-title {
+  display: block;
+
+  margin: 0 0 15px;
+
+  font-family: "Montserrat", Arial, sans-serif;
+
+  font-size: 19px;
+  font-weight: 600;
+
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+
+  color: inherit;
+}
+
+
+/* ---------------------------------------------------------
+   DESCRIÇÃO DO CARD
+   --------------------------------------------------------- */
+
+.inv-tab__card-desc {
+  display: block;
+
+  margin: 0 0 30px;
+
+  font-family: "Montserrat", Arial, sans-serif;
+
+  font-size: 13px;
+  font-weight: 400;
+
+  line-height: 1.7;
+
+  color: #777777;
+}
+
+
+/* DESCRIÇÃO DO CARD ATIVO */
+
+.inv-tab__card--active .inv-tab__card-desc {
+  color: #bdbdbd;
+}
+
+
+/* ---------------------------------------------------------
+   SAIBA MAIS
+   --------------------------------------------------------- */
+
+.inv-tab__card-link {
+  margin-top: auto;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 9px;
+
+  font-family: "Montserrat", Arial, sans-serif;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  letter-spacing: 0.4px;
+
+  color: #171717;
+
+  transition: gap 0.25s ease;
+}
+
+
+/* LINK CARD ATIVO */
+
+.inv-tab__card--active .inv-tab__card-link {
+  color: #ffffff;
+}
+
+
+/* SETA */
+
+.inv-tab__card-link svg {
+  flex-shrink: 0;
+
+  transition: transform 0.25s ease;
+}
+
+
+/* ANIMAÇÃO DA SETA */
+
+.inv-tab__card:hover .inv-tab__card-link svg {
+  transform: translateX(4px);
+}
+
+
+/* ---------------------------------------------------------
+   FOCO DE ACESSIBILIDADE
+   --------------------------------------------------------- */
+
+.inv-tab__card:focus-visible {
+  outline: 2px solid #171717;
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   NOTEBOOK / TABLET GRANDE
+   --------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+
+  .inv-tab {
+    padding:
+      80px
+      30px
+      100px;
+  }
+
+  .inv-tab__grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   TABLET
+   --------------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+  .inv-tab {
+    padding:
+      70px
+      24px
+      80px;
+  }
+
+
+  .inv-tab__hero {
+    margin-bottom: 50px;
+  }
+
+
+  .inv-tab__eyebrow {
+    margin-bottom: 20px;
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+  }
+
+
+  .inv-tab__heading {
+    font-size: 40px;
+
+    line-height: 1.12;
+
+    letter-spacing: -1.3px;
+  }
+
+
+  .inv-tab__grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .inv-tab__card {
+    min-height: 290px;
+
+    padding: 30px;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   CELULAR
+   --------------------------------------------------------- */
+
+@media (max-width: 480px) {
+
+  .inv-tab {
+    padding:
+      55px
+      18px
+      70px;
+  }
+
+
+  .inv-tab__hero {
+    margin-bottom: 40px;
+  }
+
+
+  .inv-tab__eyebrow {
+    font-size: 10px;
+
+    letter-spacing: 3.5px;
+  }
+
+
+  .inv-tab__heading {
+    font-size: 34px;
+
+    line-height: 1.12;
+
+    letter-spacing: -1px;
+  }
+
+
+  .inv-tab__card {
+    min-height: 270px;
+
+    padding: 26px;
+  }
+
+
+  .inv-tab__card-icon {
+    width: 30px;
+    height: 30px;
+
+    margin-bottom: 34px;
+  }
+
+
+  .inv-tab__card-title {
+    font-size: 18px;
+  }
+
+
+  .inv-tab__card-desc {
+    font-size: 13px;
+  }
+
+}
