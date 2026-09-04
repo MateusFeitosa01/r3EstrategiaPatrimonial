@@ -79,14 +79,14 @@ const strategies: StrategyItem[] = [
 
 export default function NossaEstrategia() {
   return (
-    <section className="w-full bg-black py-20 px-4 md:px-8">
+    <section className="w-full bg-white py-20 px-4 md:px-8">
         <div className="max-w-7xl mx-auto flex flex-col items-start">
             {/* Cabeçalho alinhado à esquerda */}
             <div className="text-left mb-12 w-full max-w-3xl">
-            <h3 className="text-sm md:text-base font-semibold text-white/60 tracking-widest uppercase mb-3">
+            <h3 className="text-sm md:text-base font-semibold text-black/60 tracking-widest uppercase mb-3">
                 O que você está buscando?
             </h3>
-            <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight uppercase">
+            <h1 className="text-3xl md:text-5xl font-black text-black tracking-tight uppercase">
                 Encontre o caminho para o seu objetivo
             </h1>
             </div>
