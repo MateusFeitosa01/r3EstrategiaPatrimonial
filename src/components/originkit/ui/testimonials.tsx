@@ -41,9 +41,14 @@ const testimonials = [
 export const Testimonials = () => {
   return (
     <div className="w-full overflow-hidden py-10 relative">
+      {/* Overlay de Desfoque/Fade Esquerda */}
+      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 sm:w-32 bg-gradient-to-r from-white via-white-900/50 to-transparent" />
+
+      {/* Overlay de Desfoque/Fade Direita */}
+      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 sm:w-32 bg-gradient-to-l from-white via-white-900/50 to-transparent" />
+
       {/* Marquee Container */}
       <div className="flex w-max gap-4 animate-marquee hover:[animation-play-state:paused]">
-        {/* Duplicamos a lista para criar o efeito infinito contínuo */}
         {[...testimonials, ...testimonials].map((testimonial, index) => (
           <div
             key={index}
