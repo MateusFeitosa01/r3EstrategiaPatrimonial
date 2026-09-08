@@ -5,6 +5,8 @@ import PorqueConsorcio from "./porqueConsorcio";
 import Avaliacao from "./avaliacao";
 import Formulario from "./forms";
 import Navbar from "@/components/extras/navbar/page";
+import FAQ from "./duvidasFrequentes";
+import Footer from "@/components/extras/footer/page";
 
 export default function Home() {
   return (
@@ -19,6 +21,8 @@ export default function Home() {
         <PorqueConsorcio/>
         <Avaliacao/>
         <Formulario/>
+        <FAQ/>
+        <Footer/>
     </ScrollExpandMedia>
     </>
   );
