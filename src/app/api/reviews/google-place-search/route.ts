@@ -2,28 +2,30 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;
-  const placeId = process.env.GOOGLE_PLACE_ID;
 
-  if (!apiKey || !placeId) {
+  if (!apiKey) {
     return NextResponse.json(
-      {
-        error: "Credenciais não configuradas.",
-        hasApiKey: !!apiKey,
-        hasPlaceId: !!placeId,
-      },
+      { error: "GOOGLE_PLACES_API_KEY não configurada." },
       { status: 500 }
     );
   }
 
   try {
     const response = await fetch(
-      `https://places.googleapis.com/v1/places/${placeId}?languageCode=pt-BR`,
+      "https://places.googleapis.com/v1/places:searchText",
       {
+        method: "POST",
         headers: {
+          "Content-Type": "application/json",
           "X-Goog-Api-Key": apiKey,
           "X-Goog-FieldMask":
-            "id,displayName,rating,userRatingCount,reviews",
+            "places.id,places.displayName,places.formattedAddress",
         },
+        body: JSON.stringify({
+          textQuery:
+            "Hs Consórcios Rua Mar do Caribe 842 Sala 02 Portal do Poço Cabedelo PB",
+          languageCode: "pt-BR",
+        }),
         cache: "no-store",
       }
     );
@@ -35,7 +37,7 @@ export async function GET() {
 
       return NextResponse.json(
         {
-          error: "Erro ao buscar avaliações.",
+          error: "Erro ao buscar empresa no Google Places.",
           details: data,
         },
         { status: response.status }
@@ -47,7 +49,7 @@ export async function GET() {
     console.error("Erro Google Places:", error);
 
     return NextResponse.json(
-      { error: "Erro interno ao buscar avaliações." },
+      { error: "Erro interno ao buscar empresa." },
       { status: 500 }
     );
   }

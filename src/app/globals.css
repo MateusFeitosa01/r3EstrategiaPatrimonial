@@ -144,3 +144,41 @@
 .animate-marquee {
   animation: marquee 25s linear infinite;
 }
+
+/* =========================
+   GOOGLE REVIEWS MARQUEE
+========================= */
+
+.testimonial-marquee {
+  animation: testimonial-scroll 35s linear infinite;
+  will-change: transform;
+}
+
+@keyframes testimonial-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 8px));
+  }
+}
+
+/* Pausa quando o mouse passa por cima */
+.testimonial-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Movimento mais lento no celular */
+@media (max-width: 768px) {
+  .testimonial-marquee {
+    animation-duration: 45s;
+  }
+}
+
+/* Respeita usuários que desativam animações */
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-marquee {
+    animation: none;
+  }
+}
