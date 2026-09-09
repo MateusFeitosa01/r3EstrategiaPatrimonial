@@ -264,7 +264,7 @@ const ScrollExpandMedia = ({
 
           {/* Segunda Seção de Conteúdo */}
           <motion.section
-            className='flex flex-col w-full px-8 py-10 md:px-16 lg:py-20 bg-white z-20'
+            className='flex flex-col w-full px-8 py-10 md:px-16 lg:py-0 bg-white z-20'
             initial={{ opacity: 0 }}
             animate={{ opacity: showContent ? 1 : 0 }}
             transition={{ duration: 0.7 }}

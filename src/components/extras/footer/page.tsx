@@ -1,4 +1,3 @@
-import { Span } from "next/dist/trace";
 import Image from "next/image";
 
 const TwitterIcon = () => (
@@ -73,7 +72,7 @@ const InstagramIcon = () => (
   >
     <g clipPath="url(#footer01-instagram-clip)">
       <path
-        d="M12 2.162c3.204 0 3.584.012 4.849.07 1.17.054 1.805.249 2.228.413.56.218.96.478 1.38.898s.68.82.898 1.38c.164.423.36 1.058.413 2.228.058 1.265.07 1.645.07 4.849s-.012 3.584-.07 4.849c-.053 1.17-.249 1.805-.413 2.228a3.7 3.7 0 0 1-.898 1.38c-.42.42-.82.68-1.38.898-.423.164-1.058.36-2.228.413-1.265.058-1.645.07-4.849.07s-3.584-.012-4.849-.07c-1.17-.053-1.805-.249-2.228-.413a3.7 3.7 0 0 1-1.38-.898c-.42-.42-.68-.82-.898-1.38-.164-.423-.36-1.058-.413-2.228-.058-1.265-.07-1.645-.07-4.849s.012-3.584.07-4.849c.054-1.17.249-1.805.413-2.228.218-.56.478-.96.898-1.38s.82-.68 1.38-.898c.423-.164 1.058-.36 2.228-.413 1.265-.058 1.645-.07 4.849-.07M12 0C8.741 0 8.332.014 7.052.072 5.775.131 4.902.333 4.14.63a5.9 5.9 0 0 0-2.126 1.384A5.9 5.9 0 0 0 .63 4.14c-.297.763-.5 1.635-.558 2.912C.014 8.332 0 8.741 0 12s.014 3.668.072 4.948c.059 1.277.261 2.15.558 2.912.307.79.717 1.459 1.384 2.126A5.9 5.9 0 0 0 4.14 23.37c.763.297 1.635.5 2.912.558C8.332 23.986 8.741 24 12 24s3.668-.014 4.948-.072c1.277-.059 2.15-.261 2.912-.558a5.9 5.9 0 0 0 2.126-1.384 5.9 5.9 0 0 0 1.384-2.126c.297-.763.5-1.635.558-2.912.058-1.28.072-1.689.072-4.948s-.014-3.668-.072-4.948c-.059-1.277-.261-2.15-.558-2.912a5.9 5.9 0 0 0-1.384-2.126A5.9 5.9 0 0 0 19.86.63c-.763-.297-1.635-.5-2.912-.558C15.668.014 15.259 0 12 0m0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324M12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8m7.846-10.406a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0"
+        d="M12 2.162c3.204 0 3.584.012 4.849.07 1.17.054 1.805.249 2.228.413.56.218.96.478 1.38.898s.68.82.898 1.38c.164.423.36 1.058.413 2.228.058 1.265.07 1.645.07 4.849s-.012 3.584-.07 4.849c-.053 1.17-.249 1.805-.413 2.228a3.7 3.7 0 0 1-.898 1.38c-.42.42-.82.68-1.38.898-.423.164-1.058.36-2.228.413-1.265.058-1.645.07-4.849.07s-3.584-.012-4.849-.07c-1.17-.053-1.805-.249-2.228-.413a3.7 3.7 0 0 1-1.38-.898c-.42-.42-.68-.82-.898-1.38-.164-.423-.36-1.058-.413-2.228-.058-1.265-.07-1.645-.07-4.849s.012-3.584.07-4.849c.054-1.17.249-2.228.413-2.228.218-.56.478-.96.898-1.38s.82-.68 1.38-.898c.423-.164 1.058-.36 2.228-.413 1.265-.058 1.645-.07 4.849-.07M12 0C8.741 0 8.332.014 7.052.072 5.775.131 4.902.333 4.14.63a5.9 5.9 0 0 0-2.126 1.384A5.9 5.9 0 0 0 .63 4.14c-.297.763-.5 1.635-.558 2.912C.014 8.332 0 8.741 0 12s.014 3.668.072 4.948c.059 1.277.261 2.15.558 2.912.307.79.717 1.459 1.384 2.126A5.9 5.9 0 0 0 4.14 23.37c.763.297 1.635.5 2.912.558C8.332 23.986 8.741 24 12 24s3.668-.014 4.948-.072c1.277-.059 2.15-.261 2.912-.558a5.9 5.9 0 0 0 2.126-1.384 5.9 5.9 0 0 0 1.384-2.126c.297-.763.5-1.635.558-2.912.058-1.28.072-1.689.072-4.948s-.014-3.668-.072-4.948c-.059-1.277-.261-2.15-.558-2.912a5.9 5.9 0 0 0-1.384-2.126A5.9 5.9 0 0 0 19.86.63c-.763-.297-1.635-.5-2.912-.558C15.668.014 15.259 0 12 0m0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324M12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8m7.846-10.406a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0"
         fill="currentColor"
       />
     </g>
@@ -95,48 +94,29 @@ type FooterData = {
 
 const footerSections: FooterData[] = [
   {
-    title: "Sitemap",
+    title: "Navegação",
     links: [
-      {
-        title: "Início",
-        href: "#",
-      },
-      {
-        title: "Investimento",
-        href: "#",
-      },
-      {
-        title: "Aquisição",
-        href: "#",
-      },
-      {
-        title: "Cartas Contempladas",
-        href: "#",
-      },
-      {
-        title: "Sobre Nós",
-        href: "#",
-      },
+      { title: "Início", href: "#" },
+      { title: "Investimento", href: "#" },
+      { title: "Aquisição", href: "#" },
+      { title: "Cartas Contempladas", href: "#" },
+      { title: "Sobre Nós", href: "#" },
     ],
   },
   {
     title: "Atendimento",
     links: [
       {
-        title: "whatsapp",
-        href: "#",
+        title: "WhatsApp",
+        href: "https://wa.me/5583991432467?text=Ol%C3%A1%21%20Venho%20atrav%C3%A9s%20do%20website.%20Gostaria%20de%20obter%20mais%20informa%C3%A7%C3%B5es%20sobre%20cons%C3%B3rcios%20e%20investimentos.",
       },
       {
         title: "Telefone",
-        href: "#",
+        href: "tel:+5583991432467",
       },
       {
         title: "E-mail",
-        href: "#",
-      },
-      {
-        title: "Horario de atendimento",
-        href: "#",
+        href: "mailto:contato@seudominio.com",
       },
     ],
   },
@@ -144,116 +124,200 @@ const footerSections: FooterData[] = [
 
 const Footer = () => {
   return (
-    <footer className="py-10">
-      <div className="max-w-7xl xl:px-16 lg:px-8 px-4 mx-auto">
+    <footer
+      className="relative left-1/2 w-screen -translate-x-1/2 py-10 text-white"
+      style={{ backgroundColor: "rgb(157, 159, 162)" }}
+    >
+      <div className="max-w-7xl mx-auto">
         <div className="flex flex-col gap-6 sm:gap-12">
-          <div className="py-12 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 lg:grid-cols-12 gap-x-8 gap-y-10 px-6 xl:px-0">
-            <div className="col-span-full lg:col-span-4">
-              <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-100 ease-in-out fill-mode-both">
-                {/* Logo */}
-                <a href="#">
-                    <Image
-                        src="/img/logoHorizontalPreta.png"
-                        alt="R3 Soluções"
-                        width={180}
-                        height={60}
-                        className="h-auto w-[160px] object-contain"
-                    />
-                    </a>
 
-                <p className="text-base font-normal text-muted-foreground">
-                  Soluções em consórcio para quem busca planejamento, poder de compra e realização de objetivos.<br/><br/><span className=" font-black">CNPJ: 60.405.600/0001-61</span>
+          <div className="py-12 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 lg:grid-cols-12 gap-x-8 gap-y-10 px-6 xl:px-0">
+
+            {/* Logo + descrição */}
+            <div className="col-span-full lg:col-span-3">
+              <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-100 ease-in-out fill-mode-both">
+
+                <a href="#">
+                  <Image
+                    src="/img/logoHorizontalBranca.png"
+                    alt="R3 Soluções"
+                    width={280}
+                    height={90}
+                    className="h-auto w-[260px] object-contain"
+                  />
+                </a>
+
+                <p className="text-base font-normal text-white">
+                  Soluções em consórcio para quem busca planejamento, poder de
+                  compra e realização de objetivos.
+                  <br />
+                  <br />
+
+                  <span className="font-black">
+                    CNPJ: 60.405.600/0001-61
+                  </span>
+
+                  <span className="font-black">
+                    <br />
+                    CEP: 58106-282
+                  </span>
                 </p>
 
-                {/* social links */}
+                {/* Redes sociais */}
                 <div className="flex items-center gap-4">
                   <a
-                    href="#"
-                    className="text-muted-foreground hover:text-foreground"
-                  >
-                    <TwitterIcon />
-                  </a>
-                  <a
-                    href="#"
-                    className="text-muted-foreground hover:text-foreground"
-                  >
-                    <LinkedinIcon />
-                  </a>
-                  <a
-                    href="#"
-                    className="text-muted-foreground hover:text-foreground"
-                  >
-                    <DribbbleIcon />
-                  </a>
-                  <a
-                    href="#"
-                    className="text-muted-foreground hover:text-foreground"
+                    href="https://www.instagram.com/r3estrategiapatrimonial/"
+                    className="text-white hover:text-white/70 transition-colors"
                   >
                     <InstagramIcon />
                   </a>
                 </div>
+
               </div>
             </div>
 
-            <div className="col-span-1 lg:block hidden"></div>
+            
 
-            {footerSections.map(({ title, links }, index) => (
-              <div key={index} className="col-span-2">
-                <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-100 ease-in-out fill-mode-both">
-                  <p className="text-base font-medium text-foreground">
-                    {title}
-                  </p>
-                  <ul className="flex flex-col gap-3">
-                    {links.map(({ title, href }) => (
-                      <li key={title}>
-                        <a
-                          href={href}
-                          className="text-base font-normal text-muted-foreground hover:text-foreground"
-                        >
-                          {title}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+            {/* Navegação */}
+            <div className="col-span-1 sm:col-span-2 lg:col-span-2">
+              <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-100 ease-in-out fill-mode-both">
+
+                <p className="text-base font-medium text-white">
+                  Navegação
+                </p>
+
+                <ul className="flex flex-col gap-3">
+                  {footerSections[0].links.map(({ title, href }) => (
+                    <li key={title}>
+                      <a
+                        href={href}
+                        className="text-base font-normal text-white hover:text-white/70 transition-colors"
+                      >
+                        {title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+
               </div>
-            ))}
+            </div>
 
-            <div className="col-span-3">
-  <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-100 ease-in-out fill-mode-both">
-    
-    <p className="text-base font-medium text-foreground">
-      Localização
-    </p>
+            {/* Atendimento */}
+            <div className="col-span-1 sm:col-span-2 lg:col-span-2">
+              <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-100 ease-in-out fill-mode-both">
 
-    {/* Google Maps */}
-    <div className="w-full overflow-hidden rounded-2xl border border-black/10">
-        <iframe
-        src="https://www.google.com/maps?q=Rua%20Mar%20do%20Caribe%2C%20842%2C%20Sala%2002%2C%20Portal%20do%20Po%C3%A7o%2C%20Cabedelo%2C%20PB&output=embed"
-        width="100%"
-        height="200"
-        style={{ border: 0 }}
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-        title="Localização R3 Soluções"
-        className="w-full grayscale"
-        />
-        </div>
+                <p className="text-base font-medium text-white">
+                  Atendimento
+                </p>
 
-        {/* Endereço */}
-        <p className="text-sm font-normal text-muted-foreground">
-        Rua Mar do Caribe, 842, Sala 02 Portal do Poço – Cabedelo – PB
+                <ul className="flex flex-col gap-3">
+                  {footerSections[1].links.map(({ title, href }) => (
+                    <li key={title}>
+                      <a
+                        href={href}
+                        className="text-base font-normal text-white hover:text-white/70 transition-colors"
+                      >
+                        {title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
 
-        </p>
+              </div>
+            </div>
 
-        </div>
-    </div>
+            {/* Horário de atendimento */}
+            <div className="col-span-1 sm:col-span-2 lg:col-span-2">
+              <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-100 ease-in-out fill-mode-both">
+
+                <p className="text-base font-medium text-white">
+                  Horário de atendimento
+                </p>
+
+                <div className="flex flex-col gap-2 text-sm text-white">
+                  <div className="flex justify-between gap-4">
+                    <span>Segunda</span>
+                    <span>08:00 – 18:00</span>
+                  </div>
+
+                  <div className="flex justify-between gap-4">
+                    <span>Terça</span>
+                    <span>08:00 – 18:00</span>
+                  </div>
+
+                  <div className="flex justify-between gap-4">
+                    <span>Quarta</span>
+                    <span>08:00 – 18:00</span>
+                  </div>
+
+                  <div className="flex justify-between gap-4">
+                    <span>Quinta</span>
+                    <span>08:00 – 18:00</span>
+                  </div>
+
+                  <div className="flex justify-between gap-4">
+                    <span>Sexta</span>
+                    <span>08:00 – 18:00</span>
+                  </div>
+
+                  <div className="flex justify-between gap-4">
+                    <span>Sábado</span>
+                    <span>Fechado</span>
+                  </div>
+
+                  <div className="flex justify-between gap-4">
+                    <span>Domingo</span>
+                    <span>Fechado</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Localização */}
+            <div className="col-span-full lg:col-span-3">
+              <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-100 ease-in-out fill-mode-both">
+
+                <p className="text-base font-medium text-white">
+                  Localização
+                </p>
+
+                {/* Google Maps */}
+                <div className="w-full overflow-hidden rounded-2xl border border-white/20">
+                  <iframe
+                    src="https://www.google.com/maps?q=Rua%20Mar%20do%20Caribe%2C%20842%2C%20Sala%2002%2C%20Portal%20do%20Po%C3%A7o%2C%20Cabedelo%2C%20PB&output=embed"
+                    width="100%"
+                    height="200"
+                    style={{ border: 0 }}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Localização R3 Soluções"
+                    className="w-full grayscale"
+                  />
+                </div>
+
+                {/* Endereço */}
+                <p className="text-sm font-normal text-white">
+                  Rua Mar do Caribe, 842, Sala 02
+                  <br />
+                  Portal do Poço – Cabedelo – PB
+                </p>
+
+              </div>
+            </div>
+
           </div>
-          <div className="w-full border-t border-black/10" />
-          <p className="text-sm font-normal text-muted-foreground text-center animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-100 ease-in-out fill-mode-both">
-            Corretor autorizado da HS Consórcios no Estado da Paraíba<br></br>
-            ©Direitos reservados, 2026.
+
+          {/* Linha divisória */}
+          <div className="w-full border-t border-white/20" />
+
+          {/* Copyright */}
+          <p className="text-sm font-normal text-white text-center animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-100 ease-in-out fill-mode-both">
+            Corretor autorizado da HS Consórcios no Estado da Paraíba
+            <br />
+            © Direitos reservados, 2026.
           </p>
+
         </div>
       </div>
     </footer>
@@ -261,3 +325,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

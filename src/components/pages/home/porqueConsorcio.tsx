@@ -56,21 +56,21 @@ export default function NossaEstrategia() {
             <CardCurtainReveal
               key={card.id}
               /* 1. Adicionada a classe 'group' aqui */
-             className="group h-[420px] rounded-3xl border border-black/10 bg-black/5 hover:bg-white text-black shadow-xl cursor-pointer justify-between p-2 transition-colors duration-300"
+             className="group h-[420px] rounded-3xl border border-black/10 bg-[rgb(157,159,162)] hover:bg-white text-black shadow-xl cursor-pointer justify-between p-2 transition-colors duration-300"
             >
               {/* Efeito da cortina de revelação */}
               <CardCurtain className="bg-black rounded-3xl" />
 
               <CardCurtainRevealBody className="flex flex-col justify-between h-full z-10">
                 {/* Categoria / Número */}
-                <div className="flex justify-between items-center text-xs font-semibold tracking-widest uppercase text-black group-hover:text-black/60 transition-colors duration-300">
+                <div className="flex justify-between items-center text-xs font-semibold tracking-widest uppercase text-white group-hover:text-black/60 transition-colors duration-300">
                   <span>{card.category}</span>
                   <span>{card.id}</span>
                 </div>
 
                 {/* Conteúdo Central */}
                 <div className="my-auto">
-                  <CardCurtainRevealTitle className="text-2xl md:text-3xl font-black uppercase tracking-tight text-black group-hover:text-black transition-colors duration-300 mb-4">
+                  <CardCurtainRevealTitle className="text-2xl md:text-3xl font-black uppercase tracking-tight text-white group-hover:text-black transition-colors duration-300 mb-4">
                     {card.title}
                   </CardCurtainRevealTitle>
 

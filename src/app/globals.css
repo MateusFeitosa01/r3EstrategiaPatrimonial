@@ -7,7 +7,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  
+
   /* Configura a Montserrat como a fonte Sans padrão */
   --font-sans: var(--font-montserrat), sans-serif;
   --font-mono: var(--font-geist-mono);
@@ -124,18 +124,26 @@
   * {
     @apply border-border outline-ring/50;
   }
+
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground font-sans;
   }
-  html {
-    @apply font-sans;
-  }
 }
+
+/* =========================
+   MARQUEE
+========================= */
 
 @keyframes marquee {
   0% {
     transform: translateX(0%);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -164,7 +172,6 @@
   }
 }
 
-/* Pausa quando o mouse passa por cima */
 .testimonial-marquee:hover {
   animation-play-state: paused;
 }
@@ -178,6 +185,10 @@
 
 /* Respeita usuários que desativam animações */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .testimonial-marquee {
     animation: none;
   }
