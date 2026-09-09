@@ -20,8 +20,8 @@ interface StrategyItem {
 
 const strategies: StrategyItem[] = [
   {
-    title: "Construção",
-    description: "Estratégias focadas na acumulação eficiente de capital com alocação inteligente de ativos.",
+    title: "Construção de patrimônio",
+    description: "Uma estratégia para acelerar a construção do seu patrimônio, utilizando crédito de forma inteligente para ampliar seus ativos e potencializar seus resultados.",
     href: "#construcao",
     images: [
       "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&q=80&w=400",
@@ -35,7 +35,7 @@ const strategies: StrategyItem[] = [
   },
   {
     title: "Rentabilização",
-    description: "Maximização dos retornos da sua carteira através de oportunidades selecionadas no mercado.",
+    description: "A rentabilização acontece por meio da venda da carta contemplada, transformando o valor investido em retorno financeiro e concretizando o resultado planejado na estratégia.",
     href: "#rentabilizacao",
     images: [
       "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=80&w=400",
@@ -44,35 +44,35 @@ const strategies: StrategyItem[] = [
     ],
     stats: [
       { icon: <PieChart className="h-4 w-4 text-purple-400" />, label: "Performance" },
-      { icon: <Briefcase className="h-4 w-4 text-blue-400" />, label: "Gestão Ativa" },
+      { icon: <Briefcase className="h-4 w-4 text-blue-400" />, label: "Rendimento" },
     ],
   },
   {
-    title: "Aceleração",
-    description: "Acesso a investimentos estratégicos e estrutura de capital para alavancar negócios.",
-    href: "#aceleracao",
+    title: "Aquisição",
+    description: "Aquisição planejada para transformar seus objetivos em realidade, seja na compra do seu veículo ou do imóvel ideal para morar.",
+    href: "#aquisicao",
     images: [
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400",
       "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=400",
       "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=400",
     ],
     stats: [
-      { icon: <Rocket className="h-4 w-4 text-rose-400" />, label: "Escala" },
-      { icon: <Building2 className="h-4 w-4 text-indigo-400" />, label: "Corporate" },
+      { icon: <Rocket className="h-4 w-4 text-rose-400" />, label: "Imóveis" },
+      { icon: <Building2 className="h-4 w-4 text-indigo-400" />, label: "Veículos" },
     ],
   },
   {
-    title: "Proteção",
-    description: "Blindagem patrimonial, planejamento sucessório e diversificação internacional em moeda forte.",
-    href: "#protecao",
+    title: "Previdência aplicada",
+    description: "Uma forma inteligente de poupar, fazendo seu dinheiro render enquanto você constrói uma reserva para realizar seus planos futuros.",
+    href: "#previdencia",
     images: [
       "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=400",
       "https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?auto=format&fit=crop&q=80&w=400",
       "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=400",
     ],
     stats: [
-      { icon: <ShieldCheck className="h-4 w-4 text-cyan-400" />, label: "Blindagem" },
-      { icon: <Landmark className="h-4 w-4 text-amber-400" />, label: "Offshore" },
+      { icon: <ShieldCheck className="h-4 w-4 text-cyan-400" />, label: "Segurança" },
+      { icon: <Landmark className="h-4 w-4 text-amber-400" />, label: "Poupança" },
     ],
   },
 ];

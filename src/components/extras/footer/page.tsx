@@ -262,7 +262,7 @@ const Footer = () => {
 
                   <div className="flex justify-between gap-4">
                     <span>Sábado</span>
-                    <span>Fechado</span>
+                    <span>Agendamento.</span>
                   </div>
 
                   <div className="flex justify-between gap-4">

@@ -1,247 +1,540 @@
-'use client'
+"use client"
 
-import { useState } from 'react'
+import React, { useState } from "react"
+import Image from "next/image"
 
-export default function Formulario() {
+export default function Forms() {
   const [formData, setFormData] = useState({
-    nome: '',
-    email: '',
-    telefone: '',
-    cidade: '',
-    tipoConsorcio: 'imovel',
-    valorCredito: '',
-    termosAceitos: false
+    nome: "",
+    email: "",
+    telefone: "",
+    cidade: "",
+    tipoConsorcio: "imovel",
+    valorCredito: "",
+    termosAceitos: false,
   })
+
+  const [enviando, setEnviando] = useState(false)
+  const [mensagem, setMensagem] = useState("")
+
+  // =========================
+  // CAMPOS NORMAIS
+  // =========================
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    const { name, value, type } = e.target
-    const checked = (e.target as HTMLInputElement).checked
+    const { name, value } = e.target
 
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: value,
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // =========================
+  // TELEFONE
+  // =========================
+
+  const formatarTelefone = (valor: string) => {
+    let numeros = valor.replace(/\D/g, "")
+
+    numeros = numeros.slice(0, 13)
+
+    // Com DDI +55
+    if (numeros.startsWith("55") && numeros.length > 11) {
+      const ddi = numeros.slice(0, 2)
+      const ddd = numeros.slice(2, 4)
+      const numero = numeros.slice(4)
+
+      if (numero.length <= 4) {
+        return `+${ddi} (${ddd}) ${numero}`
+      }
+
+      if (numero.length <= 8) {
+        return `+${ddi} (${ddd}) ${numero.slice(0, 4)}-${numero.slice(4)}`
+      }
+
+      return `+${ddi} (${ddd}) ${numero.slice(0, 5)}-${numero.slice(5, 9)}`
+    }
+
+    // Sem DDI
+    numeros = numeros.slice(0, 11)
+
+    if (numeros.length <= 2) {
+      return numeros
+    }
+
+    if (numeros.length <= 6) {
+      return `(${numeros.slice(0, 2)}) ${numeros.slice(2)}`
+    }
+
+    if (numeros.length <= 10) {
+      return `(${numeros.slice(0, 2)}) ${numeros.slice(
+        2,
+        6
+      )}-${numeros.slice(6)}`
+    }
+
+    return `(${numeros.slice(0, 2)}) ${numeros.slice(
+      2,
+      7
+    )}-${numeros.slice(7, 11)}`
+  }
+
+  // =========================
+  // VALOR DO CRÉDITO
+  // =========================
+
+  // O estado guarda apenas números.
+  // Exemplo:
+  // "300000" -> R$ 300.000,00
+
+  const formatarCredito = (valor: string) => {
+    if (!valor) return ""
+
+    const numero = Number(valor)
+
+    if (Number.isNaN(numero)) return ""
+
+    return numero.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })
+  }
+
+  const handleCreditoChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const valorExibido = e.target.value
+
+    // Remove tudo que não é número
+    let numeros = valorExibido.replace(/\D/g, "")
+
+    /*
+      Como o campo exibido possui ",00",
+      removemos os dois últimos zeros da máscara.
+
+      Exemplo:
+      R$ 300.000,00
+      vira:
+      30000000
+
+      removendo os últimos 2:
+      300000
+    */
+    if (formData.valorCredito && numeros.length >= 2) {
+      numeros = numeros.slice(0, -2)
+    }
+
+    setFormData((prev) => ({
+      ...prev,
+      valorCredito: numeros,
+    }))
+  }
+
+  // Digitação do crédito usando teclado
+  const handleCreditoKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    // Permitir navegação
+    if (
+      e.key === "Tab" ||
+      e.key === "ArrowLeft" ||
+      e.key === "ArrowRight"
+    ) {
+      return
+    }
+
+    // Apagar último número
+    if (e.key === "Backspace" || e.key === "Delete") {
+      e.preventDefault()
+
+      setFormData((prev) => ({
+        ...prev,
+        valorCredito: prev.valorCredito.slice(0, -1),
+      }))
+
+      return
+    }
+
+    // Permitir somente números
+    if (/^[0-9]$/.test(e.key)) {
+      e.preventDefault()
+
+      setFormData((prev) => ({
+        ...prev,
+        valorCredito: prev.valorCredito + e.key,
+      }))
+    }
+  }
+
+  // =========================
+  // ENVIO
+  // =========================
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Dados do formulário enviados:', formData)
+
+    if (enviando) return
+
+    setEnviando(true)
+    setMensagem("")
+
+    try {
+      // Formata o crédito antes de enviar para o e-mail
+      const dadosParaEnvio = {
+        ...formData,
+        valorCredito: formatarCredito(formData.valorCredito),
+      }
+
+      const response = await fetch("/api/contato", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dadosParaEnvio),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(
+          data.message || "Não foi possível enviar sua solicitação."
+        )
+      }
+
+      setMensagem(
+        "Solicitação enviada com sucesso! Em breve entraremos em contato."
+      )
+
+      setFormData({
+        nome: "",
+        email: "",
+        telefone: "",
+        cidade: "",
+        tipoConsorcio: "imovel",
+        valorCredito: "",
+        termosAceitos: false,
+      })
+    } catch (error) {
+      console.error("Erro ao enviar formulário:", error)
+
+      setMensagem(
+        error instanceof Error
+          ? error.message
+          : "Não foi possível enviar sua solicitação. Tente novamente."
+      )
+    } finally {
+      setEnviando(false)
+    }
   }
 
   return (
-    <section className="w-full bg-white py-20 px-4 md:px-8">
+    <section className="w-full py-16 px-4 md:px-8 bg-white">
       <div className="max-w-7xl mx-auto">
 
-        <div className="w-full min-h-screen flex">
+        <div className="grid grid-cols-1 lg:grid-cols-2 rounded-[28px] overflow-hidden shadow-2xl">
 
-          {/* PAINEL ESQUERDO */}
-          <div className="hidden lg:flex flex-1 relative overflow-hidden flex-col justify-between p-12 min-h-screen rounded-l-3xl">
+          {/* ========================= */}
+          {/* IMAGEM */}
+          {/* ========================= */}
 
-            {/* Imagem */}
-            <div className="absolute inset-0 z-0">
-              <img
-                src="/img/R3_-35.jpg.jpeg"
-                alt="Fundo"
-                className="w-full h-full object-cover opacity-40"
-              />
+          <div className="relative min-h-[600px] lg:min-h-[760px]">
 
-             <div className="absolute inset-0 bg-gradient-to-t from-[rgb(157,159,162)] via-[rgb(157,159,162)]/50 to-transparent" />
-            </div>
+            <Image
+              src="/img/R3_-35.jpg.jpeg"
+              alt="R3 Estratégia Patrimonial"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
 
-            {/* Texto */}
-            <div className="relative z-10 max-w-lg mt-auto">
+            {/* Escurecimento somente na parte inferior */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 via-30% to-transparent" />
 
-              <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight uppercase mb-4">
-                Qual seu próximo grande objetivo?
-              </h1>
+            <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 z-10">
 
-              <p className="text-sm md:text-base font-semibold text-white/90 tracking-widest mb-3">
-                Estamos prontos para te ajudar a planejar e conquistar suas metas
-                com a melhor solução em consórcios.
+              <p className="text-white/80 text-sm md:text-base uppercase tracking-[0.25em] mb-3">
+                R3 Estratégia Patrimonial
+              </p>
+
+              <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-[0.95] max-w-xl">
+                QUAL SEU PRÓXIMO PASSO?
+              </h2>
+
+              <p className="text-white/80 text-base md:text-lg mt-5 max-w-lg">
+                Fale com nossa equipe e descubra a estratégia mais adequada
+                para os seus objetivos.
               </p>
 
             </div>
           </div>
 
-          {/* PAINEL DIREITO */}
-          <div className="flex-1 min-h-screen overflow-y-auto rounded-r-3xl" style={{ backgroundColor: "rgb(157, 159, 162)" }}>
+          {/* ========================= */}
+          {/* FORMULÁRIO */}
+          {/* ========================= */}
 
-            <div className="w-full max-w-md mx-auto px-8 py-10">
+          <div className="bg-[rgb(157,159,162)] px-6 py-10 md:px-12 md:py-14 lg:px-16">
 
-              <div className="mb-6">
-                <h2 className="text-3xl font-bold text-white mb-2">
-                  Solicite uma cotação
-                </h2>
+            <div className="max-w-xl mx-auto">
 
-                <p className="text-2x1 text-white">
-                  Preencha os campos abaixo para receber nosso atendimento.
-                </p>
-              </div>
+              <h2 className="text-white text-3xl md:text-4xl font-bold mb-2">
+                Solicite uma simulação
+              </h2>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <p className="text-white/90 text-lg md:text-xl mb-8">
+                Preencha os campos abaixo para receber nosso atendimento.
+              </p>
 
-                {/* Nome */}
-                <div>
-                  <label className="block text-2x1 font-medium text-white mb-1">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-5"
+              >
+
+                {/* NOME */}
+
+                <div className="flex flex-col">
+
+                  <label
+                    htmlFor="nome"
+                    className="text-white text-lg mb-2"
+                  >
                     Nome completo
                   </label>
 
                   <input
+                    id="nome"
                     type="text"
                     name="nome"
                     value={formData.nome}
                     onChange={handleInputChange}
-                    placeholder="Seu nome"
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-xl outline-none focus:border-black focus:ring-0 text-sm"
+                    placeholder="Seu nome completo"
                     required
+                    className="w-full h-[48px] px-4 rounded-2xl border border-white/70 bg-transparent text-gray-900 placeholder:text-gray-600 outline-none transition focus:border-white focus:ring-2 focus:ring-white/20"
                   />
+
                 </div>
 
-                {/* Email */}
-                <div>
-                  <label className="block text-2x1 font-medium text-white mb-1">
+                {/* EMAIL */}
+
+                <div className="flex flex-col">
+
+                  <label
+                    htmlFor="email"
+                    className="text-white text-lg mb-2"
+                  >
                     E-mail
                   </label>
 
                   <input
+                    id="email"
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="seu@email.com"
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-xl outline-none focus:border-black focus:ring-0 text-sm"
+                    placeholder="seuemail@email.com"
                     required
+                    className="w-full h-[48px] px-4 rounded-2xl border border-white/70 bg-transparent text-gray-900 placeholder:text-gray-600 outline-none transition focus:border-white focus:ring-2 focus:ring-white/20"
                   />
+
                 </div>
 
-                {/* Telefone / Cidade */}
-                <div className="grid grid-cols-2 gap-3">
+                {/* TELEFONE + CIDADE */}
 
-                  <div>
-                    <label className="block text-2x1 font-medium text-white mb-1">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-end">
+
+                  <div className="flex flex-col">
+
+                    <label
+                      htmlFor="telefone"
+                      className="text-white text-lg mb-2"
+                    >
                       Telefone / WhatsApp
                     </label>
 
                     <input
+                      id="telefone"
                       type="tel"
                       name="telefone"
                       value={formData.telefone}
-                      onChange={handleInputChange}
-                      placeholder="(00) 00000-0000"
-                      className="w-full px-4 py-2.5 border border-gray-300 rounded-xl outline-none focus:border-black focus:ring-0 text-sm"
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          telefone: formatarTelefone(e.target.value),
+                        }))
+                      }
+                      placeholder="(83) 99999-9999"
                       required
+                      className="w-full h-[48px] px-4 rounded-2xl border border-white/70 bg-transparent text-gray-900 placeholder:text-gray-600 outline-none transition focus:border-white focus:ring-2 focus:ring-white/20"
                     />
+
                   </div>
 
-                  <div>
-                    <label className="block text-2x1 font-medium text-white mb-1">
+                  <div className="flex flex-col">
+
+                    <label
+                      htmlFor="cidade"
+                      className="text-white text-lg mb-2"
+                    >
                       Cidade
                     </label>
 
                     <input
+                      id="cidade"
                       type="text"
                       name="cidade"
                       value={formData.cidade}
                       onChange={handleInputChange}
-                      placeholder="Sua cidade"
-                      className="w-full px-4 py-2.5 border border-gray-300 rounded-xl outline-none focus:border-black focus:ring-0 text-sm"
+                      placeholder="João Pessoa"
                       required
+                      className="w-full h-[48px] px-4 rounded-2xl border border-white/70 bg-transparent text-gray-900 placeholder:text-gray-600 outline-none transition focus:border-white focus:ring-2 focus:ring-white/20"
                     />
-                  </div>
 
+                  </div>
                 </div>
 
-                {/* Tipo */}
-                <div>
-                  <label className="block text-2x1 font-medium text-white mb-1">
+                {/* TIPO */}
+
+                <div className="flex flex-col">
+
+                  <label
+                    htmlFor="tipoConsorcio"
+                    className="text-white text-lg mb-2"
+                  >
                     Tipo de Consórcio
                   </label>
 
                   <select
-                      name="tipoConsorcio"
-                      value={formData.tipoConsorcio}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 border border-gray-300 rounded-xl outline-none focus:border-black focus:ring-0 text-sm bg-white text-black"
-                      required
-                    >
-                      <option value="imovel" className='hover:bg-black'>Imóvel</option>
-                      <option value="veiculo">Veículo</option>
-                      <option value="investimentos">Investimentos</option>
-                    </select>
+                    id="tipoConsorcio"
+                    name="tipoConsorcio"
+                    value={formData.tipoConsorcio}
+                    onChange={handleInputChange}
+                    className="w-full h-[48px] px-4 rounded-2xl border border-white/70 bg-white text-gray-900 outline-none transition focus:border-white focus:ring-2 focus:ring-white/20"
+                  >
+                    <option value="imovel">
+                      Imóvel
+                    </option>
+
+                    <option value="veiculo">
+                      Veículo
+                    </option>
+
+                    <option value="investimentos">
+                      Investimentos
+                    </option>
+                  </select>
+
                 </div>
 
-                {/* Valor */}
-                <div>
-                  <label className="block text-2x1 font-medium text-white mb-1">
+                {/* VALOR DO CRÉDITO */}
+
+                <div className="flex flex-col">
+
+                  <label
+                    htmlFor="valorCredito"
+                    className="text-white text-lg mb-2"
+                  >
                     Valor do Crédito
                   </label>
 
                   <input
+                    id="valorCredito"
                     type="text"
+                    inputMode="numeric"
                     name="valorCredito"
-                    value={formData.valorCredito}
-                    onChange={handleInputChange}
-                    placeholder="Ex: R$ 150.000,00"
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-xl outline-none focus:border-black focus:ring-0 text-sm"
+                    value={formatarCredito(formData.valorCredito)}
+                    onChange={handleCreditoChange}
+                    onKeyDown={handleCreditoKeyDown}
+                    placeholder="R$ 300.000,00"
                     required
+                    className="w-full h-[48px] px-4 rounded-2xl border border-white/70 bg-transparent text-gray-900 placeholder:text-gray-600 outline-none transition focus:border-white focus:ring-2 focus:ring-white/20"
                   />
+
                 </div>
 
-                {/* Aviso */}
-                <div className="bg-gray-50 p-3 rounded-xl border border-gray-200 text-xs text-gray-600 space-y-1">
+                {/* FAIXAS */}
+
+                <div className="bg-white/95 rounded-2xl px-4 py-3 text-sm text-gray-600">
+
                   <p>
-                    <strong className="text-gray-700">
+                    <strong className="text-gray-800">
                       Veículos:
-                    </strong>{' '}
-                    de R$34.000,00 a R$800.000,00
+                    </strong>{" "}
+                    de R$ 34.000,00 a R$ 800.000,00
                   </p>
 
-                  <p>
-                    <strong className="text-gray-700">
+                  <p className="mt-1">
+                    <strong className="text-gray-800">
                       Imóveis:
-                    </strong>{' '}
-                    de R$100.000,00 a R$2.000.000,00
+                    </strong>{" "}
+                    de R$ 100.000,00 a R$ 2.000.000,00
                   </p>
+
                 </div>
 
-                {/* Checkbox */}
-                <div className="pt-2">
-                  <label className="flex items-start space-x-3 cursor-pointer">
+                {/* CONFORMIDADE */}
 
-                    <input
-                      type="checkbox"
-                      name="termosAceitos"
-                      checked={formData.termosAceitos}
-                      onChange={handleInputChange}
-                      className="mt-0.5 w-4 h-4 text-black border-gray-300 rounded focus:ring-black accent-black"
-                      required
-                    />
+                <label className="flex items-start gap-3 cursor-pointer">
 
-                    <span className="text-xs white leading-tight text-white">
-                      <strong className="text-white">
-                        Conformidade *
-                      </strong>
+                  <input
+                    type="checkbox"
+                    checked={formData.termosAceitos}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        termosAceitos: e.target.checked,
+                      }))
+                    }
+                    className="mt-1 w-5 h-5 accent-black"
+                  />
 
-                      <br />
+                  <span className="text-white/90 text-sm leading-relaxed">
 
-                      Declaro estar de acordo em compartilhar minhas informações
-                      para receber um atendimento especializado.
-                    </span>
+                    <strong className="text-white">
+                      Conformidade *
+                    </strong>
 
-                  </label>
-                </div>
+                    <br />
 
-                {/* Botão */}
+                    Declaro estar de acordo em compartilhar minhas informações
+                    para receber um atendimento especializado.
+
+                  </span>
+
+                </label>
+
+                {/* MENSAGEM */}
+
+                {mensagem && (
+                  <div
+                    className={`rounded-xl px-4 py-3 text-sm ${
+                      mensagem.includes("sucesso")
+                        ? "bg-white text-gray-900"
+                        : "bg-red-100 text-red-700"
+                    }`}
+                  >
+                    {mensagem}
+                  </div>
+                )}
+
+                {/* BOTÃO */}
+
                 <button
                   type="submit"
-                  className="w-full bg-black text-white py-3 px-4 rounded-xl font-medium hover:bg-black/70 transition-colors text-2x1 mt-4"
+                  disabled={enviando}
+                  className="w-full h-[52px] rounded-2xl bg-black text-white font-semibold text-base transition hover:bg-neutral-800 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Enviar Solicitação
+                  {enviando
+                    ? "Enviando..."
+                    : "Enviar Solicitação"}
                 </button>
 
               </form>
+
             </div>
           </div>
 

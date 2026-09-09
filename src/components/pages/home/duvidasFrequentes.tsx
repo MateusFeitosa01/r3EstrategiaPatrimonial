@@ -29,7 +29,7 @@ export default function FAQ() {
             <AccordionContent>
               O consórcio é uma modalidade de compra planejada em que
               um grupo de pessoas contribui mensalmente para adquirir
-              um bem ou serviço.
+              um bem,serviço ou utilizada também como ferramenta de investimento.
             </AccordionContent>
           </AccordionItem>
 
@@ -39,8 +39,8 @@ export default function FAQ() {
             </AccordionTrigger>
 
             <AccordionContent>
-              Não. No consórcio, normalmente não existe entrada como
-              em um financiamento tradicional.
+              São até 6 formas de contemplação, combinando sorteio e diferentes modalidades de 
+              lance para criar uma estratégia personalizada e aumentar as possibilidades de antecipar a contemplação.
             </AccordionContent>
           </AccordionItem>
 
@@ -50,8 +50,8 @@ export default function FAQ() {
             </AccordionTrigger>
 
             <AccordionContent>
-              A contemplação pode acontecer por sorteio ou lance,
-              conforme as regras do grupo.
+              Sem juros de financiamento: no consórcio, 
+              você paga taxa de administração e conta com planejamento para construir seu patrimônio.
             </AccordionContent>
           </AccordionItem>
 
@@ -61,8 +61,8 @@ export default function FAQ() {
             </AccordionTrigger>
 
             <AccordionContent>
-              A contemplação pode acontecer por sorteio ou lance,
-              conforme as regras do grupo.
+              É uma carta de crédito já contemplada, adquirida mediante um valor de entrada, 
+              que permite utilizar o crédito para a compra imediata do veículo, imóvel ou outro bem desejado.
             </AccordionContent>
           </AccordionItem>
 
@@ -72,8 +72,8 @@ export default function FAQ() {
             </AccordionTrigger>
 
             <AccordionContent>
-              A contemplação pode acontecer por sorteio ou lance,
-              conforme as regras do grupo.
+              Sim. A carta de crédito pode ser utilizada para adquirir imóveis novos ou usados,
+               oferecendo mais flexibilidade para escolher o imóvel que melhor atende aos seus objetivos.
             </AccordionContent>
           </AccordionItem>
         </Accordion>
