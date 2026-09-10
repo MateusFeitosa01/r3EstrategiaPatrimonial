@@ -1,6 +1,8 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
+import Navbar from "@/components/extras/navbar/page";
+import Footer from "@/components/extras/footer/page";
 
 type Carta = {
   id: string
@@ -100,7 +102,7 @@ export default function Page() {
 
   return (
     <main className="min-h-screen bg-[#f5f5f5]">
-
+      <Navbar/>
       {/* HERO */}
       <section className="bg-black text-white px-6 py-20 md:px-10">
         <div className="max-w-7xl mx-auto">
@@ -350,7 +352,7 @@ export default function Page() {
 
         </div>
       </section>
-
+            <Footer/>
     </main>
   )
 }
