@@ -141,7 +141,7 @@ export default function Navbar() {
               "
             >
               <Image
-                src="/img/logoHorizontalPreta.png"
+                src="/img/logo/logoHorizontalPreta.png"
                 alt="Logo"
                 fill
                 priority

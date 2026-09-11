@@ -20,24 +20,27 @@ export const NossoTime = ({
   const testimonials: Testimonial[] = [
     {
       id: 1,
-      quote: "Responsável pela direção e desenvolvimento dos projetos.",
+      quote:
+        "Responsável pela liderança estratégica da empresa, direcionamento dos negócios e desenvolvimento das principais decisões da R3.",
       name: "Rony Medeiros",
-      role: "CEO & Desenvolvedor",
+      role: "CEO",
       imageSrc: "/img/time/ronyPai.jpg",
     },
     {
       id: 2,
-      quote: "Especialista em design e experiência do usuário.",
-      name: "Socio Rony",
-      role: "UI/UX Designer",
-      imageSrc: "/img/time/socioRony.jpg",
+      quote:
+        "Atua no desenvolvimento comercial da empresa, relacionamento com clientes e expansão das oportunidades de negócio.",
+      name: "Renato Barbosa",
+      role: "Sócio",
+      imageSrc: "/img/time/renato.jpg",
     },
     {
       id: 3,
-      quote: "Atuação no desenvolvimento de soluções digitais.",
+      quote:
+        "Atua na estratégia, tecnologia e desenvolvimento de soluções que fortalecem o posicionamento e o crescimento da R3.",
       name: "Rony Arthur",
-      role: "Desenvolvedora",
-      imageSrc: "/img/time/maria.jpg",
+      role: "Sócio",
+      imageSrc: "",
     },
   ];
 
@@ -97,12 +100,14 @@ export const NossoTime = ({
               variants={itemVariants}
               className="group relative h-[480px] overflow-hidden rounded-3xl bg-black"
             >
-              {/* IMAGEM */}
-              <img
-                src={testimonial.imageSrc}
-                alt={testimonial.name}
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
+              {/* IMAGEM - só aparece quando existir */}
+              {testimonial.imageSrc && (
+                <img
+                  src={testimonial.imageSrc}
+                  alt={testimonial.name}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+              )}
 
               {/* GRADIENT */}
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
@@ -134,4 +139,3 @@ export const NossoTime = ({
     </section>
   );
 };
-

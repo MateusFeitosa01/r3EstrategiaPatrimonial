@@ -245,7 +245,7 @@ export default function Forms() {
           <div className="relative min-h-[600px] lg:min-h-[760px]">
 
             <Image
-              src="/img/R3_-35.jpg.jpeg"
+              src="/img/time/R3_-35.jpg.jpeg"
               alt="R3 Estratégia Patrimonial"
               fill
               priority

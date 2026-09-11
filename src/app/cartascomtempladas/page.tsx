@@ -1,8 +1,8 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
-import Navbar from "@/components/extras/navbar/page";
-import Footer from "@/components/extras/footer/page";
+import Navbar from "@/components/extras/navbar/page"
+import Footer from "@/components/extras/footer/page"
 
 type Carta = {
   id: string
@@ -33,7 +33,6 @@ export default function Page() {
         setErro("")
 
         const response = await fetch("/api/cartas-contempladas")
-
         const data = await response.json()
 
         if (!response.ok || !data.success) {
@@ -71,8 +70,13 @@ export default function Page() {
 
   const cartasFiltradas = useMemo(() => {
     return cartas.filter((carta) => {
-      const categoriaCorrigida = corrigirTexto(carta.categoria).toLowerCase()
-      const statusCorrigido = corrigirTexto(carta.status).toLowerCase()
+      const categoriaCorrigida = corrigirTexto(
+        carta.categoria
+      ).toLowerCase()
+
+      const statusCorrigido = corrigirTexto(
+        carta.status
+      ).toLowerCase()
 
       const correspondeCategoria =
         categoria === "todos" ||
@@ -100,41 +104,58 @@ export default function Page() {
     })
   }, [cartas, categoria, status, busca])
 
+  const gerarLinkWhatsApp = (carta: Carta) => {
+    const categoriaCarta = corrigirTexto(carta.categoria)
+
+    const mensagem = `Olá! Tenho interesse em uma carta contemplada de ${categoriaCarta}.
+
+Carta: #${carta.id}
+Crédito: R$ ${carta.valorCredito}
+Entrada: R$ ${carta.entrada}
+Parcela: R$ ${carta.valorParcela}
+Prazo: ${carta.parcelas} parcelas
+Administradora: ${corrigirTexto(carta.administradora)}
+
+Gostaria de receber mais informações sobre essa carta.`
+
+    return `https://wa.me/5583987355437?text=${encodeURIComponent(
+      mensagem
+    )}`
+  }
+
   return (
     <main className="min-h-screen bg-[#f5f5f5]">
-      <Navbar/>
-      {/* HERO */}
-      <section className="bg-black text-white px-6 py-20 md:px-10">
-        <div className="max-w-7xl mx-auto">
+      <Navbar />
 
-          <p className="text-sm uppercase tracking-[0.25em] text-white/60 mb-4">
+      {/* HERO */}
+      <section className="bg-black px-6 py-20 text-white md:px-10">
+        <div className="mx-auto max-w-7xl">
+          <p className="mb-4 text-sm uppercase tracking-[0.25em] text-white/60">
             R3 Estratégia Patrimonial
           </p>
 
-          <h1 className="text-4xl md:text-6xl font-bold max-w-4xl leading-tight">
+          <h1 className="max-w-4xl text-4xl font-bold leading-tight md:text-6xl">
             Cartas Contempladas
           </h1>
 
-          <p className="mt-6 text-lg md:text-xl text-white/70 max-w-3xl">
+          <p className="mt-6 max-w-3xl text-lg text-white/70 md:text-xl">
             Encontre oportunidades de crédito já contempladas para aquisição
             de veículos, imóveis e outros objetivos.
           </p>
-
         </div>
       </section>
 
       {/* CONTEÚDO */}
-      <section className="px-4 md:px-8 py-12">
-
-        <div className="max-w-7xl mx-auto">
+      <section className="px-4 py-12 md:px-8">
+        <div className="mx-auto max-w-7xl">
 
           {/* FILTROS */}
-          <div className="bg-white rounded-3xl p-5 md:p-7 shadow-sm mb-8">
+          <div className="mb-8 rounded-3xl bg-white p-5 shadow-sm md:p-7">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-
+              {/* BUSCAR */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="mb-2 block text-sm font-medium text-gray-700">
                   Buscar
                 </label>
 
@@ -143,19 +164,20 @@ export default function Page() {
                   value={busca}
                   onChange={(e) => setBusca(e.target.value)}
                   placeholder="Código ou administradora"
-                  className="w-full h-12 px-4 rounded-xl border border-gray-300 outline-none focus:border-black text-gray-900"
+                  className="h-12 w-full rounded-xl border border-gray-300 px-4 text-gray-900 outline-none focus:border-black"
                 />
               </div>
 
+              {/* CATEGORIA */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="mb-2 block text-sm font-medium text-gray-700">
                   Categoria
                 </label>
 
                 <select
                   value={categoria}
                   onChange={(e) => setCategoria(e.target.value)}
-                  className="w-full h-12 px-4 rounded-xl border border-gray-300 outline-none focus:border-black text-gray-900 bg-white"
+                  className="h-12 w-full rounded-xl border border-gray-300 bg-white px-4 text-gray-900 outline-none focus:border-black"
                 >
                   <option value="todos">
                     Todas
@@ -171,15 +193,16 @@ export default function Page() {
                 </select>
               </div>
 
+              {/* STATUS */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="mb-2 block text-sm font-medium text-gray-700">
                   Status
                 </label>
 
                 <select
                   value={status}
                   onChange={(e) => setStatus(e.target.value)}
-                  className="w-full h-12 px-4 rounded-xl border border-gray-300 outline-none focus:border-black text-gray-900 bg-white"
+                  className="h-12 w-full rounded-xl border border-gray-300 bg-white px-4 text-gray-900 outline-none focus:border-black"
                 >
                   <option value="todos">
                     Todos
@@ -194,13 +217,11 @@ export default function Page() {
                   </option>
                 </select>
               </div>
-
             </div>
 
             <div className="mt-5 text-sm text-gray-500">
               {cartasFiltradas.length} cartas encontradas
             </div>
-
           </div>
 
           {/* CARREGANDO */}
@@ -212,15 +233,14 @@ export default function Page() {
 
           {/* ERRO */}
           {!carregando && erro && (
-            <div className="bg-red-50 border border-red-200 text-red-700 rounded-2xl p-5">
+            <div className="rounded-2xl border border-red-200 bg-red-50 p-5 text-red-700">
               {erro}
             </div>
           )}
 
           {/* CARTAS */}
           {!carregando && !erro && (
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
               {cartasFiltradas.map((carta) => {
                 const statusCorrigido = corrigirTexto(carta.status)
 
@@ -231,26 +251,23 @@ export default function Page() {
                 return (
                   <article
                     key={carta.id}
-                    className="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition"
+                    className="overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm transition hover:shadow-lg"
                   >
-
                     {/* TOPO DO CARD */}
-                    <div className="bg-[#111111] text-white px-6 py-5">
-
+                    <div className="bg-[#111111] px-6 py-5 text-white">
                       <div className="flex items-center justify-between gap-4">
-
                         <div>
                           <p className="text-xs uppercase tracking-widest text-white/50">
                             Carta #{carta.id}
                           </p>
 
-                          <h2 className="text-xl font-semibold mt-1">
+                          <h2 className="mt-1 text-xl font-semibold">
                             {corrigirTexto(carta.categoria)}
                           </h2>
                         </div>
 
                         <span
-                          className={`text-xs font-semibold px-3 py-1.5 rounded-full ${
+                          className={`rounded-full px-3 py-1.5 text-xs font-semibold ${
                             disponivel
                               ? "bg-white text-black"
                               : "bg-white/10 text-white/70"
@@ -258,34 +275,28 @@ export default function Page() {
                         >
                           {statusCorrigido}
                         </span>
-
                       </div>
-
                     </div>
 
                     {/* CORPO */}
                     <div className="p-6">
-
                       <div className="mb-6">
-
                         <p className="text-sm text-gray-500">
                           Crédito
                         </p>
 
-                        <p className="text-3xl font-bold text-gray-950 mt-1">
+                        <p className="mt-1 text-3xl font-bold text-gray-950">
                           R$ {carta.valorCredito}
                         </p>
-
                       </div>
 
                       <div className="grid grid-cols-2 gap-5">
-
                         <div>
                           <p className="text-sm text-gray-500">
                             Entrada
                           </p>
 
-                          <p className="font-semibold text-gray-900 mt-1">
+                          <p className="mt-1 font-semibold text-gray-900">
                             R$ {carta.entrada}
                           </p>
                         </div>
@@ -295,7 +306,7 @@ export default function Page() {
                             Parcela
                           </p>
 
-                          <p className="font-semibold text-gray-900 mt-1">
+                          <p className="mt-1 font-semibold text-gray-900">
                             R$ {carta.valorParcela}
                           </p>
                         </div>
@@ -305,7 +316,7 @@ export default function Page() {
                             Prazo
                           </p>
 
-                          <p className="font-semibold text-gray-900 mt-1">
+                          <p className="mt-1 font-semibold text-gray-900">
                             {carta.parcelas} parcelas
                           </p>
                         </div>
@@ -315,30 +326,27 @@ export default function Page() {
                             Administradora
                           </p>
 
-                          <p className="font-semibold text-gray-900 mt-1">
+                          <p className="mt-1 font-semibold text-gray-900">
                             {corrigirTexto(carta.administradora)}
                           </p>
                         </div>
-
                       </div>
 
-                      <div className="border-t border-gray-100 mt-6 pt-5">
-
-                        <button
-                          type="button"
-                          className="w-full h-12 rounded-xl bg-black text-white font-medium hover:bg-neutral-800 transition"
+                      {/* WHATSAPP */}
+                      <div className="mt-6 border-t border-gray-100 pt-5">
+                        <a
+                          href={gerarLinkWhatsApp(carta)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex h-12 w-full items-center justify-center rounded-xl bg-black font-medium text-white transition hover:bg-neutral-800"
                         >
                           Tenho interesse
-                        </button>
-
+                        </a>
                       </div>
-
                     </div>
-
                   </article>
                 )
               })}
-
             </div>
           )}
 
@@ -349,10 +357,10 @@ export default function Page() {
                 Nenhuma carta encontrada com esses filtros.
               </div>
             )}
-
         </div>
       </section>
-            <Footer/>
+
+      <Footer />
     </main>
   )
 }

@@ -15,8 +15,8 @@ export default function SobreEmpresa() {
             </span>
           </>
         }
-        description="Na R3 Consórcios & Investimentos, acreditamos que conquistar grandes objetivos exige planejamento, confiança e escolhas inteligentes. Por isso, trabalhamos para oferecer soluções financeiras alinhadas aos objetivos de cada cliente."
-        secondaryDescription="Nosso compromisso é tornar cada etapa mais clara, segura e estratégica, construindo relacionamentos baseados em transparência e confiança."
+        description="Na R3 Estratégia Patrimonial, acreditamos que grandes conquistas começam com planejamento, confiança e decisões inteligentes. Por isso, desenvolvemos estratégias personalizadas para quem busca construir, rentabilizar e acelerar seu patrimônio.
+Nosso compromisso é tornar cada decisão mais clara, segura e estratégica, construindo relações duradouras baseadas em transparência, confiança e resultados."
         image="/img/time/R3_-35.jpg.jpeg"
         imageAlt="Sobre a R3 Consórcios & Investimentos"
       />
@@ -27,15 +27,16 @@ export default function SobreEmpresa() {
         label="SOBRE A HS"
         title={
           <>
-            Construindo caminhos para{" "}
+            PARCERIA QUE IMPULSIONA{" "}
             <span className="text-black/40">
-              grandes conquistas.
+              CONQUISTAS.
             </span>
           </>
         }
-        description="Nosso objetivo é oferecer soluções que ajudem nossos clientes a planejar o futuro com segurança, clareza e estratégia."
-        secondaryDescription="Trabalhamos para transformar sonhos em planos concretos, acompanhando cada etapa da jornada."
-        image="/img/logo/logoHs.jpg"
+        description="A R3 Estratégia Patrimonial trabalha em parceria com uma das maiores administradoras independentes de consórcios do Brasil, com mais de 30 anos de experiência nos segmentos de imóveis e veículos.
+Essa parceria nos permite oferecer soluções flexíveis, condições diferenciadas e estratégias personalizadas, tanto para aquisição de bens quanto para quem busca utilizar o consórcio como ferramenta de construção e aceleração patrimonial.
+Unimos a solidez de uma grande administradora à estratégia e ao acompanhamento da R3 para proporcionar aos nossos clientes segurança, planejamento e novas possibilidades para o patrimônio. "
+        image="/img/logo/logoHsPreta.jpeg"
         imageAlt="Nossa missão"
       />
     </div>

@@ -139,7 +139,7 @@ const Footer = () => {
 
                 <a href="#">
                   <Image
-                    src="/img/logoHorizontalBranca.png"
+                    src="/img/logo/logoHorizontalBranca.png"
                     alt="R3 Soluções"
                     width={280}
                     height={90}

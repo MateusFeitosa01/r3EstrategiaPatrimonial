@@ -33,7 +33,7 @@ export default function SobreNos() {
       </LazySection>
 
       <LazySection minHeight="600px">
-        <NossoTime title="Pessoas que transformam planejamento em conquistas." />
+        <NossoTime title="Quem está por trás da estratégia da R3." />
       </LazySection>
 
       <LazySection minHeight="500px">

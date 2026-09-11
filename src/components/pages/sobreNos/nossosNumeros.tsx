@@ -6,32 +6,30 @@ import CountingNumber from "@/components/originkit/ui/numbers";
 const numbersData = [
   {
     id: "01",
+    category: "CRÉDITOS",
+    value: 26.8,
+    suffix: " BILHÕES",
+    prefix: "+",
+    description: "De créditos comercializados em 2025",
+  },
+  {
+    id: "02",
     category: "CONTEMPLAÇÕES",
-    value: 1.8,
+    value: 2.8,
     suffix: "MIL",
     prefix: "+",
     description: "Contemplações mensais",
   },
   {
-    id: "02",
-    category: "ECONOMIA",
-    value: 1.7,
-    suffix: " BILHÕES",
-    prefix: "+",
-    description: "Inseridos na economia do país em 2024",
-  },
-  {
     id: "03",
-    category: "CRÉDITOS",
-    value: 20.8,
-    suffix: " BILHÕES",
-    prefix: "+",
-    description: "De créditos comercializados em 2024",
+    category: "CRÉDIBILIDADE",
+    text: "Maior Administradora do Brasil no setor imobiliário",
+    description: "Credibilidade e solidez no mercado",
   },
   {
     id: "04",
     category: "BENS",
-    value: 20.8,
+    value: 99.8,
     suffix: " MIL",
     prefix: "+",
     description: "Bens entregues",
@@ -51,8 +49,6 @@ export default function NossosNumeros() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-
-          // Para observar apenas a primeira entrada:
           observer.unobserve(element);
         }
       },
@@ -74,7 +70,6 @@ export default function NossosNumeros() {
       className="w-full bg-white px-4 py-20 md:px-8"
     >
       <div className="mx-auto flex max-w-7xl flex-col items-start">
-
         {/* CABEÇALHO */}
         <div className="mb-12 w-full max-w-3xl text-left">
           <h3 className="mb-3 text-sm font-semibold uppercase tracking-widest text-black/60 md:text-base">
@@ -104,30 +99,39 @@ export default function NossosNumeros() {
                 </span>
               </div>
 
-              {/* NÚMERO */}
-              <div className="my-auto py-10">
-                <div className="flex flex-wrap items-baseline">
-                  <span className="ml-2 text-2xl font-black text-black transition-colors duration-300 group-hover:text-white md:text-3xl">
-                    {number.prefix}
-                  </span>
+              {/* CONTEÚDO CENTRAL */}
+              <div className="my-auto flex min-h-[210px] items-center py-6">
+                {"text" in number ? (
+                  <div className="w-full">
+                    <h2 className="max-w-[250px] text-[28px] font-black leading-[1.08] tracking-tight text-black transition-colors duration-300 group-hover:text-white md:text-[30px]">
+                      {number.text}
+                    </h2>
+                  </div>
+                ) : (
+                  <div className="w-full">
+                    <div className="flex flex-wrap items-baseline">
+                      <span className="ml-2 text-2xl font-black text-black transition-colors duration-300 group-hover:text-white md:text-3xl">
+                        {number.prefix}
+                      </span>
 
-                  {/* Só renderiza quando entrar na tela */}
-                  {isVisible && (
-                    <CountingNumber
-                      from={0}
-                      target={number.value}
-                      className="text-5xl font-black tracking-tight text-black transition-colors duration-300 group-hover:text-white md:text-6xl"
-                    />
-                  )}
+                      {isVisible && (
+                        <CountingNumber
+                          from={0}
+                          target={number.value}
+                          className="text-5xl font-black tracking-tight text-black transition-colors duration-300 group-hover:text-white md:text-6xl"
+                        />
+                      )}
 
-                  <span className="ml-2 text-2xl font-black text-black transition-colors duration-300 group-hover:text-white md:text-3xl">
-                    {number.suffix}
-                  </span>
-                </div>
+                      <span className="ml-2 text-2xl font-black text-black transition-colors duration-300 group-hover:text-white md:text-3xl">
+                        {number.suffix}
+                      </span>
+                    </div>
 
-                <p className="mt-5 max-w-xs text-sm leading-relaxed text-black/70 transition-colors duration-300 group-hover:text-white/70">
-                  {number.category}
-                </p>
+                    <p className="mt-5 max-w-xs text-sm leading-relaxed text-black/70 transition-colors duration-300 group-hover:text-white/70">
+                      {number.category}
+                    </p>
+                  </div>
+                )}
               </div>
 
               {/* RODAPÉ */}

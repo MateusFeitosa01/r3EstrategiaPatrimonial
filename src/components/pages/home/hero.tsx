@@ -178,7 +178,7 @@ const ScrollExpandMedia = ({
                 transition={{ duration: 1, ease: 'easeOut' }}
               >
                 <Image
-                  src='/img/logoPreta.png'
+                  src='/img/logo/logoPreta.png'
                   alt='Logo'
                   width={800}
                   height={800}

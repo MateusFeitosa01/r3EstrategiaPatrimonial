@@ -7,7 +7,8 @@ import {
   Building2, 
   Rocket, 
   Briefcase, 
-  DollarSign 
+  DollarSign, 
+  CarIcon
 } from "lucide-react";
 
 interface StrategyItem {
@@ -57,8 +58,8 @@ const strategies: StrategyItem[] = [
       "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=400",
     ],
     stats: [
-      { icon: <Rocket className="h-4 w-4 text-rose-400" />, label: "Imóveis" },
-      { icon: <Building2 className="h-4 w-4 text-indigo-400" />, label: "Veículos" },
+      { icon: <Building2 className="h-4 w-4 text-rose-400" />, label: "Imóveis" },
+      { icon: <CarIcon className="h-4 w-4 text-indigo-400" />, label: "Veículos" },
     ],
   },
   {
