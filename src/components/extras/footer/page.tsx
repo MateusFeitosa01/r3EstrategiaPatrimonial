@@ -125,9 +125,12 @@ const footerSections: FooterData[] = [
 const Footer = () => {
   return (
     <footer
-      className="relative left-1/2 w-screen -translate-x-1/2 py-10 text-white"
-      style={{ backgroundColor: "rgb(157, 159, 162)" }}
-    >
+  className="relative left-1/2 w-screen -translate-x-1/2 py-10 text-white"
+  style={{
+    background:
+       "linear-gradient(to bottom, #ffffff 0%, rgb(157, 159, 162) 0%, rgb(157, 159, 162) 100%)",
+  }}
+>
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col gap-6 sm:gap-12">
 

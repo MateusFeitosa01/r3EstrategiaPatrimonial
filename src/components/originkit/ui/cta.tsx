@@ -11,8 +11,8 @@ import {
   type MotionValue,
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import LiquidGlassButton from "./light-glass-button";
 
-import ArrowFillButton from "./button";
 
 const IMG_BASE =
   "https://pub-8abee449136941f5b0a1cd2c014534e9.r2.dev/vault-listing-images/assets-images/stack-spread";
@@ -497,7 +497,7 @@ function StackSpreadStage({
           <h2
             className="
               w-full
-              max-w-4xl
+              max-w-3xl
               text-3xl
               uppercase
               font-black    
@@ -544,20 +544,21 @@ function StackSpreadStage({
                 viewport={{ once: true }}
                 className="pointer-events-auto relative z-50 mt-8"
                 >
-                <ArrowFillButton
-                    btnText="VAMOS CONSTRUIR JUNTOS"
-                    href="#formulario"
-                    bgColor="#000000"
-                    textColor="#ffffff"
-                    fillBgColor="#ffffff"
-                    fillTextColor="#000000"
-                    hoverFillBgColor="#ffffff"
-                    hoverFillTextColor="#000000"
-                    arrowColor="#000000"
-                    hoverArrowColor="#000000"
-                    
-                />
-                </motion.div>
+                <LiquidGlassButton
+                                label="COMEÇAR AGORA"
+                                colors={{
+                                  fill: "#000000",
+                                  textColor: "#ffffff",
+                                }}
+                                font={{
+                                  fontFamily: "Montserrat",
+                                  fontWeight: 600,
+                                  fontSize: 15,
+                                }}
+                                padding="10px 20px"
+                                rounded={90}
+                              />
+              </motion.div>
             </motion.div>
 
         {/* CARDS */}

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import LiquidGlassButton from "@/components/originkit/ui/light-glass-button";
 
 export default function Navbar() {
   const [isVisible, setIsVisible] = useState(false);
@@ -191,39 +192,20 @@ export default function Navbar() {
           ========================= */}
           <div className="flex items-center space-x-3">
 
-            {/* BOTÃO FAZER ORÇAMENTO */}
-            <Link
-              href="#formulario"
-              onClick={scrollToFormulario}
-              className="
-                hidden
-                sm:inline-flex
-                items-center
-                justify-center
-                gap-2
-                px-5
-                py-2.5
-                rounded-xl
-
-                bg-black/90
-                hover:bg-black
-
-                text-white
-                text-sm
-                font-medium
-
-                transition-transform
-                duration-200
-
-                shadow-md
-                hover:shadow-lg
-
-                hover:scale-[1.02]
-                active:scale-[0.98]
-              "
-            >
-              <span>Fazer Orçamento</span>
-            </Link>
+             <LiquidGlassButton
+                label="FAZER ORÇAMENTO"
+                colors={{
+                  fill: "#000000",
+                  textColor: "#ffffff",
+                }}
+                font={{
+                  fontFamily: "Montserrat",
+                  fontWeight: 600,
+                  fontSize: 12,
+                }}
+                padding="10px 20px"
+                rounded={90}
+              />
 
             {/* =========================
                 MENU MOBILE

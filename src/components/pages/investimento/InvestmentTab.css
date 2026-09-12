@@ -18,66 +18,29 @@
 
   font-family: "Montserrat", Arial, sans-serif;
 
-  padding: 100px 40px 120px;
-
   box-sizing: border-box;
 }
 
 
 /* ---------------------------------------------------------
-   HERO / CABEÇALHO DA SEÇÃO
+   HERO
    --------------------------------------------------------- */
 
 .inv-tab__hero {
+  position: relative;
+
   width: 100%;
-  max-width: 1280px;
-
-  margin: 0 auto 70px;
-}
-
-
-/* ---------------------------------------------------------
-   TEXTO PEQUENO
-   NOSSAS ESTRATÉGIAS
-   --------------------------------------------------------- */
-
-.inv-tab__eyebrow {
-  display: block;
-
-  margin: 0 0 24px;
-
-  font-family: "Montserrat", Arial, sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-
-  line-height: 1;
-
-  letter-spacing: 6px;
-  text-transform: uppercase;
-
-  color: #a5a5a5;
-}
-
-
-/* ---------------------------------------------------------
-   TÍTULO PRINCIPAL
-   --------------------------------------------------------- */
-
-.inv-tab__heading {
-  width: 100%;
-  max-width: 900px;
+  height: 80vh;
+  min-height: 650px;
 
   margin: 0;
 
-  font-family: "Montserrat", Arial, sans-serif;
+  overflow: hidden;
 
-  font-size: clamp(38px, 5vw, 64px);
-  font-weight: 500;
+  background: #000000;
+  color: #ffffff;
 
-  line-height: 1.08;
-  letter-spacing: -2px;
-
-  color: #171717;
+  box-sizing: border-box;
 }
 
 
@@ -91,11 +54,15 @@
 
   margin: 0 auto;
 
+  padding: 100px 40px 120px;
+
   display: grid;
 
   grid-template-columns: repeat(3, minmax(0, 1fr));
 
   gap: 18px;
+
+  box-sizing: border-box;
 }
 
 
@@ -189,7 +156,9 @@
 }
 
 
-/* SVG DO ÍCONE */
+/* ---------------------------------------------------------
+   SVG DO ÍCONE
+   --------------------------------------------------------- */
 
 .inv-tab__card-icon svg {
   width: 100%;
@@ -199,7 +168,9 @@
 }
 
 
-/* ÍCONE DO CARD ATIVO */
+/* ---------------------------------------------------------
+   ÍCONE DO CARD ATIVO
+   --------------------------------------------------------- */
 
 .inv-tab__card--active .inv-tab__card-icon {
   color: #ffffff;
@@ -247,7 +218,9 @@
 }
 
 
-/* DESCRIÇÃO DO CARD ATIVO */
+/* ---------------------------------------------------------
+   DESCRIÇÃO DO CARD ATIVO
+   --------------------------------------------------------- */
 
 .inv-tab__card--active .inv-tab__card-desc {
   color: #bdbdbd;
@@ -279,14 +252,18 @@
 }
 
 
-/* LINK CARD ATIVO */
+/* ---------------------------------------------------------
+   LINK CARD ATIVO
+   --------------------------------------------------------- */
 
 .inv-tab__card--active .inv-tab__card-link {
   color: #ffffff;
 }
 
 
-/* SETA */
+/* ---------------------------------------------------------
+   SETA
+   --------------------------------------------------------- */
 
 .inv-tab__card-link svg {
   flex-shrink: 0;
@@ -295,7 +272,9 @@
 }
 
 
-/* ANIMAÇÃO DA SETA */
+/* ---------------------------------------------------------
+   ANIMAÇÃO DA SETA
+   --------------------------------------------------------- */
 
 .inv-tab__card:hover .inv-tab__card-link svg {
   transform: translateX(4px);
@@ -323,16 +302,14 @@
 
 @media (max-width: 1100px) {
 
-  .inv-tab {
+  .inv-tab__grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
     padding:
       80px
       30px
       100px;
-  }
-
-  .inv-tab__grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
   }
 
 }
@@ -344,39 +321,19 @@
 
 @media (max-width: 768px) {
 
-  .inv-tab {
-    padding:
-      70px
-      24px
-      80px;
-  }
-
-
   .inv-tab__hero {
-    margin-bottom: 50px;
-  }
-
-
-  .inv-tab__eyebrow {
-    margin-bottom: 20px;
-
-    font-size: 12px;
-
-    letter-spacing: 4px;
-  }
-
-
-  .inv-tab__heading {
-    font-size: 40px;
-
-    line-height: 1.12;
-
-    letter-spacing: -1.3px;
+    height: 80vh;
+    min-height: 600px;
   }
 
 
   .inv-tab__grid {
     grid-template-columns: 1fr;
+
+    padding:
+      70px
+      24px
+      80px;
   }
 
 
@@ -395,32 +352,17 @@
 
 @media (max-width: 480px) {
 
-  .inv-tab {
+  .inv-tab__hero {
+    height: 80vh;
+    min-height: 560px;
+  }
+
+
+  .inv-tab__grid {
     padding:
       55px
       18px
       70px;
-  }
-
-
-  .inv-tab__hero {
-    margin-bottom: 40px;
-  }
-
-
-  .inv-tab__eyebrow {
-    font-size: 10px;
-
-    letter-spacing: 3.5px;
-  }
-
-
-  .inv-tab__heading {
-    font-size: 34px;
-
-    line-height: 1.12;
-
-    letter-spacing: -1px;
   }
 
 
