@@ -146,7 +146,7 @@ const Footer = () => {
                     alt="R3 Soluções"
                     width={280}
                     height={90}
-                    className="h-auto w-[260px] object-contain"
+                    className="h-auto w-65 object-contain"
                   />
                 </a>
 
