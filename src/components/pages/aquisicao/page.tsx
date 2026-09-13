@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   Bike,
@@ -162,6 +164,10 @@ function linkWhatsApp(
   )}`;
 }
 
+/* =========================================================
+   TABELA DE CRÉDITO
+========================================================= */
+
 function TabelaCredito({
   titulo,
   dados,
@@ -222,6 +228,10 @@ function TabelaCredito({
     </div>
   );
 }
+
+/* =========================================================
+   CARD DE OPORTUNIDADE
+========================================================= */
 
 function CardOportunidade({
   item,
@@ -292,6 +302,10 @@ function CardOportunidade({
   );
 }
 
+/* =========================================================
+   CARROSSEL
+========================================================= */
+
 function Carrossel({
   titulo,
   subtitulo,
@@ -337,48 +351,152 @@ function Carrossel({
   );
 }
 
+/* =========================================================
+   PÁGINA
+========================================================= */
+
 export default function AquisicaoPage() {
   return (
     <main className="bg-white text-black">
-      <section className="relative overflow-hidden bg-black px-5 pb-20 pt-36 text-white md:px-8 md:pb-28 md:pt-44">
-        <div className="absolute inset-0 opacity-20">
-          <Image
-            src="/img/logo/financas.png"
-            alt=""
-            fill
-            priority
-            className="object-cover object-right"
-          />
-        </div>
 
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/45" />
+      {/* =====================================================
+          HERO
+      ====================================================== */}
+      <section className="relative h-[80vh] min-h-[650px] overflow-hidden bg-black text-white">
 
-        <div className="relative mx-auto max-w-7xl">
-          <p className="mb-5 text-sm font-semibold uppercase tracking-[0.28em] text-white/50">
-            Aquisição
-          </p>
+        {/* IMAGEM DO DIAMANTE */}
+        <div
+          className="
+            pointer-events-none
+            absolute
+            inset-0
+            bg-cover
+            bg-center
+            bg-no-repeat
+            md:bg-[position:center_right]
+          "
+          style={{
+            backgroundImage: "url('/img/logo/aquisicao.png')",
+          }}
+        />
 
-          <h1 className="max-w-4xl text-4xl font-black leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
-            Planeje hoje. Conquiste no seu tempo.
-          </h1>
+        {/* DEGRADÊ ESCURO PARA O TEXTO */}
+        <div
+          className="
+            pointer-events-none
+            absolute
+            inset-0
+            bg-gradient-to-r
+            from-black
+            via-black/80
+            to-black/10
+          "
+        />
 
-          <p className="mt-7 max-w-3xl text-lg leading-relaxed text-white/65 md:text-xl">
-            Utilize o consórcio como uma estratégia inteligente para
-            aquisição de imóveis, veículos e outros bens, com planejamento
-            e condições que se adaptam aos seus objetivos.
-          </p>
+        {/* SOMBRA SUPERIOR / INFERIOR */}
+        <div
+          className="
+            pointer-events-none
+            absolute
+            inset-0
+            bg-gradient-to-t
+            from-black/40
+            via-transparent
+            to-black/20
+          "
+        />
 
-          <a
-            href="#simulacoes"
-            className="mt-9 inline-flex rounded-full bg-white px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-black transition hover:bg-white/85"
-          >
-            Ver simulações
-          </a>
+        {/* CONTEÚDO */}
+        <div
+          className="
+            relative
+            z-10
+            mx-auto
+            flex
+            h-full
+            max-w-7xl
+            items-center
+            px-6
+            md:px-10
+          "
+        >
+          <div className="max-w-4xl">
+
+            {/* EYEBROW */}
+            <p
+              className="
+                mb-4
+                text-sm
+                uppercase
+                tracking-[0.25em]
+                text-white/60
+              "
+            >
+              AQUISIÇÃO
+            </p>
+
+            {/* TÍTULO */}
+            <h1
+              className="
+                max-w-4xl
+                text-4xl
+                font-black
+                leading-tight
+                text-white
+                md:text-6xl
+              "
+            >
+              Planeje hoje. Conquiste no seu tempo.
+            </h1>
+
+            {/* DESCRIÇÃO */}
+            <p
+              className="
+                mt-6
+                max-w-3xl
+                text-lg
+                leading-relaxed
+                text-white/70
+                md:text-xl
+              "
+            >
+              Utilize o consórcio como uma estratégia inteligente para
+              aquisição de imóveis, veículos e outros bens, com planejamento
+              e condições que se adaptam aos seus objetivos.
+            </p>
+
+            {/* BOTÃO */}
+            <a
+              href="#simulacoes"
+              className="
+                mt-9
+                inline-flex
+                rounded-full
+                bg-white
+                px-7
+                py-3.5
+                text-sm
+                font-bold
+                uppercase
+                tracking-wide
+                text-black
+                transition
+                hover:bg-white/85
+              "
+            >
+              Ver simulações
+            </a>
+
+          </div>
         </div>
       </section>
 
+      {/* =====================================================
+          O QUE VOCÊ PODE ADQUIRIR
+      ====================================================== */}
       <section className="px-5 py-16 md:px-8 md:py-24">
         <div className="mx-auto max-w-7xl">
+
           <div className="mb-12 max-w-3xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-black/45">
               O que você pode adquirir
@@ -390,7 +508,10 @@ export default function AquisicaoPage() {
           </div>
 
           <div className="grid gap-6 lg:grid-cols-2">
+
+            {/* IMÓVEIS */}
             <div className="rounded-[30px] bg-[#f5f5f5] p-6 md:p-8">
+
               <div className="mb-7 flex items-center gap-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-black text-white">
                   <Home className="h-6 w-6" />
@@ -427,9 +548,12 @@ export default function AquisicaoPage() {
                   </div>
                 ))}
               </div>
+
             </div>
 
+            {/* VEÍCULOS */}
             <div className="rounded-[30px] bg-black p-6 text-white md:p-8">
+
               <div className="mb-7 flex items-center gap-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-black">
                   <Car className="h-6 w-6" />
@@ -465,17 +589,24 @@ export default function AquisicaoPage() {
                   </div>
                 ))}
               </div>
+
             </div>
+
           </div>
         </div>
       </section>
 
+      {/* =====================================================
+          SIMULAÇÕES
+      ====================================================== */}
       <section
         id="simulacoes"
         className="bg-[#f3f3f3] px-5 py-16 md:px-8 md:py-24"
       >
         <div className="mx-auto max-w-7xl">
+
           <div className="mb-12 max-w-4xl">
+
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-black/45">
               Simulações de crédito
             </p>
@@ -488,9 +619,11 @@ export default function AquisicaoPage() {
               Compare valores de crédito, meia parcela e prazo em algumas
               das nossas possibilidades.
             </p>
+
           </div>
 
           <div className="grid gap-7 lg:grid-cols-2">
+
             <TabelaCredito
               titulo="Crédito de veículos"
               dados={creditosVeiculos}
@@ -502,9 +635,11 @@ export default function AquisicaoPage() {
               dados={creditosImoveis}
               Icone={Home}
             />
+
           </div>
 
           <div className="mt-8 flex flex-col gap-5 rounded-[24px] border border-black/10 bg-white p-5 md:flex-row md:items-center md:justify-between md:p-7">
+
             <p className="max-w-3xl text-sm leading-relaxed text-black/50">
               Valores, condições e disponibilidade podem sofrer alterações.
               Consulte um especialista da R3 Estratégia Patrimonial para
@@ -517,10 +652,14 @@ export default function AquisicaoPage() {
             >
               Quero fazer uma simulação
             </a>
+
           </div>
         </div>
       </section>
 
+      {/* =====================================================
+          CARROSSEL DE VEÍCULOS
+      ====================================================== */}
       <Carrossel
         titulo="Escolha o seu próximo veículo."
         subtitulo="Planeje a aquisição do seu próximo bem com uma estratégia que cabe nos seus objetivos."
@@ -529,15 +668,23 @@ export default function AquisicaoPage() {
 
       <div className="h-px bg-black/10" />
 
+      {/* =====================================================
+          CARROSSEL DE IMÓVEIS
+      ====================================================== */}
       <Carrossel
         titulo="Encontre o imóvel para o seu próximo passo."
         subtitulo="Do primeiro terreno ao imóvel dos seus planos, transforme seus objetivos em uma estratégia de aquisição."
         itens={imoveis}
       />
 
+      {/* =====================================================
+          CTA FINAL
+      ====================================================== */}
       <section className="bg-black px-5 py-16 text-white md:px-8 md:py-20">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 rounded-[30px] border border-white/10 bg-white/5 p-7 md:flex-row md:items-center md:justify-between md:p-10">
+
           <div className="max-w-3xl">
+
             <div className="mb-4 flex items-center gap-2 text-white/45">
               <Check className="h-4 w-4" />
 
@@ -549,6 +696,7 @@ export default function AquisicaoPage() {
             <h2 className="text-3xl font-black tracking-tight md:text-4xl">
               Encontre uma estratégia de aquisição feita para o seu objetivo.
             </h2>
+
           </div>
 
           <a
@@ -557,8 +705,10 @@ export default function AquisicaoPage() {
           >
             Falar com a R3
           </a>
+
         </div>
       </section>
+
     </main>
   );
 }
