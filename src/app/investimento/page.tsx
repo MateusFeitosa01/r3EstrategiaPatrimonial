@@ -7,7 +7,7 @@ export default function Page() {
     <>
       <Navbar/>
       <InvestmentTab />
-      <AlavancagemSection />
+      
       <Footer/>
     </>
   );

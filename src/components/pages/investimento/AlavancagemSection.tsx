@@ -1,656 +1,719 @@
-"use client";
+  "use client";
 
-import React from "react";
-import StackingCards, { StackingCardItem } from "@/components/originkit/ui/stacking-cards"; // Ajuste o caminho do import
+  import React from "react";
+  import StackingCards, { StackingCardItem } from "@/components/originkit/ui/stacking-cards"; // Ajuste o caminho do import
 
-// ======================================================
-// TIPOS
-// ======================================================
+  // ======================================================
+  // TIPOS
+  // ======================================================
 
-interface SectionIntroProps {
-  eyebrow: string;
-  heading: string;
-  subtitle: string;
-}
+  interface SectionIntroProps {
+    eyebrow: string;
+    heading: string;
+    subtitle: string;
+  }
 
-interface DetailCardProps {
-  number: string;
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  bullets: string[];
-  tags: string[];
-  children?: React.ReactNode;
-}
+  interface DetailCardProps {
+    number: string;
+    icon: React.ReactNode;
+    title: string;
+    description: string;
+    bullets: string[];
+    tags: string[];
+    children?: React.ReactNode;
+  }
 
-export interface CreditExampleRow {
-  credito: string;
-  parcela: string;
-  retorno: string;
-}
+  export interface CreditExampleRow {
+    credito: string;
+    parcela: string;
+    retorno: string;
+  }
 
-export interface PatrimonialExampleRow {
-  credito: string;
-  parcela: string;
-  prazo: string;
-}
+  export interface PatrimonialExampleRow {
+    credito: string;
+    parcela: string;
+    prazo: string;
+  }
 
-interface CreditExampleTableProps {
-  title?: string;
-  rows: CreditExampleRow[];
-}
+  interface CreditExampleTableProps {
+    title?: string;
+    rows: CreditExampleRow[];
+  }
 
-interface PatrimonialExampleTableProps {
-  title?: string;
-  rows: PatrimonialExampleRow[];
-}
+  interface PatrimonialExampleTableProps {
+    title?: string;
+    rows: PatrimonialExampleRow[];
+  }
 
-// ======================================================
-// ÍCONES
-// ======================================================
+  // ======================================================
+  // ÍCONES
+  // ======================================================
 
-const IconClock = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.5"
-    className="h-[18px] w-[18px]"
-  >
-    <circle cx="12" cy="12" r="9" />
-    <path
-      d="M12 7v5l3 3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-const IconBars = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.5"
-    className="h-[18px] w-[18px]"
-  >
-    <rect x="4" y="12" width="3" height="8" />
-    <rect x="10.5" y="7" width="3" height="13" />
-    <rect x="17" y="3" width="3" height="17" />
-  </svg>
-);
-
-// ======================================================
-// INTRODUÇÃO
-// ======================================================
-
-export const SectionIntro: React.FC<SectionIntroProps> = ({
-  eyebrow,
-  heading,
-  subtitle,
-}) => (
-  <div className="max-w-[760px]">
-    <span
-      className="
-        mb-5 block
-        text-[12px]
-        font-semibold
-        uppercase
-        tracking-[0.22em]
-        text-[#a9834f]
-      "
+  const IconClock = () => (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      className="h-[18px] w-[18px]"
     >
-      {eyebrow}
-    </span>
+      <circle cx="12" cy="12" r="9" />
+      <path
+        d="M12 7v5l3 3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
 
-    <h2
-      className="
-        mb-6
-        text-[clamp(32px,4.2vw,56px)]
-        font-bold
-        leading-[1.12]
-        tracking-[-0.01em]
-        text-[#111111]
-      "
+  const IconBars = () => (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      className="h-[18px] w-[18px]" 
     >
-      {heading}
-    </h2>
+      <rect x="4" y="12" width="3" height="8" />
+      <rect x="10.5" y="7" width="3" height="13" />
+      <rect x="17" y="3" width="3" height="17" />
+    </svg>
+  );
 
-    <p
-      className="
-        m-0
-        max-w-[60ch]
-        text-[16px]
-        leading-[1.6]
-        text-[#8a8a8a]
-      "
+  const IconTrendUp = () => (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      className="h-[18px] w-[18px]"
     >
-      {subtitle}
-    </p>
-  </div>
-);
+      <path
+        d="M2.25 18L9 11.25l4.5 4.5L21.75 8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16.5 8h5.25v5.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
 
-// ======================================================
-// CARD (FUNDO PRETO & ESTRUTURA UNIFICADA)
-// ======================================================
+  // ======================================================
+  // INTRODUÇÃO
+  // ======================================================
 
-export const DetailCard: React.FC<DetailCardProps> = ({
-  number,
-  icon,
-  title,
-  description,
-  bullets,
-  tags,
-  children,
-}) => (
-  <div
-    className="
-      w-full
-      rounded-2xl
-      border
-      border-[#262626]
-      bg-[#121212]
-      p-6
-      shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)]
-      sm:p-8
-      min-[861px]:p-12
-    "
-  >
-    <div
-      className={`
-        grid
-        gap-10
-        ${
-          children
-            ? "grid-cols-1 min-[861px]:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] min-[861px]:items-center"
-            : "grid-cols-1"
-        }
-      `}
-    >
-      {/* CONTEÚDO PRINCIPAL (ESQUERDA) */}
-      <div className="w-full">
-        {/* TOPO */}
-        <div className="mb-7 flex items-start justify-between">
-          <span className="text-[13px] font-semibold tracking-[0.16em] text-[#a9834f]">
-            {number}
-          </span>
+  export const SectionIntro: React.FC<SectionIntroProps> = ({
+    eyebrow,
+    heading,
+    subtitle,
+  }) => (
+    <div className="max-w-[760px]">
+      <span
+        className="
+          mb-2 block
+          text-[12px]
+          font-semibold
+          uppercase
+          tracking-[0.22em]
+          text-[#111111]
+        "
+      >
+        {eyebrow}
+      </span>
 
-          <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#333333] bg-[#1a1a1a] text-white">
-            {icon}
-          </span>
-        </div>
+      <h2
+        className="
+          mb-6
+          text-[clamp(32px,4.2vw,56px)]
+          font-bold
+          leading-[1.12]
+          tracking-[-0.01em]
+          text-[#111111]
+        "
+      >
+        {heading}
+      </h2>
 
-        {/* TÍTULO */}
-        <h3 className="mb-[22px] text-[28px] font-bold leading-[1.2] tracking-[-0.01em] text-white sm:text-[32px]">
-          {title}
-        </h3>
-
-        {/* DESCRIÇÃO */}
-        <p className="mb-8 text-[15px] leading-[1.75] text-[#a3a3a3]">
-          {description}
-        </p>
-
-        {/* BULLETS */}
-        <ul className="m-0 mb-9 flex flex-col gap-4 border-t border-[#262626] p-0 pt-6 list-none">
-          {bullets.map((bullet) => (
-            <li
-              key={bullet}
-              className="relative pl-[22px] text-[14.5px] text-[#e5e5e5] before:absolute before:left-0 before:top-[9px] before:h-px before:w-[10px] before:bg-[#a9834f] before:content-['']"
-            >
-              {bullet}
-            </li>
-          ))}
-        </ul>
-
-        {/* DIVISOR */}
-        <div className="mb-[22px] border-t border-[#262626]" />
-
-        {/* TAGS */}
-        <div className="flex flex-wrap items-center gap-[10px] text-[11px] font-semibold tracking-[0.1em] text-[#8a8a8a]">
-          {tags.map((tag, index) => (
-            <React.Fragment key={tag}>
-              <span>{tag}</span>
-              {index < tags.length - 1 && (
-                <span aria-hidden="true" className="text-[#525252]">→</span>
-              )}
-            </React.Fragment>
-          ))}
-        </div>
-      </div>
-
-      {/* ASIDE / TABELA (DIREITA) */}
-      {children && (
-        <aside className="w-full min-w-0">
-          {children}
-        </aside>
-      )}
+      <p
+        className="
+          m-0
+          max-w-[60ch]
+          text-[16px]
+          leading-[1.6]
+          text-[#8a8a8a]
+        "
+      >
+        {subtitle}
+      </p>
     </div>
-  </div>
-);
+  );
 
-// ======================================================
-// TABELA BASE
-// ======================================================
+  // ======================================================
+  // CARD (FUNDO PRETO & ESTRUTURA UNIFICADA)
+  // ======================================================
 
-const CreditTableWrapper: React.FC<{
-  title: string;
-  children: React.ReactNode;
-}> = ({ title, children }) => (
-  <div
-    className="
-      w-full
-      overflow-x-auto
-      rounded-xl
-      border
-      border-[#262626]
-      bg-[#1a1a1a]
-      px-6
-      py-7
-      shadow-inner
-      min-[861px]:px-8
-      min-[861px]:pb-8
-      min-[861px]:pt-9
-    "
-  >
-    <span
+  export const DetailCard: React.FC<DetailCardProps> = ({
+    number,
+    icon,
+    title,
+    description,
+    bullets,
+    tags,
+    children,
+  }) => (
+    <div
       className="
-        mb-[22px]
-        block
-        border-b
-        border-[#a9834f]
-        pb-[18px]
-        text-[12px]
-        font-semibold
-        uppercase
-        tracking-[0.16em]
-        text-[#f2f0ea]
+        w-full
+        rounded-2xl
+        border
+        border-[#262626]
+        bg-[#121212]
+        p-6
+        shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)]
+        sm:p-8
+        min-[861px]:p-12
       "
     >
-      {title}
-    </span>
+      <div
+        className={`
+          grid
+          gap-10
+          ${
+            children
+              ? "grid-cols-1 min-[861px]:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] min-[861px]:items-center"
+              : "grid-cols-1"
+          }
+        `}
+      >
+        {/* CONTEÚDO PRINCIPAL (ESQUERDA) */}
+        <div className="w-full">
+          {/* TOPO */}
+          <div className="mb-7 flex items-start justify-between">
+            <span className="text-[13px] font-semibold tracking-[0.16em] text-[#a9834f]">
+              {number}
+            </span>
 
-    {children}
+            <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#333333] bg-[#1a1a1a] text-white">
+              {icon}
+            </span>
+          </div>
 
-    <p className="m-0 mt-[22px] text-[11.5px] text-[#6f6d66]">
-      Condições definidas conforme análise individual e
-      planejamento estratégico.
-    </p>
-  </div>
-);
+          {/* TÍTULO */}
+          <h3 className="mb-[22px] text-[28px] font-bold leading-[1.2] tracking-[-0.01em] text-white sm:text-[32px]">
+            {title}
+          </h3>
 
-// ======================================================
-// TABELA — ALAVANCAGEM PATRIMONIAL
-// ======================================================
+          {/* DESCRIÇÃO */}
+          <p className="mb-8 text-[15px] leading-[1.75] text-[#a3a3a3]">
+            {description}
+          </p>
 
-export const PatrimonialExampleTable: React.FC<
-  PatrimonialExampleTableProps
-> = ({
-  title = "Exemplo de Alavancagem Patrimonial",
-  rows,
-}) => (
-  <CreditTableWrapper title={title}>
-    <table className="w-full min-w-[420px] border-collapse">
-      <thead>
-        <tr>
-          <th
-            scope="col"
-            className="
-              border-b
-              border-white/10
-              pb-[14px]
-              pr-3
-              text-left
-              text-[10.5px]
-              font-semibold
-              uppercase
-              tracking-[0.1em]
-              text-[#8a8880]
-            "
-          >
-            Crédito
-          </th>
+          {/* BULLETS */}
+          <ul className="m-0 mb-9 flex flex-col gap-4 border-t border-[#262626] p-0 pt-6 list-none">
+            {bullets.map((bullet) => (
+              <li
+                key={bullet}
+                className="relative pl-[22px] text-[14.5px] text-[#e5e5e5] before:absolute before:left-0 before:top-[9px] before:h-px before:w-[10px] before:bg-[#a9834f] before:content-['']"
+              >
+                {bullet}
+              </li>
+            ))}
+          </ul>
 
-          <th
-            scope="col"
-            className="
-              border-b
-              border-white/10
-              pb-[14px]
-              pr-3
-              text-left
-              text-[10.5px]
-              font-semibold
-              uppercase
-              tracking-[0.1em]
-              text-[#8a8880]
-            "
-          >
-            1/2 Parcela mensal
-          </th>
+          {/* DIVISOR */}
+          <div className="mb-[22px] border-t border-[#262626]" />
 
-          <th
-            scope="col"
-            className="
-              border-b
-              border-white/10
-              pb-[14px]
-              pr-3
-              text-left
-              text-[10.5px]
-              font-semibold
-              uppercase
-              tracking-[0.1em]
-              text-[#8a8880]
-            "
-          >
-            Prazo
-          </th>
-        </tr>
-      </thead>
+          {/* TAGS */}
+          <div className="flex flex-wrap items-center gap-[10px] text-[11px] font-semibold tracking-[0.1em] text-[#8a8a8a]">
+            {tags.map((tag, index) => (
+              <React.Fragment key={tag}>
+                <span>{tag}</span>
+                {index < tags.length - 1 && (
+                  <span aria-hidden="true" className="text-[#525252]">→</span>
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
 
-      <tbody>
-        {rows.map((row) => (
-          <tr key={row.credito}>
-            <td
+        {/* ASIDE / TABELA (DIREITA) */}
+        {children && (
+          <aside className="w-full min-w-0">
+            {children}
+          </aside>
+        )}
+      </div>
+    </div>
+  );
+
+  // ======================================================
+  // TABELA BASE
+  // ======================================================
+
+  const CreditTableWrapper: React.FC<{
+    title: string;
+    children: React.ReactNode;
+  }> = ({ title, children }) => (
+    <div
+      className="
+        w-full
+        overflow-x-auto
+        rounded-xl
+        border
+        border-[#262626]
+        bg-[#1a1a1a]
+        px-6
+        py-7
+        shadow-inner
+        min-[861px]:px-8
+        min-[861px]:pb-8
+        min-[861px]:pt-9
+      "
+    >
+      <span
+        className="
+          mb-[22px]
+          block
+          border-b
+          border-[#8a8880]
+          pb-[18px]
+          text-[12px]
+          font-semibold
+          uppercase
+          tracking-[0.16em]
+          text-[#f2f0ea]
+        "
+      >
+        {title}
+      </span>
+
+      {children}
+
+      <p className="m-0 mt-[22px] text-[11.5px] text-[#6f6d66]">
+        Condições definidas conforme análise individual e
+        planejamento estratégico.
+      </p>
+    </div>
+  );
+
+  // ======================================================
+  // TABELA — ALAVANCAGEM PATRIMONIAL
+  // ======================================================
+
+  export const PatrimonialExampleTable: React.FC<
+    PatrimonialExampleTableProps
+  > = ({
+    title = "Exemplo de Alavancagem Patrimonial",
+    rows,
+  }) => (
+    <CreditTableWrapper title={title}>
+      <table className="w-full min-w-[420px] border-collapse">
+        <thead>
+          <tr>
+            <th
+              scope="col"
               className="
                 border-b
-                border-white/[0.08]
-                py-[18px]
+                border-white/10
+                pb-[14px]
                 pr-3
-                text-[15px]
-                font-bold
-                text-white
-                last:border-b-0
+                text-left
+                text-[10.5px]
+                font-semibold
+                uppercase
+                tracking-[0.1em]
+                text-[#8a8880]
               "
             >
-              {row.credito}
-            </td>
+              Crédito
+            </th>
 
-            <td
+            <th
+              scope="col"
               className="
                 border-b
-                border-white/[0.08]
-                py-[18px]
+                border-white/10
+                pb-[14px]
                 pr-3
-                text-[15px]
-                text-[#e9e7e0]
-                last:border-b-0
+                text-left
+                text-[10.5px]
+                font-semibold
+                uppercase
+                tracking-[0.1em]
+                text-[#8a8880]
               "
             >
-              {row.parcela}
-            </td>
+              1/2 Parcela mensal
+            </th>
 
-            <td
+            <th
+              scope="col"
               className="
                 border-b
-                border-white/[0.08]
-                py-[18px]
+                border-white/10
+                pb-[14px]
                 pr-3
-                text-[15px]
-                text-[#e9e7e0]
-                last:border-b-0
+                text-left
+                text-[10.5px]
+                font-semibold
+                uppercase
+                tracking-[0.1em]
+                text-[#8a8880]
               "
             >
-              {row.prazo}
-            </td>
+              Prazo
+            </th>
           </tr>
-        ))}
-      </tbody>
-    </table>
-  </CreditTableWrapper>
-);
+        </thead>
 
-// ======================================================
-// TABELA — ALAVANCAGEM FINANCEIRA
-// ======================================================
+        <tbody>
+          {rows.map((row) => (
+            <tr key={row.credito}>
+              <td
+                className="
+                  border-b
+                  border-white/[0.08]
+                  py-[18px]
+                  pr-3
+                  text-[15px]
+                  font-bold
+                  text-white
+                  last:border-b-0
+                "
+              >
+                {row.credito}
+              </td>
 
-export const CreditExampleTable: React.FC<
-  CreditExampleTableProps
-> = ({
-  title = "Exemplo de Alavancagem Financeira",
-  rows,
-}) => (
-  <CreditTableWrapper title={title}>
-    <table className="w-full min-w-[420px] border-collapse">
-      <thead>
-        <tr>
-          <th
-            scope="col"
-            className="
-              border-b
-              border-white/10
-              pb-[14px]
-              pr-3
-              text-left
-              text-[10.5px]
-              font-semibold
-              uppercase
-              tracking-[0.1em]
-              text-[#8a8880]
-            "
-          >
-            Crédito
-          </th>
+              <td
+                className="
+                  border-b
+                  border-white/[0.08]
+                  py-[18px]
+                  pr-3
+                  text-[15px]
+                  text-[#e9e7e0]
+                  last:border-b-0
+                "
+              >
+                {row.parcela}
+              </td>
 
-          <th
-            scope="col"
-            className="
-              border-b
-              border-white/10
-              pb-[14px]
-              pr-3
-              text-left
-              text-[10.5px]
-              font-semibold
-              uppercase
-              tracking-[0.1em]
-              text-[#8a8880]
-            "
-          >
-            1/2 Parcela mensal
-          </th>
+              <td
+                className="
+                  border-b
+                  border-white/[0.08]
+                  py-[18px]
+                  pr-3
+                  text-[15px]
+                  text-[#e9e7e0]
+                  last:border-b-0
+                "
+              >
+                {row.prazo}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </CreditTableWrapper>
+  );
 
-          <th
-            scope="col"
-            className="
-              border-b
-              border-white/10
-              pb-[14px]
-              pr-3
-              text-left
-              text-[10.5px]
-              font-semibold
-              uppercase
-              tracking-[0.1em]
-              text-[#8a8880]
-            "
-          >
-            Retorno estimado
-          </th>
-        </tr>
-      </thead>
+  // ======================================================
+  // TABELA — ALAVANCAGEM FINANCEIRA
+  // ======================================================
 
-      <tbody>
-        {rows.map((row) => (
-          <tr key={row.credito}>
-            <td
+  export const CreditExampleTable: React.FC<
+    CreditExampleTableProps
+  > = ({
+    title = "Exemplo de Alavancagem Financeira",
+    rows,
+  }) => (
+    <CreditTableWrapper title={title}>
+      <table className="w-full min-w-[420px] border-collapse">
+        <thead>
+          <tr>
+            <th
+              scope="col"
               className="
                 border-b
-                border-white/[0.08]
-                py-[18px]
+                border-white/10
+                pb-[14px]
                 pr-3
-                text-[15px]
-                font-bold
-                text-white
-                last:border-b-0
+                text-left
+                text-[10.5px]
+                font-semibold
+                uppercase
+                tracking-[0.1em]
+                text-[#8a8880]
               "
             >
-              {row.credito}
-            </td>
+              Crédito
+            </th>
 
-            <td
+            <th
+              scope="col"
               className="
                 border-b
-                border-white/[0.08]
-                py-[18px]
+                border-white/10
+                pb-[14px]
                 pr-3
-                text-[15px]
-                text-[#e9e7e0]
-                last:border-b-0
+                text-left
+                text-[10.5px]
+                font-semibold
+                uppercase
+                tracking-[0.1em]
+                text-[#8a8880]
               "
             >
-              {row.parcela}
-            </td>
+              1/2 Parcela mensal
+            </th>
 
-            <td
+            <th
+              scope="col"
               className="
                 border-b
-                border-white/[0.08]
-                py-[18px]
+                border-white/10
+                pb-[14px]
                 pr-3
-                text-[15px]
-                font-bold
-                text-[#a9834f]
-                last:border-b-0
+                text-left
+                text-[10.5px]
+                font-semibold
+                uppercase
+                tracking-[0.1em]
+                text-[#8a8880]
               "
             >
-              {row.retorno}
-            </td>
+              Retorno estimado
+            </th>
           </tr>
-        ))}
-      </tbody>
-    </table>
-  </CreditTableWrapper>
-);
+        </thead>
 
-// ======================================================
-// DADOS — ALAVANCAGEM PATRIMONIAL
-// ======================================================
+        <tbody>
+          {rows.map((row) => (
+            <tr key={row.credito}>
+              <td
+                className="
+                  border-b
+                  border-white/[0.08]
+                  py-[18px]
+                  pr-3
+                  text-[15px]
+                  font-bold
+                  text-white
+                  last:border-b-0
+                "
+              >
+                {row.credito}
+              </td>
 
-const PATRIMONIAL_EXAMPLES: PatrimonialExampleRow[] = [
-  {
-    credito: "300 mil",
-    parcela: "R$ 922,00",
-    prazo: "200 meses",
-  },
-  {
-    credito: "500 mil",
-    parcela: "R$ 1.397,00",
-    prazo: "220 meses",
-  },
-  {
-    credito: "800 mil",
-    parcela: "R$ 2.236,00",
-    prazo: "220 meses",
-  },
-  {
-    credito: "1 milhão",
-    parcela: "R$ 2.795,46",
-    prazo: "220 meses",
-  },
-];
+              <td
+                className="
+                  border-b
+                  border-white/[0.08]
+                  py-[18px]
+                  pr-3
+                  text-[15px]
+                  text-[#e9e7e0]
+                  last:border-b-0
+                "
+              >
+                {row.parcela}
+              </td>
 
-// ======================================================
-// DADOS — ALAVANCAGEM FINANCEIRA
-// ======================================================
+              <td
+                className="
+                  border-b
+                  border-white/[0.08]
+                  py-[18px]
+                  pr-3
+                  text-[15px]
+                  text-[#e9e7e0]
+                  last:border-b-0
+                "
+              >
+                {row.retorno}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </CreditTableWrapper>
+  );
 
-const CREDIT_EXAMPLES: CreditExampleRow[] = [
-  {
-    credito: "100 mil",
-    parcela: "R$ 341,00",
-    retorno: "R$ 20 mil",
-  },
-  {
-    credito: "200 mil",
-    parcela: "R$ 615,00",
-    retorno: "R$ 40 mil",
-  },
-  {
-    credito: "400 mil",
-    parcela: "R$ 1.230,00",
-    retorno: "R$ 80 mil",
-  },
-];
+  // ======================================================
+  // DADOS — ALAVANCAGEM PATRIMONIAL
+  // ======================================================
 
-// ======================================================
-// SEÇÃO PRINCIPAL
-// ======================================================
+  const PATRIMONIAL_EXAMPLES: PatrimonialExampleRow[] = [
+    {
+      credito: "300 mil",
+      parcela: "R$ 922,00",
+      prazo: "200 meses",
+    },
+    {
+      credito: "500 mil",
+      parcela: "R$ 1.397,00",
+      prazo: "220 meses",
+    },
+    {
+      credito: "800 mil",
+      parcela: "R$ 2.236,00",
+      prazo: "220 meses",
+    },
+    {
+      credito: "1 milhão",
+      parcela: "R$ 2.795,46",
+      prazo: "220 meses",
+    },
+  ];
 
-export const AlavancagemSection: React.FC = () => (
-  <section
-    aria-label="Alavancagem em detalhe"
-    className="
-      flex
-      flex-col
-      gap-12
-      bg-[#f6f5f2]
-      px-5
-      py-12
-      font-sans
-      text-[#111111]
-      min-[861px]:gap-16
-      min-[861px]:px-12
-      min-[861px]:py-[72px]
-    "
-  >
-    <SectionIntro
-      eyebrow="Alavancagem"
-      heading="Transforme estratégia em crescimento patrimonial."
-      subtitle="Duas abordagens complementares para quem deseja acelerar a construção de patrimônio com inteligência e planejamento."
-    />
+  // ======================================================
+  // DADOS — ALAVANCAGEM FINANCEIRA
+  // ======================================================
 
-    {/* ==================================================
-        STACKING CARDS CONTAINER
-    ================================================== */}
-    <StackingCards totalCards={2} className="flex flex-col gap-24 pb-20">
-      {/* CARD 01 - ALAVANCAGEM PATRIMONIAL */}
-      <StackingCardItem index={0} topPosition="8%">
-        <DetailCard
-          number="01"
-          icon={<IconBars />}
-          title="Alavancagem Patrimonial"
-          description="Estratégias voltadas para acelerar a construção de patrimônio utilizando oportunidades de mercado, planejamento estratégico e alocação inteligente de recursos. Ajudamos você a enxergar possibilidades que transformam ativos em crescimento real e sustentável."
-          bullets={[
-            "Identificação de oportunidades de mercado",
-            "Planejamento estratégico de longo prazo",
-            "Alocação inteligente de recursos",
-            "Acompanhamento contínuo da estratégia",
-          ]}
-          tags={[
-            "CRÉDITO",
-            "ESTRATÉGIA",
-            "ALOCAÇÃO",
-            "PATRIMÔNIO",
-          ]}
-        >
-          <PatrimonialExampleTable rows={PATRIMONIAL_EXAMPLES} />
-        </DetailCard>
-      </StackingCardItem>
+  const CREDIT_EXAMPLES: CreditExampleRow[] = [
+    {
+      credito: "100 mil",
+      parcela: "R$ 341,00",
+      retorno: "R$ 20 mil",
+    },
+    {
+      credito: "200 mil",
+      parcela: "R$ 615,00",
+      retorno: "R$ 40 mil",
+    },
+    {
+      credito: "400 mil",
+      parcela: "R$ 1.230,00",
+      retorno: "R$ 80 mil",
+    },
+  ];
 
-      {/* CARD 02 - ALAVANCAGEM FINANCEIRA */}
-      <StackingCardItem index={1} topPosition="12%">
-        <DetailCard
-          number="02"
-          icon={<IconClock />}
-          title="Alavancagem Financeira"
-          description="Soluções para utilizar recursos e crédito de maneira estratégica, buscando potencializar resultados financeiros sem comprometer a estabilidade. Transformamos crédito em ferramenta de construção patrimonial com responsabilidade e visão de longo prazo."
-          bullets={[
-            "Uso estratégico de crédito e capital",
-            "Estruturação de operações financeiras",
-            "Otimização de fluxo e resultado",
-            "Inteligência na gestão de recursos",
-          ]}
-          tags={[
-            "CRÉDITO",
-            "ESTRATÉGIA",
-            "RENTABILIDADE",
-          ]}
-        >
-          <CreditExampleTable rows={CREDIT_EXAMPLES} />
-        </DetailCard>
-      </StackingCardItem>
-    </StackingCards>
-  </section>
-);
+  const PREVIDENCIA_EXAMPLES: CreditExampleRow[] = [
+    {
+      credito: "200 mil",
+      parcela: "R$ 650,00",
+      retorno: "R$ 260 mil",
+    },
+    {
+      credito: "300 mil",
+      parcela: "R$ 950,00",
+      retorno: "R$ 390 mil",
+    },
+    {
+      credito: "500 mil",
+      parcela: "R$ 1.580,00",
+      retorno: "R$ 650 mil",
+    },
+  ];
 
-export default AlavancagemSection;
+  // ======================================================
+  // SEÇÃO PRINCIPAL
+  // ======================================================
+
+  export const AlavancagemSection: React.FC = () => (
+    <section
+      aria-label="Alavancagem em detalhe"
+      className="
+        flex
+        flex-col
+        gap-12
+        bg-white
+        px-5
+        py-12
+        
+        font-sans
+        text-[#111111]
+        min-[861px]:gap-16
+        min-[861px]:px-12
+        min-[861px]:pb-[180px]
+      "
+    >
+      <SectionIntro
+        eyebrow="Alavancagem"
+        heading="Transforme estratégia em crescimento patrimonial."
+        subtitle="Duas abordagens complementares para quem deseja acelerar a construção de patrimônio com inteligência e planejamento."
+      />
+
+      {/* ==================================================
+          STACKING CARDS CONTAINER
+      ================================================== */}
+      <StackingCards totalCards={3} className="flex flex-col gap-24 pb-20">
+        {/* CARD 01 - ALAVANCAGEM PATRIMONIAL */}
+        <StackingCardItem index={0} topPosition="40px">
+          <DetailCard
+            number="01"
+            icon={<IconBars />}
+            title="Alavancagem Patrimonial"
+            description="Estratégias voltadas para acelerar a construção de patrimônio utilizando oportunidades de mercado, planejamento estratégico e alocação inteligente de recursos. Ajudamos você a enxergar possibilidades que transformam ativos em crescimento real e sustentável."
+            bullets={[
+              "Identificação de oportunidades de mercado",
+              "Planejamento estratégico de longo prazo",
+              "Alocação inteligente de recursos",
+              "Acompanhamento contínuo da estratégia",
+            ]}
+            tags={[
+              "CRÉDITO",
+              "ESTRATÉGIA",
+              "ALOCAÇÃO",
+              "PATRIMÔNIO",
+            ]}
+          >
+            <PatrimonialExampleTable rows={PATRIMONIAL_EXAMPLES} />
+          </DetailCard>
+        </StackingCardItem>
+
+        {/* CARD 02 - ALAVANCAGEM FINANCEIRA */}
+        <StackingCardItem index={1} topPosition="90px">
+          <DetailCard
+            number="02"
+            icon={<IconTrendUp />}
+            title="Alavancagem Financeira"
+            description="Soluções para utilizar recursos e crédito de maneira estratégica, buscando potencializar resultados financeiros sem comprometer a estabilidade. Transformamos crédito em ferramenta de construção patrimonial com responsabilidade e visão de longo prazo."
+            bullets={[
+              "Uso estratégico de crédito e capital",
+              "Estruturação de operações financeiras",
+              "Otimização de fluxo e resultado",
+              "Inteligência na gestão de recursos",
+            ]}
+            tags={[
+              "CRÉDITO",
+              "ESTRATÉGIA",
+              "RENTABILIDADE",
+            ]}
+          >
+            <CreditExampleTable rows={CREDIT_EXAMPLES} />
+          </DetailCard>
+        </StackingCardItem>
+
+        {/* CARD 02 - ALAVANCAGEM FINANCEIRA */}
+        <StackingCardItem index={2} topPosition="180px">
+          <DetailCard
+            number="03"
+            icon={<IconClock />}
+            title="Previdência Aplicada"
+            description="Uma estratégia que integra planejamento previdenciário e consórcio para organizar a formação de patrimônio no longo prazo. A estrutura permite utilizar o consórcio como ferramenta de aquisição planejada, enquanto a previdência contribui para a disciplina financeira e a construção de recursos para diferentes fases da vida."
+            bullets={[
+              "Planejamento financeiro de longo prazo",
+              "Integração entre previdência e consórcio",
+              "Formação planejada de patrimônio",
+              "Estratégia alinhada aos objetivos futuros",
+            ]}
+            tags={[
+              "PREVIDÊNCIA",
+              "CONSÓRCIO",
+              "PLANEJAMENTO",
+              "PATRIMÔNIO",
+            ]}
+          >
+            <CreditExampleTable rows={PREVIDENCIA_EXAMPLES} />
+          </DetailCard>
+        </StackingCardItem>
+      </StackingCards>
+    </section>
+  );
+
+  export default AlavancagemSection;

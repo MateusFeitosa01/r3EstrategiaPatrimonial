@@ -1,7 +1,8 @@
 import React from "react";
 import InvestmentHero from "./hero";
 import ServiceCards, { ServiceKey } from "./serviceCards";
-import StackSpread from "@/components/originkit/ui/cta";
+import Cta from "./cta";
+import AlavancagemSection from "./AlavancagemSection";
 
 interface InvestmentTabProps {
   highlighted?: ServiceKey;
@@ -13,18 +14,16 @@ export const InvestmentTab: React.FC<InvestmentTabProps> = ({
   onSelectService,
 }) => {
   return (
-    <>
     <section
-      className="min-h-screen w-full bg-white font-sans text-neutral-900"
+      className="w-full bg-white font-sans text-neutral-900"
       aria-label="Soluções de investimento"
     >
       <InvestmentHero />
-      <ServiceCards/>
-    
-     
+      <ServiceCards />
+      <AlavancagemSection/>
+      <Cta />
+      
     </section>
-    
-    </>
   );
 };
 
