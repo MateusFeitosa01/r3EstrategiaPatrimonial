@@ -503,7 +503,7 @@ export default function LiquidGlassButton(props: Props) {
                 ["--mx" as any]: "50%",
                 ["--my" as any]: "50%",
                 ...style,
-            }}
+            }}  
         >
             <Tag
                 {...tagProps}
@@ -530,7 +530,7 @@ export default function LiquidGlassButton(props: Props) {
                     color: textColor,
                     background: glassBackground,
                     backdropFilter: backdrop,
-    WebkitBackdropFilter: backdrop,
+                    WebkitBackdropFilter: backdrop,
 
                 }}
             >

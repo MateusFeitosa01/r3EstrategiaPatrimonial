@@ -158,12 +158,7 @@ export const ServiceCards: React.FC = () => {
               </p>
             </div>
 
-            <button
-              type="button"
-              className="inline-flex w-fit items-center gap-[9px] rounded-md bg-white px-4 py-2 text-[12px] font-medium text-neutral-900 transition-colors hover:bg-neutral-100"
-            >
-              Saiba Mais
-            </button>
+            
           </div>
         );
 

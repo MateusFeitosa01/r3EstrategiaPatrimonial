@@ -23,7 +23,7 @@ const strategies: StrategyItem[] = [
   {
     title: "Construção de patrimônio",
     description: "Uma estratégia para acelerar a construção do seu patrimônio, utilizando crédito de forma inteligente para ampliar seus ativos e potencializar seus resultados.",
-    href: "#construcao",
+    href: "/investimento",
     images: [
       "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&q=80&w=400",
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=400",
@@ -37,7 +37,7 @@ const strategies: StrategyItem[] = [
   {
     title: "Rentabilização",
     description: "A rentabilização acontece por meio da venda da carta contemplada, transformando o valor investido em retorno financeiro e concretizando o resultado planejado na estratégia.",
-    href: "#rentabilizacao",
+    href: "/investimento",
     images: [
       "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=80&w=400",
       "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&q=80&w=400",
@@ -51,7 +51,7 @@ const strategies: StrategyItem[] = [
   {
     title: "Aquisição",
     description: "Aquisição planejada para transformar seus objetivos em realidade, seja na compra do seu veículo ou do imóvel ideal para morar.",
-    href: "#aquisicao",
+    href: "/investimento",
     images: [
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400",
       "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=400",
@@ -65,7 +65,7 @@ const strategies: StrategyItem[] = [
   {
     title: "Previdência aplicada",
     description: "Uma forma inteligente de poupar, fazendo seu dinheiro render enquanto você constrói uma reserva para realizar seus planos futuros.",
-    href: "#previdencia",
+    href: "/investimento",
     images: [
       "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=400",
       "https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?auto=format&fit=crop&q=80&w=400",
@@ -95,6 +95,7 @@ export default function NossaEstrategia() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
                 {strategies.map((card, index) => (
                     <AnimatedHikeCard
+                    
                     key={index}
                     title={card.title}
                     description={card.description}

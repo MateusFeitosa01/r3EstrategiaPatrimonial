@@ -17,6 +17,7 @@ const cardsData = [
       "Organize seus objetivos financeiros com um plano estruturado, pensado para transformar seus projetos em conquistas.",
     category: "CONSÓRCIO ESTRATÉGICO",
     linkText: "Saber mais →",
+    href: "/aquisicao",
   },
   {
     id: "02",
@@ -25,6 +26,7 @@ const cardsData = [
       "Tenha acesso a uma carta de crédito para realizar seus objetivos com poder de compra e maior liberdade de escolha.",
     category: "PRESERVAÇÃO DE CAPITAL",
     linkText: "Conhecer opções →",
+    href: "/aquisicao",
   },
   {
     id: "03",
@@ -33,6 +35,7 @@ const cardsData = [
       "Escolha entre diferentes planos, prazos e valores de crédito para encontrar uma solução que se adapte aos seus objetivos.",
     category: "SOLUÇÕES PERSONALIZADAS",
     linkText: "Ver opções →",
+    href: "/aquisicao",
   },
 ];
 
@@ -81,7 +84,12 @@ export default function NossaEstrategia() {
 
                 {/* Rodapé do Card */}
                 <CardCurtainRevealFooter className="pt-4 border-t border-white/10 group-hover:border-black/10 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-black group-hover:text-black/70 transition-colors duration-300">
-                  <span>{card.linkText}</span>
+                  <a
+                    href={card.href}
+                    className="hover:underline"
+                  >
+                    {card.linkText}
+                </a>
                   <span>R3 Soluções</span>
                 </CardCurtainRevealFooter>
               </CardCurtainRevealBody>

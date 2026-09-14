@@ -194,6 +194,7 @@ export default function Navbar() {
 
              <LiquidGlassButton
                 label="FAZER ORÇAMENTO"
+                link="https://wa.me/558387355437?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20de%20um%20cons%C3%B3rcio"
                 colors={{
                   fill: "#000000",
                   textColor: "#ffffff",
@@ -306,6 +307,7 @@ export default function Navbar() {
 
               {/* BOTÃO MOBILE */}
               <Link
+              
                 href="#formulario"
                 onClick={(e) => {
                   setMobileMenuOpen(false);

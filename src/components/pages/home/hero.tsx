@@ -419,7 +419,7 @@ const ScrollExpandMedia = ({
 
           {showContent && (
             <motion.section
-              className="z-20 flex w-full flex-col bg-white px-8 py-10 md:px-16 lg:py-0"
+              className="z-20 flex w-full flex-col bg-white py-10 lg:py-0"
               initial={{
                 opacity: 0,
               }}

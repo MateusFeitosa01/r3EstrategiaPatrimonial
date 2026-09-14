@@ -14,19 +14,20 @@ import { useEffect, useRef, useState } from "react";
 import LiquidGlassButton from "./light-glass-button";
 
 
-const IMG_BASE =
-  "https://pub-8abee449136941f5b0a1cd2c014534e9.r2.dev/vault-listing-images/assets-images/stack-spread";
+const IMG_BASE = "/img/aquisicao";
 
 const IMG = {
-  plane: `${IMG_BASE}/img1.png`,
-  painting: `${IMG_BASE}/img2.png`,
-  breaker: `${IMG_BASE}/img3.png`,
-  dog: `${IMG_BASE}/img4.png`,
-  footballer: `${IMG_BASE}/img5.png`,
-  jacket: `${IMG_BASE}/img6.png`,
-  meadow: `${IMG_BASE}/img7.png`,
-  stripes: `${IMG_BASE}/img8.png`,
+  carro: `${IMG_BASE}/fotocarro1.webp`,
+  moto: `${IMG_BASE}/fotomoto.webp`,
+  lancha: `${IMG_BASE}/fotolancha.webp`,
+  casa: `${IMG_BASE}/casa.webp`,
+  construcao: `${IMG_BASE}/construcao.webp`,
+  terreno: `${IMG_BASE}/terreno.webp`,
+  caminhao: `${IMG_BASE}/fotocaminhao.webp`,
+  apartamento: `${IMG_BASE}/apartamento.webp`,
 } as const;
+
+const FUNDO_AQUISICAO = `${IMG_BASE}/fundoAquisicao.jpg`;
 
 const SCALE: Partial<Record<number, number>> = {
   1: 0.9,
@@ -43,7 +44,7 @@ const s = (i: number) => SCALE[i] ?? 1;
 
 const CARDS: StackSpreadCard[] = [
   {
-    item: { src: IMG.stripes, alt: "Colour stripes" },
+    item: { src: IMG.caminhao, alt: "imagem caminhão" },
     stackOffset: { x: -8, y: -10 },
     stackRotate: -18,
     target: { x: -20, y: -34, rotate: 0, scale: s(8), w: 17, h: 22 },
@@ -51,7 +52,7 @@ const CARDS: StackSpreadCard[] = [
     z: 2,
   },
   {
-    item: { src: IMG.meadow, alt: "Wildflower meadow" },
+    item: { src: IMG.moto, alt: "imagem moto" },
     stackOffset: { x: 14, y: -10 },
     stackRotate: 20,
     target: { x: 32, y: -30, rotate: 0, scale: s(7), w: 18, h: 32 },
@@ -59,7 +60,7 @@ const CARDS: StackSpreadCard[] = [
     z: 3,
   },
   {
-    item: { src: IMG.jacket, alt: "Figure in a leather jacket" },
+    item: { src: IMG.apartamento, alt: "imagem apartamento" },
     stackOffset: { x: -16, y: 0 },
     stackRotate: -4,
     target: { x: -36, y: -2, rotate: 0, scale: s(6), w: 15, h: 32 },
@@ -67,7 +68,7 @@ const CARDS: StackSpreadCard[] = [
     z: 4,
   },
   {
-    item: { src: IMG.footballer, alt: "Footballer mid-kick" },
+    item: { src: IMG.carro, alt: "imagem carro" },
     stackOffset: { x: 1, y: -10 },
     stackRotate: -2,
     target: { x: 6, y: -32, rotate: 0, scale: s(5), w: 25, h: 30 },
@@ -75,7 +76,7 @@ const CARDS: StackSpreadCard[] = [
     z: 5,
   },
   {
-    item: { src: IMG.dog, alt: "Terrier in profile" },
+    item: { src: IMG.casa, alt: "imagem casa" },
     stackOffset: { x: 18, y: 1 },
     stackRotate: 6,
     target: { x: 37, y: 6, rotate: 0, scale: s(4), w: 18, h: 32 },
@@ -83,7 +84,7 @@ const CARDS: StackSpreadCard[] = [
     z: 6,
   },
   {
-    item: { src: IMG.breaker, alt: "Breakdancer holding a pose" },
+    item: { src: IMG.construcao, alt: "imagem construção" },
     stackOffset: { x: -6, y: 10 },
     stackRotate: 6,
     target: { x: -24, y: 34, rotate: 0, scale: s(3), w: 22, h: 25 },
@@ -91,7 +92,7 @@ const CARDS: StackSpreadCard[] = [
     z: 7,
   },
   {
-    item: { src: IMG.painting, alt: "Renaissance fresco detail" },
+    item: { src: IMG.lancha, alt: "imagem lancha" },
     stackOffset: { x: 8, y: 7 },
     stackRotate: 3,
     target: { x: 2, y: 36, rotate: 0, scale: s(2), w: 20, h: 26 },
@@ -99,7 +100,7 @@ const CARDS: StackSpreadCard[] = [
     z: 8,
   },
   {
-    item: { src: IMG.plane, alt: "Vintage fighter plane" },
+    item: { src: IMG.terreno, alt: "imagem terreno" },
     stackOffset: { x: 20, y: 12 },
     stackRotate: -7,
     target: { x: 30, y: 34, rotate: 0, scale: s(1), w: 16, h: 20 },
@@ -209,6 +210,7 @@ function usePointerParallax(active: boolean, enabled: boolean) {
 
   return { x, y };
 }
+
 
 export interface StackSpreadItem {
   src: string;
@@ -545,6 +547,7 @@ function StackSpreadStage({
                 className="pointer-events-auto relative z-50 mt-8"
                 >
                 <LiquidGlassButton
+                link="https://wa.me/558387355437?text=Ol%C3%A1%2C%20gostaria%20de%20come%C3%A7ar%20meu%20objetivo%20agora"
                                 label="COMEÇAR AGORA"
                                 colors={{
                                   fill: "#000000",
