@@ -40,7 +40,7 @@ export const NossoTime = ({
         "Atua na estratégia, tecnologia e desenvolvimento de soluções que fortalecem o posicionamento e o crescimento da R3.",
       name: "Rony Arthur",
       role: "Sócio",
-      imageSrc: "",
+      imageSrc: "/img/time/fotoarthur.jpeg",
     },
   ];
 

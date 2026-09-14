@@ -17,7 +17,7 @@ export default function SobreEmpresa() {
         }
         description="Na R3 Estratégia Patrimonial, acreditamos que grandes conquistas começam com planejamento, confiança e decisões inteligentes. Por isso, desenvolvemos estratégias personalizadas para quem busca construir, rentabilizar e acelerar seu patrimônio.
 Nosso compromisso é tornar cada decisão mais clara, segura e estratégica, construindo relações duradouras baseadas em transparência, confiança e resultados."
-        image="/img/time/R3_-35.jpg.jpeg"
+        image="/img/time/fotoequipe.jpeg"
         imageAlt="Sobre a R3 Consórcios & Investimentos"
       />
 

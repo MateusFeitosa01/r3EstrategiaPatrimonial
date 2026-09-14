@@ -1,5 +1,5 @@
-'use client'
-import { useEffect } from "react";
+'use client';
+
 import ScrollExpandMedia from "./hero";
 import NossaEstrategia from "./nossaEstrategia";
 import PorqueConsorcio from "./porqueConsorcio";
@@ -10,10 +10,6 @@ import FAQ from "./duvidasFrequentes";
 import Footer from "@/components/extras/footer/page";
 
 export default function Home() {
-    useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <>
       <Navbar />

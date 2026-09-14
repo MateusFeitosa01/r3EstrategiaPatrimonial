@@ -1,41 +1,54 @@
 "use client";
 
 import React from "react";
-import { Bike, Car, Sailboat, Truck, LandPlot, Building2, Home, Hammer } from "lucide-react";
+
+import {
+  Bike,
+  Car,
+  Sailboat,
+  Truck,
+  LandPlot,
+  Building2,
+  Home,
+  Hammer,
+} from "lucide-react";
+
 import { Hero } from "./hero";
 import { OQueAdquirir } from "./oQueAdiquirir";
 import { SecaoSimulacoes } from "./secaoSimulcoes";
 import Cta from "./ctaFinal";
 import { ItemOportunidade } from "./cardOportunidade";
-import Carrossel, { CarrosselItemProps } from "./carrossel";
+import Carrossel, {
+  CarrosselItemProps,
+} from "./carrossel";
 
 const veiculos: ItemOportunidade[] = [
   {
     titulo: "Moto",
     credito: "R$ 50.000,00",
     meiaParcela: "R$ 290,00",
-    imagem: "/img/fundoAquisicao/moto.jpg",
+    imagem: "/img/aquisicao/fotomoto.png",
     Icone: Bike,
   },
   {
     titulo: "Carro",
     credito: "R$ 120.000,00",
     meiaParcela: "R$ 680,00",
-    imagem: "/img/fundoAquisicao/carro.jpg",
+    imagem: "/img/aquisicao/fotocarro1.png",
     Icone: Car,
   },
   {
     titulo: "Lancha",
     credito: "R$ 90.000,00",
     meiaParcela: "R$ 580,00",
-    imagem: "/img/fundoAquisicao/lancha.jpg",
+    imagem: "/img/aquisicao/fotolancha.png",
     Icone: Sailboat,
   },
   {
     titulo: "Caminhão",
     credito: "R$ 600.000,00",
     meiaParcela: "R$ 2.290,00",
-    imagem: "/img/fundoAquisicao/caminhao.jpg",
+    imagem: "/img/aquisicao/fotocaminhao.png",
     Icone: Truck,
   },
 ];
@@ -45,58 +58,61 @@ const imoveis: ItemOportunidade[] = [
     titulo: "Terreno",
     credito: "R$ 100.000,00",
     meiaParcela: "R$ 343,00",
-    imagem: "/img/fundoAquisicao/terreno.jpg",
+    imagem: "/img/aquisicao/terreno.png",
     Icone: LandPlot,
   },
   {
     titulo: "Apartamento",
     credito: "R$ 300.000,00",
     meiaParcela: "R$ 922,00",
-    imagem: "/img/fundoAquisicao/apartamento.jpg",
+    imagem: "/img/aquisicao/apartamento.png",
     Icone: Building2,
   },
   {
     titulo: "Casa",
     credito: "R$ 500.000,00",
     meiaParcela: "R$ 1.397,00",
-    imagem: "/img/fundoAquisicao/casa.jpg",
+    imagem: "/img/aquisicao/casa.png",
     Icone: Home,
   },
   {
     titulo: "Construção",
     credito: "R$ 800.000,00",
     meiaParcela: "R$ 2.245,00",
-    imagem: "/img/fundoAquisicao/construcao.jpg",
+    imagem: "/img/aquisicao/construção.png",
     Icone: Hammer,
   },
 ];
 
-// Mapeamento usando elementos JSX
-const dadosVeiculos: CarrosselItemProps[] = veiculos.map((item) => ({
-  title: item.titulo,
-  desc: (
-    <>
-      <span>Crédito: {item.credito}</span>
-      <br />
-      <span>Meia parcela: {item.meiaParcela}</span>
-    </>
-  ),
-  sliderName: item.titulo.toLowerCase(),
-  img: item.imagem,
-}));
+const dadosVeiculos: CarrosselItemProps[] = veiculos.map(
+  (item) => ({
+    title: item.titulo,
+    desc: (
+      <>
+        <span>Crédito: {item.credito}</span>
+        <br />
+        <span>Meia parcela: {item.meiaParcela}</span>
+      </>
+    ),
+    sliderName: item.titulo.toLowerCase(),
+    img: item.imagem,
+  })
+);
 
-const dadosImoveis: CarrosselItemProps[] = imoveis.map((item) => ({
-  title: item.titulo,
-  desc: (
-    <>
-      <span>Crédito: {item.credito}</span>
-      <br />
-      <span>Meia parcela: {item.meiaParcela}</span>
-    </>
-  ),
-  sliderName: item.titulo.toLowerCase(),
-  img: item.imagem,
-}));
+const dadosImoveis: CarrosselItemProps[] = imoveis.map(
+  (item) => ({
+    title: item.titulo,
+    desc: (
+      <>
+        <span>Crédito: {item.credito}</span>
+        <br />
+        <span>Meia parcela: {item.meiaParcela}</span>
+      </>
+    ),
+    sliderName: item.titulo.toLowerCase(),
+    img: item.imagem,
+  })
+);
 
 export default function AquisicaoPage() {
   return (
@@ -107,22 +123,26 @@ export default function AquisicaoPage() {
 
       <SecaoSimulacoes />
 
-      {/* Carrossel de Veículos */}
+      {/* CARROSSEL DE VEÍCULOS */}
       <section className="px-4">
-        <Carrossel items={dadosVeiculos} 
-                    subtitle="Possibilidades de aquisição"
-                    heading="Escolha o seu próximo veículo."
-                    description="Planeje a aquisição do seu próximo bem com uma estratégia que cabe nos seus objetivos." />
+        <Carrossel
+          items={dadosVeiculos}
+          subtitle="Possibilidades de aquisição"
+          heading="Escolha o seu próximo veículo."
+          description="Planeje a aquisição do seu próximo bem com uma estratégia que cabe nos seus objetivos."
+        />
       </section>
 
       <div className="h-px bg-black/10 max-w-5xl mx-auto" />
 
-      {/* Carrossel de Imóveis */}
+      {/* CARROSSEL DE IMÓVEIS */}
       <section className="px-4">
-        <Carrossel items={dadosImoveis}
-                    subtitle="Possibilidades de aquisição"
-                    heading="Encontre o imóvel para o seu próximo passo."
-                    description="Do primeiro terreno ao imóvel dos seus planos, transforme seus objetivos em uma estratégia de aquisição." />
+        <Carrossel
+          items={dadosImoveis}
+          subtitle="Possibilidades de aquisição"
+          heading="Encontre o imóvel para o seu próximo passo."
+          description="Do primeiro terreno ao imóvel dos seus planos, transforme seus objetivos em uma estratégia de aquisição."
+        />
       </section>
 
       <Cta />
