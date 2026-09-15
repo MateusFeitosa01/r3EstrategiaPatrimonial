@@ -13,7 +13,6 @@ import {
 import { useEffect, useRef, useState } from "react";
 import LiquidGlassButton from "./light-glass-button";
 
-
 const IMG_BASE = "/img/cta";
 
 const IMG = {
@@ -26,8 +25,6 @@ const IMG = {
   caminhao: `${IMG_BASE}/well.png`,
   apartamento: `${IMG_BASE}/wendel.png`,
 } as const;
-
-const FUNDO_AQUISICAO = `${IMG_BASE}/fundoAquisicao.jpg`;
 
 const SCALE: Partial<Record<number, number>> = {
   1: 0.9,
@@ -109,10 +106,6 @@ const CARDS: StackSpreadCard[] = [
   },
 ];
 
-// ---------------------------------------------------------------------------
-// Mechanism
-// ---------------------------------------------------------------------------
-
 const SCATTER_START = 0.12;
 const SCATTER_END = 0.9;
 
@@ -154,7 +147,7 @@ function useResponsive() {
   const [r, setR] = useState(RESPONSIVE.desktop);
 
   useEffect(() => {
-    const mq = window.matchMedia("(pointer: coarse)");
+    const mq = window.matchMedia("(max-width: 1023px)");
 
     const read = () => {
       setR(mq.matches ? RESPONSIVE.small : RESPONSIVE.desktop);
@@ -178,9 +171,7 @@ function usePointerParallax(active: boolean, enabled: boolean) {
   const y = useSpring(rawY, PARALLAX_SPRING);
 
   useEffect(() => {
-    if (!enabled) return;
-
-    if (!active) {
+    if (!enabled || !active) {
       rawX.set(0);
       rawY.set(0);
       return;
@@ -210,7 +201,6 @@ function usePointerParallax(active: boolean, enabled: boolean) {
 
   return { x, y };
 }
-
 
 export interface StackSpreadItem {
   src: string;
@@ -331,7 +321,7 @@ function Card({
         py * PARALLAX_Y * drift;
 
       return `calc(-50% + ${dx}vw) calc(-50% + ${dy}vh)`;
-    },
+    }
   );
 
   const rotate = useTransform(
@@ -348,10 +338,23 @@ function Card({
 
   return (
     <motion.div
-      className="absolute left-1/2 top-1/2 will-change-transform"
+      className="
+        absolute
+        left-1/2
+        top-1/2
+        will-change-transform
+        max-[767px]:w-[40vw]
+        max-[767px]:h-[20vh]
+        min-[768px]:max-[1023px]:w-[34vw]
+        min-[768px]:max-[1023px]:h-[24vh]
+      "
       style={{
-        width: `${fixedCard ? fixedCard.w : target.w}vw`,
-        height: `${fixedCard ? fixedCard.h : target.h}vh`,
+        width: fixedCard
+          ? `${fixedCard.w}vw`
+          : `${target.w}vw`,
+        height: fixedCard
+          ? `${fixedCard.h}vh`
+          : `${target.h}vh`,
         zIndex: card.z ?? 1,
         translate,
         rotate,
@@ -375,7 +378,14 @@ function CardFace({
 }) {
   return (
     <div
-      className="relative h-full w-full overflow-hidden max-md:rounded-[4vw]"
+      className="
+        relative
+        h-full
+        w-full
+        overflow-hidden
+        max-[767px]:rounded-[4vw]
+        min-[768px]:max-[1023px]:rounded-[3vw]
+      "
       style={{
         borderRadius: `${cardRadius}px`,
       }}
@@ -432,7 +442,7 @@ function StackSpreadStage({
   const progress = useTransform(
     scrollYProgress,
     [0, SCATTER_START, SCATTER_END, 1],
-    [0, 0, 1, 1],
+    [0, 0, 1, 1]
   );
 
   const [spread, setSpread] = useState(false);
@@ -486,11 +496,31 @@ function StackSpreadStage({
         backgroundColor: bgColor,
       }}
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
-
+      <div
+        className="
+          sticky
+          top-0
+          h-screen
+          w-full
+          overflow-hidden
+        "
+      >
         {/* TEXTO CENTRAL */}
         <motion.div
-  className="pointer-events-none absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center md:px-8"
+          className="
+            pointer-events-none
+            absolute
+            inset-0
+            z-20
+            flex
+            flex-col
+            items-center
+            justify-center
+            px-4
+            text-center
+            sm:px-6
+            md:px-8
+          "
           style={{
             opacity: copyOpacity,
             scale: noScale ? 1 : copyScale,
@@ -500,12 +530,13 @@ function StackSpreadStage({
             className="
               w-full
               max-w-3xl
-              text-3xl
+              text-2xl
+              font-black
               uppercase
-              font-black    
               leading-tight
               tracking-tight
               text-black
+              sm:text-3xl
               md:text-5xl
             "
             style={{
@@ -521,15 +552,19 @@ function StackSpreadStage({
 
           <p
             className="
-              mt-5
+              mt-4
               w-full
               max-w-2xl
-              text-sm
+              px-2
+              text-xs
               font-normal
               leading-relaxed
               tracking-normal
               text-black/70
+              sm:mt-5
+              sm:text-sm
               md:mt-6
+              md:px-0
               md:text-base
             "
             style={{
@@ -540,29 +575,35 @@ function StackSpreadStage({
             {SUB}
           </p>
 
-            <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="pointer-events-auto relative z-50 mt-8"
-                >
-                <LiquidGlassButton
-                link="https://wa.me/558387355437?text=Ol%C3%A1%2C%20gostaria%20de%20come%C3%A7ar%20meu%20objetivo%20agora"
-                                label="COMEÇAR AGORA"
-                                colors={{
-                                  fill: "#000000",
-                                  textColor: "#ffffff",
-                                }}
-                                font={{
-                                  fontFamily: "Montserrat",
-                                  fontWeight: 600,
-                                  fontSize: 15,
-                                }}
-                                padding="10px 20px"
-                                rounded={90}
-                              />
-              </motion.div>
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="
+              pointer-events-auto
+              relative
+              z-50
+              mt-6
+              sm:mt-8
+            "
+          >
+            <LiquidGlassButton
+              link="https://wa.me/558387355437?text=Ol%C3%A1%2C%20gostaria%20de%20come%C3%A7ar%20meu%20objetivo%20agora"
+              label="COMEÇAR AGORA"
+              colors={{
+                fill: "#000000",
+                textColor: "#ffffff",
+              }}
+              font={{
+                fontFamily: "Montserrat",
+                fontWeight: 600,
+                fontSize: 15,
+              }}
+              padding="10px 20px"
+              rounded={90}
+            />
+          </motion.div>
+        </motion.div>
 
         {/* CARDS */}
         <div className="absolute inset-0 z-10">
@@ -591,7 +632,6 @@ function StackSpreadStage({
             />
           ))}
         </div>
-
       </div>
     </section>
   );
@@ -619,7 +659,7 @@ export default function StackSpread({
   showScrollHint = true,
 }: StackSpreadProps) {
   return (
-    <StackSpreadStage 
+    <StackSpreadStage
       cards={CARDS}
       scrollLength={scrollLength}
       bgColor={bgColor}
@@ -632,4 +672,3 @@ export default function StackSpread({
     />
   );
 }
-

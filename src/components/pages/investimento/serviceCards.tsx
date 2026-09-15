@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { FlippingCard } from "@/components/ui/flipping-card"; // Ajuste o caminho do import conforme seu projeto
+import React, { useEffect, useState } from "react";
+import { FlippingCard } from "@/components/ui/flipping-card";
 
 export type ServiceKey =
   | "alavancagem-financeira"
@@ -19,6 +19,7 @@ interface ServiceCard {
 /* =========================================================
    ÍCONES
 ========================================================= */
+
 const IconTrendUp = () => (
   <svg
     viewBox="0 0 24 24"
@@ -77,6 +78,7 @@ const IconClock = () => (
 /* =========================================================
    SERVIÇOS
 ========================================================= */
+
 const SERVICES: ServiceCard[] = [
   {
     key: "alavancagem-financeira",
@@ -107,7 +109,40 @@ const SERVICES: ServiceCard[] = [
   },
 ];
 
+/* =========================================================
+   SERVICE CARDS
+========================================================= */
+
 export const ServiceCards: React.FC = () => {
+  const [flippedCard, setFlippedCard] = useState<ServiceKey | null>(null);
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 1024px)");
+
+    const updateDevice = () => {
+      setIsMobileOrTablet(mediaQuery.matches);
+    };
+
+    updateDevice();
+
+    mediaQuery.addEventListener("change", updateDevice);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateDevice);
+    };
+  }, []);
+
+  const handleCardSwipe = (key: ServiceKey) => {
+    setFlippedCard((current) => {
+      if (current === key) {
+        return null;
+      }
+
+      return key;
+    });
+  };
+
   return (
     <div className="mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-[18px] px-[18px] py-[55px] sm:px-6 sm:py-[70px] md:grid-cols-2 md:px-[30px] md:py-[80px] lg:grid-cols-3 lg:px-[40px] lg:py-[100px] lg:pb-[120px]">
       {SERVICES.map((service) => {
@@ -117,16 +152,21 @@ export const ServiceCards: React.FC = () => {
               <span className="mb-[24px] flex h-[30px] w-[30px] items-center justify-center text-neutral-900 dark:text-white sm:h-[34px] sm:w-[34px] md:mb-[32px]">
                 {service.icon}
               </span>
+
               <span className="mb-[15px] block text-[18px] font-semibold leading-[1.3] tracking-[-0.3px] text-inherit sm:text-[19px]">
                 {service.title}
               </span>
+
               <span className="block text-[13px] font-normal leading-[1.7] text-neutral-500 dark:text-neutral-400">
                 {service.description}
               </span>
             </div>
 
             <span className="inline-flex items-center gap-[9px] text-[12px] font-medium tracking-[0.4px] text-neutral-900 dark:text-white">
-              Passe o mouse para ver mais
+              {isMobileOrTablet
+                ? "Clique para ver mais"
+                : "Passe o mouse para ver mais"}
+
               <svg
                 width="14"
                 height="14"
@@ -153,12 +193,11 @@ export const ServiceCards: React.FC = () => {
               <span className="mb-[15px] block text-[18px] font-semibold leading-[1.3] tracking-[-0.3px] text-white">
                 {service.title}
               </span>
+
               <p className="text-[13px] font-normal leading-[1.7] text-neutral-300">
                 {service.details || service.description}
               </p>
             </div>
-
-            
           </div>
         );
 
@@ -169,6 +208,8 @@ export const ServiceCards: React.FC = () => {
               className="!w-full border-neutral-200 bg-white text-neutral-900 transition-all duration-700 hover:-translate-y-1 hover:border-neutral-900 hover:shadow-[0_20px_45px_rgba(0,0,0,0.07)]"
               frontContent={frontContent}
               backContent={backContent}
+              isFlipped={flippedCard === service.key}
+              onClick={() => handleCardSwipe(service.key)}
             />
           </div>
         );
@@ -178,3 +219,4 @@ export const ServiceCards: React.FC = () => {
 };
 
 export default ServiceCards;
+

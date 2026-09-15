@@ -247,7 +247,7 @@ const ScrollExpandMedia = ({
   useEffect(() => {
     const checkIfMobile = () => {
       setIsMobileState(
-        window.innerWidth < 768
+        window.innerWidth < 1024
       );
     };
 
@@ -265,9 +265,25 @@ const ScrollExpandMedia = ({
       );
   }, []);
 
+  /*
+   * No mobile usamos um deslocamento maior.
+   *
+   * Antes:
+   * mobile = 30vw
+   *
+   * Isso fazia o texto andar pouco e continuar
+   * aparecendo na tela.
+   *
+   * Agora:
+   * mobile = 120vw
+   * desktop = 150vw
+   *
+   * Assim o texto consegue atravessar completamente
+   * a largura da tela e desaparecer.
+   */
   const textTranslateX =
     scrollProgress *
-    (isMobileState ? 180 : 150);
+    (isMobileState ? 120 : 150);
 
   const logoOpacity =
     0.2 + scrollProgress * 0.8;
@@ -285,6 +301,7 @@ const ScrollExpandMedia = ({
 
           <div className="relative z-10 flex h-[100dvh] w-full flex-col items-center justify-between">
 
+            {/* LOGO CENTRAL */}
             <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
               <motion.div
                 className="flex aspect-square w-64 items-center justify-center md:w-96 lg:w-[450px]"
@@ -312,6 +329,7 @@ const ScrollExpandMedia = ({
               </motion.div>
             </div>
 
+            {/* TEXTO PRINCIPAL */}
             <motion.div
               initial={{
                 opacity: 0,
@@ -326,14 +344,15 @@ const ScrollExpandMedia = ({
                 delay: 0.2,
                 ease: 'easeOut',
               }}
-              className={`relative z-10 my-auto flex w-full max-w-7xl flex-row flex-wrap items-center justify-center gap-x-3 gap-y-2 px-4 text-center transition-none ${
+              className={`relative z-10 my-auto flex w-full max-w-7xl flex-col items-center justify-center gap-2 px-4 text-center transition-none lg:flex-row lg:flex-wrap lg:gap-x-3 lg:gap-y-2 ${
                 textBlend
                   ? 'mix-blend-difference'
                   : 'mix-blend-normal'
               }`}
             >
+              {/* TEXTO DA ESQUERDA */}
               <motion.h2
-                className="whitespace-nowrap text-center text-xl font-black uppercase tracking-wide text-black/80 transition-none sm:text-3xl md:text-4xl lg:text-5xl"
+                className="max-w-none whitespace-nowrap text-center text-xl font-black uppercase leading-tight tracking-wide text-black/80 transition-none sm:text-3xl md:text-4xl lg:max-w-none lg:text-5xl"
                 style={{
                   transform: `translateX(-${textTranslateX}vw)`,
                 }}
@@ -341,8 +360,9 @@ const ScrollExpandMedia = ({
                 Estratégias inteligentes que
               </motion.h2>
 
+              {/* TEXTO DA DIREITA */}
               <motion.div
-                className="flex flex-row items-center justify-center gap-x-3 whitespace-nowrap"
+                className="flex max-w-none flex-col items-center justify-center gap-2 whitespace-nowrap lg:flex-row lg:gap-x-3"
                 style={{
                   transform: `translateX(${textTranslateX}vw)`,
                 }}
@@ -371,12 +391,13 @@ const ScrollExpandMedia = ({
                   />
                 </div>
 
-                <h2 className="text-center text-xl font-black uppercase tracking-wide text-black/80 sm:text-3xl md:text-4xl lg:text-5xl">
+                <h2 className="max-w-none whitespace-nowrap text-center text-xl font-black uppercase leading-tight tracking-wide text-black/80 sm:text-3xl md:text-4xl lg:text-5xl">
                   seu patrimônio.
                 </h2>
               </motion.div>
             </motion.div>
 
+            {/* TEXTO INFERIOR */}
             <motion.div
               initial={{
                 opacity: 0,
@@ -417,6 +438,7 @@ const ScrollExpandMedia = ({
             </motion.div>
           </div>
 
+          {/* CONTEÚDO */}
           {showContent && (
             <motion.section
               className="z-20 flex w-full flex-col bg-white py-10 lg:py-0"
@@ -433,7 +455,6 @@ const ScrollExpandMedia = ({
               {children}
             </motion.section>
           )}
-
         </div>
       </section>
     </div>

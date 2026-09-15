@@ -134,7 +134,32 @@
     @apply bg-background text-foreground font-sans;
   }
 }
+/* =========================
+   SCROLLBAR GLOBAL
+   ========================= */
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(157, 159, 162);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #000000;
+}
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(157, 159, 162) #ffffff;
+}
 /* =========================
    MARQUEE
 ========================= */

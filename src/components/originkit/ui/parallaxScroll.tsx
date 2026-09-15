@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 interface ComponentProps {
@@ -28,13 +28,22 @@ export const Component = ({
   grandes objetivos exige planejamento, confiança e escolhas
   inteligentes. Por isso, trabalhamos para oferecer soluções
   financeiras alinhadas aos objetivos de cada cliente.`,
-  secondaryDescription = `Nosso compromisso é tornar cada etapa mais clara, segura e
-  estratégica, construindo relacionamentos baseados em
-  transparência e confiança.`,
+  secondaryDescription,
   image = "https://cdn.cosmos.so/6c4a7829-d16a-4a58-9ab9-93fbb3bacb9e.?format=jpeg",
   imageAlt = "Sobre a R3 Consórcios & Investimentos",
 }: ComponentProps) => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkIsDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+
+    checkIsDesktop();
+    window.addEventListener("resize", checkIsDesktop);
+    return () => window.removeEventListener("resize", checkIsDesktop);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -69,11 +78,17 @@ export const Component = ({
 
   const content = (
     <motion.div
-      style={{
-        y: translateContent,
-        opacity: opacityContent,
-      }}
-      className="flex-1"
+      style={
+        isDesktop
+          ? {
+              y: translateContent,
+              opacity: opacityContent,
+            }
+          : undefined
+      }
+      className={`flex-1 ${
+        imagePosition === "left" ? "order-1 lg:order-2" : "order-1"
+      }`}
     >
       <span className="mb-5 block text-sm font-semibold uppercase tracking-widest text-black/60 md:text-base">
         {label}
@@ -97,11 +112,17 @@ export const Component = ({
 
   const imageElement = (
     <motion.div
-      style={{
-        opacity: opacityImage,
-        clipPath: clipImage,
-      }}
-      className="relative hidden w-full shrink-0 md:block md:w-[52%] lg:w-[55%]"
+      style={
+        isDesktop
+          ? {
+              opacity: opacityImage,
+              clipPath: clipImage,
+            }
+          : undefined
+      }
+      className={`relative w-full shrink-0 lg:w-[55%] ${
+        imagePosition === "left" ? "order-2 lg:order-1" : "order-2"
+      }`}
     >
       <div className="relative w-full overflow-hidden">
         <img
@@ -117,7 +138,7 @@ export const Component = ({
     <section className="w-full bg-white px-4 py-20 md:px-8">
       <div
         ref={sectionRef}
-        className="mx-auto flex min-h-[500px] w-full max-w-7xl items-center justify-between gap-12 md:gap-16 lg:gap-20"
+        className="mx-auto flex min-h-[500px] w-full max-w-7xl flex-col items-center justify-between gap-12 lg:flex-row lg:gap-20"
       >
         {imagePosition === "left" ? (
           <>

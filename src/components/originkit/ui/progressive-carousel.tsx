@@ -189,7 +189,12 @@ export const SliderContent: FC<SliderContentProps> = ({
   className,
 }) => {
   return (
-    <div className={cn("relative z-0 w-full overflow-hidden", className)}>
+    <div
+      className={cn(
+        "relative z-0 w-full overflow-hidden",
+        className
+      )}
+    >
       {children}
     </div>
   );
@@ -243,7 +248,26 @@ export const SliderBtnGroup: FC<SliderBtnGroupProps> = ({
   className,
 }) => {
   return (
-    <div className={cn("relative z-20", className)}>
+    <div
+      className={cn(
+        `
+          relative
+          z-20
+          grid
+
+          /* CELULAR */
+          max-[767px]:grid-cols-2
+          max-[767px]:h-auto
+          max-[767px]:min-h-[200px]
+
+          /* TABLET */
+          md:max-lg:grid-cols-2
+          md:max-lg:h-auto
+          md:max-lg:min-h-[220px]
+        `,
+        className
+      )}
+    >
       {children}
     </div>
   );
@@ -252,8 +276,18 @@ export const SliderBtnGroup: FC<SliderBtnGroupProps> = ({
 /* =========================================================
    BOTÃO
 
-   Não existe mais fundo branco animado ocupando h-full.
-   O progresso agora é somente uma barra inferior.
+   DESKTOP:
+   - Mantém o tamanho original.
+
+   CELULAR:
+   - 2 colunas
+   - 2 linhas
+   - título + descrição visíveis
+
+   TABLET:
+   - 2 colunas
+   - 2 linhas
+   - título + descrição visíveis
 ========================================================= */
 
 export const SliderBtn: FC<SliderBtnProps> = ({
@@ -279,16 +313,47 @@ export const SliderBtn: FC<SliderBtnProps> = ({
     <button
       type="button"
       className={cn(
-        "relative isolate overflow-hidden",
+        `
+          relative
+          isolate
+          overflow-hidden
+          min-w-0
+          w-full
+        `,
         isActive ? "opacity-100" : "opacity-60",
         className
       )}
       onClick={() => handleButtonClick(value)}
     >
-      <div className="relative z-10">
+      <div
+        className="
+          relative
+          z-10
+          min-w-0
+
+          /* CELULAR */
+          max-[767px]:flex
+          max-[767px]:h-full
+          max-[767px]:min-h-[100px]
+          max-[767px]:flex-col
+          max-[767px]:justify-start
+          max-[767px]:overflow-visible
+          max-[767px]:p-2
+
+          /* TABLET */
+          md:max-lg:flex
+          md:max-lg:h-full
+          md:max-lg:min-h-[110px]
+          md:max-lg:flex-col
+          md:max-lg:justify-start
+          md:max-lg:overflow-visible
+          md:max-lg:p-3
+        "
+      >
         {children}
       </div>
 
+      {/* BARRA DE PROGRESSO */}
       <div
         className="
           pointer-events-none

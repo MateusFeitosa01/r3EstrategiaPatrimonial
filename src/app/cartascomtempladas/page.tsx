@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react"
 import Navbar from "@/components/extras/navbar/page"
 import Footer from "@/components/extras/footer/page"
 import LiquidGlassButton from "@/components/originkit/ui/light-glass-button"
+import { MorphingSquare } from "@/components/originkit/ui/loading" // Ajuste o caminho se necessário
 
 type Carta = {
   id: string
@@ -125,19 +126,28 @@ Gostaria de receber mais informações.`
       <Navbar />
 
       {/* =========================================================
-          HERO
+          HERO (Ajustado com padrões responsivos do componente Hero)
       ========================================================== */}
-      <section className="relative h-[80vh] min-h-[650px] overflow-hidden bg-black text-white">
+      <section className="relative h-[80vh] min-h-[560px] w-full overflow-hidden bg-black text-white sm:min-h-[600px] md:min-h-[650px]">
 
-        {/* IMAGEM */}
+        {/* IMAGEM DE FUNDO */}
         <div
           className="
             pointer-events-none
             absolute
             inset-0
-            bg-cover
-            bg-center
             bg-no-repeat
+
+            /* CELULAR */
+            bg-[size:75%_auto]
+            bg-[position:90%_center]
+
+            /* TABLET */
+            sm:bg-[size:65%_auto]
+            sm:bg-[position:90%_center]
+
+            /* DESKTOP */
+            md:bg-cover
             md:bg-[position:center_right]
           "
           style={{
@@ -145,7 +155,7 @@ Gostaria de receber mais informações.`
           }}
         />
 
-        {/* DEGRADÊ */}
+        {/* DEGRADÊ PARA LEITURA DO TEXTO */}
         <div
           className="
             pointer-events-none
@@ -158,7 +168,7 @@ Gostaria de receber mais informações.`
           "
         />
 
-        {/* SOMBRA */}
+        {/* SOMBRA INFERIOR */}
         <div
           className="
             pointer-events-none
@@ -179,6 +189,7 @@ Gostaria de receber mais informações.`
             mx-auto
             flex
             h-full
+            w-full
             max-w-7xl
             items-center
             px-6
@@ -187,15 +198,42 @@ Gostaria de receber mais informações.`
         >
           <div className="max-w-4xl">
 
-            <p className="mb-4 text-sm uppercase tracking-[0.25em] text-white/60">
+            <p
+              className="
+                mb-4
+                text-sm
+                font-medium
+                uppercase
+                tracking-[0.25em]
+                text-white/60
+              "
+            >
               R3 ESTRATÉGIA PATRIMONIAL
             </p>
 
-            <h1 className="max-w-4xl text-4xl font-black leading-tight md:text-6xl">
+            <h1
+              className="
+                max-w-4xl
+                text-4xl
+                font-black
+                leading-tight
+                text-white
+                md:text-6xl
+              "
+            >
               Encontre a carta contemplada ideal para o seu próximo objetivo.
             </h1>
 
-            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/70 md:text-xl">
+            <p
+              className="
+                mt-6
+                max-w-3xl
+                text-lg
+                leading-relaxed
+                text-white/70
+                md:text-xl
+              "
+            >
               Tenha acesso a oportunidades de crédito já contempladas para
               aquisição de imóveis, veículos e outros bens, com segurança,
               estratégia e acompanhamento especializado.
@@ -212,11 +250,11 @@ Gostaria de receber mais informações.`
         className="
           relative
           w-full
-          bg-[#f5f5f5]
-          py-20
-          px-4
-          md:px-8
           overflow-hidden
+          bg-[#f5f5f5]
+          px-4
+          py-20
+          md:px-8
         "
       >
 
@@ -228,22 +266,22 @@ Gostaria de receber mais informações.`
               absolute
               -top-40
               left-[3%]
-              w-[500px]
               h-[500px]
+              w-[500px]
               rounded-full
               bg-white
-              blur-[100px]
               opacity-90
+              blur-[100px]
             "
           />
 
           <div
             className="
               absolute
-              top-[20%]
               right-[-12%]
-              w-[550px]
+              top-[20%]
               h-[550px]
+              w-[550px]
               rounded-full
               bg-black/[0.035]
               blur-[110px]
@@ -255,22 +293,22 @@ Gostaria de receber mais informações.`
               absolute
               bottom-[-200px]
               left-[20%]
-              w-[550px]
               h-[550px]
+              w-[550px]
               rounded-full
               bg-white
-              blur-[110px]
               opacity-90
+              blur-[110px]
             "
           />
 
           <div
             className="
               absolute
-              top-[45%]
               left-[40%]
-              w-[300px]
+              top-[45%]
               h-[300px]
+              w-[300px]
               rounded-full
               bg-white/[0.55]
               blur-[100px]
@@ -279,7 +317,7 @@ Gostaria de receber mais informações.`
 
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="relative z-10 mx-auto max-w-7xl">
 
           {/* =====================================================
               FILTROS
@@ -287,17 +325,17 @@ Gostaria de receber mais informações.`
           <div
             className="
               relative
+              mb-10
               overflow-hidden
               rounded-[30px]
               border
               border-white/70
               bg-white/[0.42]
+              p-5
+              shadow-[0_20px_60px_rgba(0,0,0,0.07)]
               backdrop-blur-[30px]
               backdrop-saturate-150
-              shadow-[0_20px_60px_rgba(0,0,0,0.07)]
-              p-5
               md:p-7
-              mb-10
             "
           >
 
@@ -320,14 +358,14 @@ Gostaria de receber mais informações.`
               className="
                 pointer-events-none
                 absolute
-                -top-40
                 -right-20
-                w-[420px]
+                -top-40
                 h-[280px]
+                w-[420px]
                 rounded-full
                 bg-white/80
-                blur-[70px]
                 opacity-80
+                blur-[70px]
               "
             />
 
@@ -336,9 +374,9 @@ Gostaria de receber mais informações.`
               className="
                 pointer-events-none
                 absolute
-                top-0
                 left-10
                 right-10
+                top-0
                 h-px
                 bg-gradient-to-r
                 from-transparent
@@ -350,11 +388,11 @@ Gostaria de receber mais informações.`
 
             <div className="relative z-10">
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
 
                 {/* BUSCA */}
                 <div>
-                  <label className="block text-sm font-semibold text-black/60 tracking-wide uppercase mb-2">
+                  <label className="mb-2 block text-sm font-semibold uppercase tracking-wide text-black/60">
                     Buscar
                   </label>
 
@@ -364,29 +402,29 @@ Gostaria de receber mais informações.`
                     onChange={(e) => setBusca(e.target.value)}
                     placeholder="Código ou administradora"
                     className="
-                      w-full
                       h-12
-                      px-4
+                      w-full
                       rounded-xl
                       border
                       border-white/70
                       bg-white/[0.45]
-                      backdrop-blur-xl
+                      px-4
                       text-black
-                      placeholder:text-black/40
-                      outline-none
                       shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]
-                      focus:border-black/40
-                      focus:bg-white/[0.6]
+                      outline-none
+                      backdrop-blur-xl
+                      placeholder:text-black/40
                       transition-all
                       duration-300
+                      focus:border-black/40
+                      focus:bg-white/[0.6]
                     "
                   />
                 </div>
 
                 {/* CATEGORIA */}
                 <div>
-                  <label className="block text-sm font-semibold text-black/60 tracking-wide uppercase mb-2">
+                  <label className="mb-2 block text-sm font-semibold uppercase tracking-wide text-black/60">
                     Categoria
                   </label>
 
@@ -394,22 +432,22 @@ Gostaria de receber mais informações.`
                     value={categoria}
                     onChange={(e) => setCategoria(e.target.value)}
                     className="
-                      w-full
                       h-12
-                      px-4
+                      w-full
+                      cursor-pointer
                       rounded-xl
                       border
                       border-white/70
                       bg-white/[0.45]
-                      backdrop-blur-xl
+                      px-4
                       text-black
-                      outline-none
                       shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]
-                      focus:border-black/40
-                      focus:bg-white/[0.6]
+                      outline-none
+                      backdrop-blur-xl
                       transition-all
                       duration-300
-                      cursor-pointer
+                      focus:border-black/40
+                      focus:bg-white/[0.6]
                     "
                   >
                     <option value="todos">Todas</option>
@@ -420,7 +458,7 @@ Gostaria de receber mais informações.`
 
                 {/* STATUS */}
                 <div>
-                  <label className="block text-sm font-semibold text-black/60 tracking-wide uppercase mb-2">
+                  <label className="mb-2 block text-sm font-semibold uppercase tracking-wide text-black/60">
                     Status
                   </label>
 
@@ -428,22 +466,22 @@ Gostaria de receber mais informações.`
                     value={status}
                     onChange={(e) => setStatus(e.target.value)}
                     className="
-                      w-full
                       h-12
-                      px-4
+                      w-full
+                      cursor-pointer
                       rounded-xl
                       border
                       border-white/70
                       bg-white/[0.45]
-                      backdrop-blur-xl
+                      px-4
                       text-black
-                      outline-none
                       shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]
-                      focus:border-black/40
-                      focus:bg-white/[0.6]
+                      outline-none
+                      backdrop-blur-xl
                       transition-all
                       duration-300
-                      cursor-pointer
+                      focus:border-black/40
+                      focus:bg-white/[0.6]
                     "
                   >
                     <option value="todos">Todos</option>
@@ -465,8 +503,12 @@ Gostaria de receber mais informações.`
               CARREGANDO
           ====================================================== */}
           {carregando && (
-            <div className="py-20 text-center text-black/50">
-              Carregando cartas contempladas...
+            <div className="flex flex-col items-center justify-center py-24">
+              <MorphingSquare
+                className="bg-black"
+                message="Carregando cartas contempladas..."
+                messagePlacement="bottom"
+              />
             </div>
           )}
 
@@ -482,10 +524,10 @@ Gostaria de receber mais informações.`
                 border
                 border-white/70
                 bg-white/[0.45]
-                backdrop-blur-[25px]
-                shadow-[0_15px_45px_rgba(0,0,0,0.06)]
                 p-5
                 text-black/70
+                shadow-[0_15px_45px_rgba(0,0,0,0.06)]
+                backdrop-blur-[25px]
               "
             >
 
@@ -493,10 +535,10 @@ Gostaria de receber mais informações.`
                 className="
                   pointer-events-none
                   absolute
-                  -top-20
                   -right-20
-                  w-48
+                  -top-20
                   h-48
+                  w-48
                   rounded-full
                   bg-white/70
                   blur-[60px]
@@ -514,7 +556,7 @@ Gostaria de receber mais informações.`
               CARTAS
           ====================================================== */}
           {!carregando && !erro && (
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
 
               {cartasFiltradas.map((carta) => {
 
@@ -537,9 +579,9 @@ Gostaria de receber mais informações.`
                       border
                       border-white/70
                       bg-white/[0.38]
+                      shadow-[0_20px_60px_rgba(0,0,0,0.08)]
                       backdrop-blur-[30px]
                       backdrop-saturate-150
-                      shadow-[0_20px_60px_rgba(0,0,0,0.08)]
                       transition-all
                       duration-500
                       hover:-translate-y-1
@@ -567,18 +609,18 @@ Gostaria de receber mais informações.`
                       className="
                         pointer-events-none
                         absolute
-                        -top-32
                         -right-24
-                        w-[320px]
+                        -top-32
                         h-[260px]
+                        w-[320px]
                         rounded-full
                         bg-white/80
-                        blur-[70px]
                         opacity-70
+                        blur-[70px]
                         transition-all
                         duration-700
-                        group-hover:opacity-100
                         group-hover:scale-110
+                        group-hover:opacity-100
                       "
                     />
 
@@ -589,12 +631,12 @@ Gostaria de receber mais informações.`
                         absolute
                         bottom-[-100px]
                         left-[-100px]
-                        w-[250px]
                         h-[250px]
+                        w-[250px]
                         rounded-full
                         bg-white/[0.35]
-                        blur-[80px]
                         opacity-60
+                        blur-[80px]
                       "
                     />
 
@@ -603,9 +645,9 @@ Gostaria de receber mais informações.`
                       className="
                         pointer-events-none
                         absolute
-                        top-0
                         left-8
                         right-8
+                        top-0
                         h-px
                         bg-gradient-to-r
                         from-transparent
@@ -620,12 +662,12 @@ Gostaria de receber mais informações.`
                       className="
                         relative
                         z-10
-                        px-6
-                        py-5
-                        bg-black/[0.88]
-                        text-white
                         border-b
                         border-white/10
+                        bg-black/[0.88]
+                        px-6
+                        py-5
+                        text-white
                       "
                     >
 
@@ -637,7 +679,7 @@ Gostaria de receber mais informações.`
                             Carta #{carta.id}
                           </p>
 
-                          <h2 className="text-xl font-bold tracking-tight mt-1">
+                          <h2 className="mt-1 text-xl font-bold tracking-tight">
                             {corrigirTexto(carta.categoria)}
                           </h2>
 
@@ -646,24 +688,24 @@ Gostaria de receber mais informações.`
                         <span
                           className={`
                             shrink-0
-                            text-xs
-                            font-semibold
-                            px-3
-                            py-1.5
                             rounded-full
                             border
+                            px-3
+                            py-1.5
+                            text-xs
+                            font-semibold
 
                             ${
                               disponivel
                                 ? `
+                                    border-white
                                     bg-white
                                     text-black
-                                    border-white
                                   `
                                 : `
+                                    border-white/10
                                     bg-white/10
                                     text-white/70
-                                    border-white/10
                                   `
                             }
                           `}
@@ -674,26 +716,24 @@ Gostaria de receber mais informações.`
                       </div>
                     </div>
 
-                    {/* =================================================
-                        CORPO
-                    ================================================== */}
+                    {/* CORPO */}
                     <div
                       className="
                         relative
                         z-10
-                        p-6
                         bg-white/[0.08]
+                        p-6
                       "
                     >
 
                       {/* CRÉDITO */}
                       <div className="mb-7">
 
-                        <p className="text-sm font-semibold text-black/50 uppercase tracking-wide">
+                        <p className="text-sm font-semibold uppercase tracking-wide text-black/50">
                           Crédito
                         </p>
 
-                        <p className="text-3xl font-black text-black tracking-tight mt-1">
+                        <p className="mt-1 text-3xl font-black tracking-tight text-black">
                           R$ {carta.valorCredito}
                         </p>
 
@@ -709,7 +749,7 @@ Gostaria de receber mais informações.`
                             Entrada
                           </p>
 
-                          <p className="font-bold text-black mt-1 tracking-tight">
+                          <p className="mt-1 font-bold tracking-tight text-black">
                             R$ {carta.entrada}
                           </p>
 
@@ -722,7 +762,7 @@ Gostaria de receber mais informações.`
                             Parcela
                           </p>
 
-                          <p className="font-bold text-black mt-1 tracking-tight">
+                          <p className="mt-1 font-bold tracking-tight text-black">
                             R$ {carta.valorParcela}
                           </p>
 
@@ -735,7 +775,7 @@ Gostaria de receber mais informações.`
                             Prazo
                           </p>
 
-                          <p className="font-bold text-black mt-1 tracking-tight">
+                          <p className="mt-1 font-bold tracking-tight text-black">
                             {carta.parcelas} parcelas
                           </p>
 
@@ -748,7 +788,7 @@ Gostaria de receber mais informações.`
                             Administradora
                           </p>
 
-                          <p className="font-bold text-black mt-1 tracking-tight">
+                          <p className="mt-1 font-bold tracking-tight text-black">
                             {corrigirTexto(carta.administradora)}
                           </p>
 
@@ -756,14 +796,12 @@ Gostaria de receber mais informações.`
 
                       </div>
 
-                      {/* =================================================
-                          BOTÃO WHATSAPP
-                      ================================================== */}
+                      {/* BOTÃO WHATSAPP */}
                       <div
                         className="
+                          mt-7
                           border-t
                           border-black/[0.07]
-                          mt-7
                           pt-5
                         "
                       >
@@ -805,7 +843,7 @@ Gostaria de receber mais informações.`
             cartasFiltradas.length === 0 && (
               <div className="py-20 text-center">
 
-                <p className="text-sm font-semibold text-black/50 tracking-widest uppercase">
+                <p className="text-sm font-semibold uppercase tracking-widest text-black/50">
                   Nenhum resultado
                 </p>
 

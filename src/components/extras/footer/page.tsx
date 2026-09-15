@@ -96,11 +96,11 @@ const footerSections: FooterData[] = [
   {
     title: "Navegação",
     links: [
-      { title: "Início", href: "#" },
-      { title: "Investimento", href: "#" },
-      { title: "Aquisição", href: "#" },
-      { title: "Cartas Contempladas", href: "#" },
-      { title: "Sobre Nós", href: "#" },
+      { title: "Início", href: "/" },
+      { title: "Investimento", href: "/investimento" },
+      { title: "Aquisição", href: "/aquisicao" },
+      { title: "Cartas Contempladas", href: "/cartascomtempladas" },
+      { title: "Sobre Nós", href: "/sobrenos" },
     ],
   },
   {
@@ -109,10 +109,6 @@ const footerSections: FooterData[] = [
       {
         title: "WhatsApp",
         href: "https://wa.me/5583991432467?text=Ol%C3%A1%21%20Venho%20atrav%C3%A9s%20do%20website.%20Gostaria%20de%20obter%20mais%20informa%C3%A7%C3%B5es%20sobre%20cons%C3%B3rcios%20e%20investimentos.",
-      },
-      {
-        title: "Telefone",
-        href: "tel:+5583991432467",
       },
       {
         title: "E-mail",
@@ -125,188 +121,157 @@ const footerSections: FooterData[] = [
 const Footer = () => {
   return (
     <footer
-  className="relative w-full max-w-full overflow-hidden py-10 text-white"
-  style={{
-    background:
-      "linear-gradient(to bottom, #ffffff 0%, rgb(157, 159, 162) 0%, rgb(157, 159, 162) 100%)",
-  }}
->
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col gap-6 sm:gap-12">
-
-          <div className="py-12 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 lg:grid-cols-12 gap-x-8 gap-y-10 px-6 xl:px-0">
-
-            {/* Logo + descrição */}
-            <div className="col-span-full lg:col-span-3">
-              <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-100 ease-in-out fill-mode-both">
-
-                <a href="#">
-                  <Image
-                    src="/img/logo/logoHorizontalBranca.png"
-                    alt="R3 Soluções"
-                    width={280}
-                    height={90}
-                    className="h-auto w-65 object-contain"
-                  />
-                </a>
-
-                <p className="text-base font-normal text-white">
-                  Soluções em consórcio para quem busca planejamento, poder de
-                  compra e realização de objetivos.
-                  <br />
-                  <br />
-
-                  <span className="font-black">
-                    CNPJ: 60.405.600/0001-61
-                  </span>
-
-                  <span className="font-black">
-                    <br />
-                    CEP: 58106-282
-                  </span>
-                </p>
-
-                {/* Redes sociais */}
-                <div className="flex items-center gap-4">
-                  <a
-                    href="https://www.instagram.com/r3estrategiapatrimonial/"
-                    className="text-white hover:text-white/70 transition-colors"
-                  >
-                    <InstagramIcon />
-                  </a>
-                </div>
-
-              </div>
-            </div>
-
+      className="relative w-full overflow-hidden py-8 md:py-12 text-white"
+      style={{
+        background:
+          "linear-gradient(to bottom, #ffffff 0%, rgb(157, 159, 162) 0%, rgb(157, 159, 162) 100%)",
+      }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col gap-8 md:gap-12">
+          {/* GRID PRINCIPAL */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 gap-8 lg:gap-8">
             
+            {/* 1. Logo + descrição */}
+            <div className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-3 flex flex-col gap-5">
+              <a href="#" className="inline-block">
+                <Image
+                  src="/img/logo/logoHorizontalBranca.png"
+                  alt="R3 Soluções"
+                  width={280}
+                  height={90}
+                  className="h-auto w-48 sm:w-56 md:w-64 object-contain"
+                />
+              </a>
 
-            {/* Navegação */}
-            <div className="col-span-1 sm:col-span-2 lg:col-span-2">
-              <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-100 ease-in-out fill-mode-both">
+              <p className="text-sm md:text-base font-normal text-white leading-relaxed">
+                Soluções em consórcio para quem busca planejamento, poder de
+                compra e realização de objetivos.
+              </p>
 
-                <p className="text-base font-medium text-white">
-                  Navegação
-                </p>
+              <div className="text-sm text-white">
+                <p className="font-black">CNPJ: 60.405.600/0001-61</p>
+                <p className="font-black">CEP: 58106-282</p>
+              </div>
 
-                <ul className="flex flex-col gap-3">
-                  {footerSections[0].links.map(({ title, href }) => (
-                    <li key={title}>
-                      <a
-                        href={href}
-                        className="text-base font-normal text-white hover:text-white/70 transition-colors"
-                      >
-                        {title}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-
+              {/* Redes sociais */}
+              <div className="flex items-center gap-4 pt-2">
+                <a
+                  href="https://www.instagram.com/r3estrategiapatrimonial/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-white/70 transition-colors p-2 rounded-full bg-white/10 hover:bg-white/20"
+                  aria-label="Instagram"
+                >
+                  <InstagramIcon />
+                </a>
               </div>
             </div>
 
-            {/* Atendimento */}
-            <div className="col-span-1 sm:col-span-2 lg:col-span-2">
-              <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-100 ease-in-out fill-mode-both">
+            {/* 2. Navegação */}
+            <div className="col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-2 flex flex-col gap-4">
+              <p className="text-base font-semibold text-white">
+                Navegação
+              </p>
 
-                <p className="text-base font-medium text-white">
-                  Atendimento
-                </p>
-
-                <ul className="flex flex-col gap-3">
-                  {footerSections[1].links.map(({ title, href }) => (
-                    <li key={title}>
-                      <a
-                        href={href}
-                        className="text-base font-normal text-white hover:text-white/70 transition-colors"
-                      >
-                        {title}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-
-              </div>
+              <ul className="flex flex-col gap-2.5">
+                {footerSections[0].links.map(({ title, href }) => (
+                  <li key={title}>
+                    <a
+                      href={href}
+                      className="text-sm md:text-base font-normal text-white hover:text-white/70 transition-colors"
+                    >
+                      {title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            {/* Horário de atendimento */}
-            <div className="col-span-1 sm:col-span-2 lg:col-span-2">
-              <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-100 ease-in-out fill-mode-both">
+            {/* 3. Atendimento */}
+            <div className="col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-2 flex flex-col gap-4">
+              <p className="text-base font-semibold text-white">
+                Atendimento
+              </p>
 
-                <p className="text-base font-medium text-white">
-                  Horário de atendimento
-                </p>
+              <ul className="flex flex-col gap-2.5">
+                {footerSections[1].links.map(({ title, href }) => (
+                  <li key={title}>
+                    <a
+                      href={href}
+                      target={href.startsWith("http") ? "_blank" : "_self"}
+                      rel={href.startsWith("http") ? "noopener noreferrer" : ""}
+                      className="text-sm md:text-base font-normal text-white hover:text-white/70 transition-colors"
+                    >
+                      {title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-                <div className="flex flex-col gap-2 text-sm text-white">
-                  <div className="flex justify-between gap-4">
-                    <span>Segunda</span>
-                    <span>08:00 – 18:00</span>
-                  </div>
+            {/* 4. Horário de atendimento */}
+            <div className="col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-2 flex flex-col gap-4">
+              <p className="text-base font-semibold text-white">
+                Horário de atendimento
+              </p>
 
-                  <div className="flex justify-between gap-4">
-                    <span>Terça</span>
-                    <span>08:00 – 18:00</span>
-                  </div>
-
-                  <div className="flex justify-between gap-4">
-                    <span>Quarta</span>
-                    <span>08:00 – 18:00</span>
-                  </div>
-
-                  <div className="flex justify-between gap-4">
-                    <span>Quinta</span>
-                    <span>08:00 – 18:00</span>
-                  </div>
-
-                  <div className="flex justify-between gap-4">
-                    <span>Sexta</span>
-                    <span>08:00 – 18:00</span>
-                  </div>
-
-                  <div className="flex justify-between gap-4">
-                    <span>Sábado</span>
-                    <span>Agendamento.</span>
-                  </div>
-
-                  <div className="flex justify-between gap-4">
-                    <span>Domingo</span>
-                    <span>Fechado</span>
-                  </div>
+              <div className="flex flex-col gap-2 text-xs md:text-sm text-white">
+                <div className="flex justify-between gap-2 border-b border-white/10 pb-1">
+                  <span>Segunda</span>
+                  <span className="font-medium">08:00 – 18:00</span>
                 </div>
-
+                <div className="flex justify-between gap-2 border-b border-white/10 pb-1">
+                  <span>Terça</span>
+                  <span className="font-medium">08:00 – 18:00</span>
+                </div>
+                <div className="flex justify-between gap-2 border-b border-white/10 pb-1">
+                  <span>Quarta</span>
+                  <span className="font-medium">08:00 – 18:00</span>
+                </div>
+                <div className="flex justify-between gap-2 border-b border-white/10 pb-1">
+                  <span>Quinta</span>
+                  <span className="font-medium">08:00 – 18:00</span>
+                </div>
+                <div className="flex justify-between gap-2 border-b border-white/10 pb-1">
+                  <span>Sexta</span>
+                  <span className="font-medium">08:00 – 18:00</span>
+                </div>
+                <div className="flex justify-between gap-2 border-b border-white/10 pb-1">
+                  <span>Sábado</span>
+                  <span className="font-medium">Agendamento</span>
+                </div>
+                <div className="flex justify-between gap-2">
+                  <span>Domingo</span>
+                  <span className="font-medium">Fechado</span>
+                </div>
               </div>
             </div>
 
-            {/* Localização */}
-            <div className="col-span-full lg:col-span-3">
-              <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-100 ease-in-out fill-mode-both">
+            {/* 5. Localização */}
+            <div className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-3 flex flex-col gap-4">
+              <p className="text-base font-semibold text-white">
+                Localização
+              </p>
 
-                <p className="text-base font-medium text-white">
-                  Localização
-                </p>
-
-                {/* Google Maps */}
-                <div className="w-full overflow-hidden rounded-2xl border border-white/20">
-                  <iframe
-                    src="https://www.google.com/maps?q=Rua%20Mar%20do%20Caribe%2C%20842%2C%20Sala%2002%2C%20Portal%20do%20Po%C3%A7o%2C%20Cabedelo%2C%20PB&output=embed"
-                    width="100%"
-                    height="200"
-                    style={{ border: 0 }}
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Localização R3 Soluções"
-                    className="w-full grayscale"
-                  />
-                </div>
-
-                {/* Endereço */}
-                <p className="text-sm font-normal text-white">
-                  Rua Mar do Caribe, 842, Sala 02
-                  <br />
-                  Portal do Poço – Cabedelo – PB
-                </p>
-
+              <div className="w-full overflow-hidden rounded-xl border border-white/20 shadow-sm">
+                <iframe
+                  src="https://www.google.com/maps?q=Rua%20Mar%20do%20Caribe%2C%20842%2C%20Sala%2002%2C%20Portal%20do%20Po%C3%A7o%2C%20Cabedelo%2C%20PB&output=embed"
+                  width="100%"
+                  height="160"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Localização R3 Soluções"
+                  className="w-full grayscale filter contrast-125"
+                />
               </div>
+
+              <p className="text-xs md:text-sm font-normal text-white leading-relaxed">
+                Rua Mar do Caribe, 842, Sala 02
+                <br />
+                Portal do Poço – Cabedelo – PB
+              </p>
             </div>
 
           </div>
@@ -315,12 +280,10 @@ const Footer = () => {
           <div className="w-full border-t border-white/20" />
 
           {/* Copyright */}
-          <p className="text-sm font-normal text-white text-center animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-100 ease-in-out fill-mode-both">
-            Corretor autorizado da HS Consórcios no Estado da Paraíba
-            <br />
-            © Direitos reservados, 2026.
-          </p>
-
+          <div className="text-center text-xs md:text-sm font-normal text-white/90 leading-relaxed">
+            <p>Corretor autorizado da HS Consórcios no Estado da Paraíba</p>
+            <p>© Direitos reservados, 2026.</p>
+          </div>
         </div>
       </div>
     </footer>
@@ -328,4 +291,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

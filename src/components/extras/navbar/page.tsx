@@ -20,7 +20,9 @@ export default function Navbar() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -98,6 +100,9 @@ export default function Navbar() {
           pointer-events-none
         "
       >
+        {/* =========================
+            NAV PRINCIPAL
+        ========================= */}
         <nav
           className="
             pointer-events-auto
@@ -192,7 +197,11 @@ export default function Navbar() {
           ========================= */}
           <div className="flex items-center space-x-3">
 
-             <LiquidGlassButton
+            {/* =========================
+                BOTÃO DESKTOP
+            ========================= */}
+            <div className="hidden md:block">
+              <LiquidGlassButton
                 label="FAZER ORÇAMENTO"
                 link="https://wa.me/558387355437?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20de%20um%20cons%C3%B3rcio"
                 colors={{
@@ -207,13 +216,15 @@ export default function Navbar() {
                 padding="10px 20px"
                 rounded={90}
               />
+            </div>
 
             {/* =========================
-                MENU MOBILE
+                BOTÃO MENU MOBILE
             ========================= */}
             <button
+              type="button"
               onClick={() =>
-                setMobileMenuOpen(!mobileMenuOpen)
+                setMobileMenuOpen((prev) => !prev)
               }
               className="
                 md:hidden
@@ -221,6 +232,8 @@ export default function Navbar() {
                 text-slate-800
                 hover:text-black
                 focus:outline-none
+                relative
+                z-10
               "
               aria-label={
                 mobileMenuOpen
@@ -239,7 +252,7 @@ export default function Navbar() {
         </nav>
 
         {/* =========================
-            MENU MOBILE
+            MENU MOBILE / CASCATA
         ========================= */}
         <AnimatePresence>
           {mobileMenuOpen && (
@@ -261,6 +274,7 @@ export default function Navbar() {
               }}
               transition={{
                 duration: 0.2,
+                ease: [0.16, 1, 0.3, 1],
               }}
               className="
                 absolute
@@ -270,6 +284,7 @@ export default function Navbar() {
                 rounded-2xl
 
                 bg-white/95
+                backdrop-blur-xl
 
                 border
                 border-white/50
@@ -280,10 +295,14 @@ export default function Navbar() {
                 flex-col
                 space-y-4
 
+                pointer-events-auto
+
                 md:hidden
               "
             >
-              {/* LINKS */}
+              {/* =========================
+                  LINKS MOBILE
+              ========================= */}
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
@@ -297,7 +316,10 @@ export default function Navbar() {
                     py-2
                     px-3
                     rounded-lg
+
                     hover:bg-slate-100
+                    hover:text-black
+
                     transition-colors
                   "
                 >
@@ -305,9 +327,10 @@ export default function Navbar() {
                 </Link>
               ))}
 
-              {/* BOTÃO MOBILE */}
+              {/* =========================
+                  FAZER ORÇAMENTO MOBILE
+              ========================= */}
               <Link
-              
                 href="#formulario"
                 onClick={(e) => {
                   setMobileMenuOpen(false);
@@ -318,20 +341,30 @@ export default function Navbar() {
                   items-center
                   justify-center
                   gap-2
+
                   px-4
                   py-3
+
                   rounded-xl
 
                   bg-black
                   text-white
 
                   text-sm
-                  font-medium
+                  font-semibold
+                  uppercase
+                  tracking-wide
 
                   w-full
+
+                  transition-all
+                  duration-300
+
+                  hover:bg-black/80
+                  active:scale-[0.98]
                 "
               >
-                <span>Falar com Especialista</span>
+                FAZER ORÇAMENTO
               </Link>
             </motion.div>
           )}

@@ -179,7 +179,6 @@ export const DetailCard: React.FC<DetailCardProps> = ({
     >
       {/* CONTEÚDO PRINCIPAL */}
       <div className="w-full">
-
         {/* TOPO */}
         <div className="mb-7 flex items-start justify-between">
           <span className="text-[13px] font-semibold tracking-[0.16em] text-[#a9834f]">
@@ -495,7 +494,6 @@ export const AlavancagemSection: React.FC = () => (
       totalCards={2}
       className="flex flex-col gap-24 pb-20"
     >
-
       {/* ====================================================
           CARD 01 — ALAVANCAGEM PATRIMONIAL
       ==================================================== */}
@@ -540,8 +538,7 @@ export const AlavancagemSection: React.FC = () => (
           number="02"
           icon={<IconTrendUp />}
           title="Alavancagem Financeira"
-          description="Estratégia voltada à rentabilidade por meio da venda da carta contemplada. O consórcio é utilizado de forma planejada para buscar a contemplação e, 
-          posteriormente, negociar o crédito, transformando a carta em uma oportunidade de ganho financeiro."
+          description="Estratégia voltada à rentabilidade por meio da venda da carta contemplada. O consórcio é utilizado de forma planejada para buscar a contemplação e, posteriormente, negociar o crédito, transformando a carta em uma oportunidade de ganho financeiro."
           bullets={[
             "Uso estratégico de crédito e capital",
             "Estratégia focada em rentabilidade",
@@ -559,7 +556,6 @@ export const AlavancagemSection: React.FC = () => (
           />
         </DetailCard>
       </StackingCardItem>
-
     </StackingCards>
   </section>
 );

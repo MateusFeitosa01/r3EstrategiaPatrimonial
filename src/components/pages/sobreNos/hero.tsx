@@ -1,10 +1,26 @@
 export default function Hero() {
   return (
-    <section className="relative h-[80vh] min-h-[650px] overflow-hidden bg-black text-white">
-
+    <section className="relative h-[80vh] min-h-[560px] w-full overflow-hidden bg-black text-white sm:min-h-[600px] md:min-h-[650px]">
       {/* IMAGEM DO DIAMANTE */}
       <div
-        className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat md:bg-[position:center_right]"
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          bg-no-repeat
+
+          /* CELULAR */
+          bg-[size:75%_auto]
+          bg-[position:90%_center]
+
+          /* TABLET */
+          sm:bg-[size:65%_auto]
+          sm:bg-[position:90%_center]
+
+          /* DESKTOP */
+          md:bg-cover
+          md:bg-[position:center_right]
+        "
         style={{
           backgroundImage: "url('/img/logo/diamente.png')",
         }}
@@ -17,14 +33,13 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
 
       {/* CONTEÚDO */}
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6 md:px-10">
+      <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl items-center px-6 md:px-10">
         <div className="max-w-4xl">
-
-          <p className="mb-4 text-sm uppercase tracking-[0.25em] text-white/60">
+          <p className="mb-4 text-sm font-medium uppercase tracking-[0.25em] text-white/60">
             QUEM SOMOS
           </p>
 
-          <h1 className="max-w-4xl text-4xl font-black leading-tight md:text-6xl">
+          <h1 className="max-w-4xl text-4xl font-black leading-tight text-white md:text-6xl">
             Planejamos hoje as conquistas que você quer viver amanhã.
           </h1>
 
@@ -33,7 +48,6 @@ export default function Hero() {
             empresas a planejarem a aquisição de imóveis, veículos e outros
             bens de forma estratégica e consciente.
           </p>
-
         </div>
       </div>
     </section>
