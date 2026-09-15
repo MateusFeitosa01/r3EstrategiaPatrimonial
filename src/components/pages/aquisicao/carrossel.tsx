@@ -133,7 +133,9 @@ export default function Carrossel({
               className="
                 cursor-pointer
                 border-r
+                h-fit
                 p-3
+                self-end
                 text-left
                 last:border-r-0
               "
