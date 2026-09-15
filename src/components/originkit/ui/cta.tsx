@@ -14,17 +14,17 @@ import { useEffect, useRef, useState } from "react";
 import LiquidGlassButton from "./light-glass-button";
 
 
-const IMG_BASE = "/img/aquisicao";
+const IMG_BASE = "/img/cta";
 
 const IMG = {
-  carro: `${IMG_BASE}/fotocarro1.webp`,
-  moto: `${IMG_BASE}/fotomoto.webp`,
-  lancha: `${IMG_BASE}/fotolancha.webp`,
-  casa: `${IMG_BASE}/casa.webp`,
-  construcao: `${IMG_BASE}/construcao.webp`,
-  terreno: `${IMG_BASE}/terreno.webp`,
-  caminhao: `${IMG_BASE}/fotocaminhao.webp`,
-  apartamento: `${IMG_BASE}/apartamento.webp`,
+  carro: `${IMG_BASE}/bruna.png`,
+  moto: `${IMG_BASE}/casal.png`,
+  lancha: `${IMG_BASE}/davi.png`,
+  casa: `${IMG_BASE}/felipe.png`,
+  construcao: `${IMG_BASE}/leila.png`,
+  terreno: `${IMG_BASE}/mike.png`,
+  caminhao: `${IMG_BASE}/well.png`,
+  apartamento: `${IMG_BASE}/wendel.png`,
 } as const;
 
 const FUNDO_AQUISICAO = `${IMG_BASE}/fundoAquisicao.jpg`;
@@ -619,7 +619,7 @@ export default function StackSpread({
   showScrollHint = true,
 }: StackSpreadProps) {
   return (
-    <StackSpreadStage
+    <StackSpreadStage 
       cards={CARDS}
       scrollLength={scrollLength}
       bgColor={bgColor}

@@ -19,16 +19,9 @@ export interface CarrosselItemProps {
 
 interface CarrosselProps {
   items: CarrosselItemProps[];
-
-  /** Texto pequeno acima do título */
   subtitle?: React.ReactNode;
-
-  /** Título principal da seção */
   heading?: React.ReactNode;
-
-  /** Descrição abaixo do título */
   description?: React.ReactNode;
-
   className?: string;
   duration?: number;
 }
@@ -45,14 +38,9 @@ export default function Carrossel({
 
   return (
     <section className={className}>
-
-      {/* =====================================================
-          CABEÇALHO
-          FICA FORA DO SLIDER PROGRESSIVO
-      ====================================================== */}
+      {/* CABEÇALHO */}
       {(subtitle || heading || description) && (
         <div className="mb-10 max-w-4xl">
-          
           {subtitle && (
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-black/45">
               {subtitle}
@@ -70,25 +58,26 @@ export default function Carrossel({
               {description}
             </div>
           )}
-
         </div>
       )}
 
-      {/* =====================================================
-          SLIDER PROGRESSIVO
-      ====================================================== */}
+      {/* CARROSSEL */}
       <ProgressSlider
         vertical={false}
         activeSlider={items[0].sliderName}
         duration={duration}
       >
+        {/* IMAGEM PRINCIPAL */}
         <SliderContent>
           {items.map((item, index) => (
-            <SliderWrapper
-              key={index}
-              value={item.sliderName}
-            >
+            <SliderWrapper key={index} value={item.sliderName}>
               <Image
+                src={item.img}
+                width={1900}
+                height={1080}
+                quality={100}
+                priority={index === 0}
+                alt={item.title}
                 className="
                   h-[450px]
                   w-full
@@ -96,33 +85,26 @@ export default function Carrossel({
                   object-cover
                   2xl:h-[500px]
                 "
-                src={item.img}
-                width={1900}
-                height={1080}
-                alt={item.title}
               />
             </SliderWrapper>
           ))}
         </SliderContent>
 
-        {/* =================================================
-            ABAS
-        ================================================= */}
+        {/* FAIXA INFERIOR */}
         <SliderBtnGroup
           className="
             absolute
             bottom-0
+            z-20
+            grid
             h-fit
             w-full
+            grid-cols-2
             overflow-hidden
-            rounded-md
-            bg-white/40
+            rounded-b-xl
+            bg-white/55
             text-black
             backdrop-blur-md
-            dark:bg-black/40
-            dark:text-white
-            grid
-            grid-cols-2
             md:grid-cols-4
           "
         >
@@ -133,16 +115,15 @@ export default function Carrossel({
               className="
                 cursor-pointer
                 border-r
-                h-fit
                 p-3
                 self-end
                 text-left
                 last:border-r-0
               "
               progressBarClass="
-                h-full
-                bg-white
-                dark:bg-black
+                bottom-0
+                h-[3px]
+                bg-black
               "
             >
               <h2
@@ -156,8 +137,6 @@ export default function Carrossel({
                   text-lg
                   font-semibold
                   text-white
-                  dark:bg-white
-                  dark:text-black
                 "
               >
                 {item.title}
