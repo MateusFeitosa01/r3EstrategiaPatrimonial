@@ -83,7 +83,7 @@ const SERVICES: ServiceCard[] = [
     icon: <IconTrendUp />,
     title: "Alavancagem Financeira",
     description:
-      "Estratégias para potencializar recursos e ampliar oportunidades por meio de um planejamento financeiro inteligente.",
+      "Transforme a contemplação em oportunidade de rentabilidade através da venda estratégica da carta contemplada.",
     details:
       "Utilize o consórcio como uma ferramenta de planejamento para acessar crédito de forma programada, preservar sua liquidez e direcionar recursos para novos objetivos financeiros.",
   },
@@ -92,7 +92,7 @@ const SERVICES: ServiceCard[] = [
     icon: <IconBars />,
     title: "Alavancagem Patrimonial",
     description:
-      "Estratégias voltadas para acelerar a construção de patrimônio utilizando oportunidades e planejamento estratégico.",
+      "Utilize o crédito de forma estratégica para adquirir ativos, ampliar seu patrimônio e acelerar sua construção patrimonial.",
     details:
       "Planeje a aquisição de imóveis e outros bens de forma estratégica, transformando o consórcio em uma ferramenta para ampliar, diversificar e fortalecer seu patrimônio ao longo do tempo.",
   },
@@ -101,9 +101,9 @@ const SERVICES: ServiceCard[] = [
     icon: <IconClock />,
     title: "Previdência Aplicada",
     description:
-      "Planejamento estratégico de longo prazo para construção, proteção e organização do patrimônio.",
+      "Transforme o pagamento mensal das parcelas em uma estratégia de construção de reserva, rentabilidade e valorização para o futuro.",
     details:
-      "Estruture objetivos de longo prazo com disciplina financeira, utilizando o consórcio como parte de uma estratégia para formação de patrimônio, segurança financeira e planejamento familiar.",
+      "Uma estratégia de poupança programada em que você constrói seu planejamento através do pagamento mensal das parcelas. Após a contemplação, o crédito pode permanecer aplicado, gerando rentabilidade e valorização ao longo do tempo.",
   },
 ];
 
