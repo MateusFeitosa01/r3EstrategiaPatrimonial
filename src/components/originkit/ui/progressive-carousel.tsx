@@ -3,30 +3,34 @@
 import React, {
   createContext,
   useContext,
-  useState,
   useEffect,
   useRef,
+  useState,
   ReactNode,
   FC,
 } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
+import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-// Define the type for the context value
+/* =========================================================
+   TIPOS
+========================================================= */
+
 interface ProgressSliderContextType {
   active: string;
   progress: number;
-  handleButtonClick: (value: string) => void;
+  duration: number;
   vertical: boolean;
+  handleButtonClick: (value: string) => void;
+  registerSlider: (value: string) => void;
 }
 
-// Define the type for the component props
 interface ProgressSliderProps {
   children: ReactNode;
-  duration?: number;
-  fastDuration?: number;
-  vertical?: boolean;
   activeSlider: string;
+  duration?: number;
+  vertical?: boolean;
   className?: string;
 }
 
@@ -41,7 +45,7 @@ interface SliderWrapperProps {
   className?: string;
 }
 
-interface ProgressBarProps {
+interface SliderBtnGroupProps {
   children: ReactNode;
   className?: string;
 }
@@ -53,142 +57,175 @@ interface SliderBtnProps {
   progressBarClass?: string;
 }
 
-// Create the context with an undefined initial value
-const ProgressSliderContext = createContext<
-  ProgressSliderContextType | undefined
->(undefined);
+/* =========================================================
+   CONTEXTO
+========================================================= */
 
-export const useProgressSliderContext = (): ProgressSliderContextType => {
+const ProgressSliderContext =
+  createContext<ProgressSliderContextType | null>(null);
+
+const useProgressSliderContext = () => {
   const context = useContext(ProgressSliderContext);
+
   if (!context) {
     throw new Error(
-      "useProgressSliderContext must be used within a ProgressSlider"
+      "Os componentes do slider devem ser usados dentro de ProgressSlider."
     );
   }
+
   return context;
 };
 
+/* =========================================================
+   PROGRESS SLIDER
+========================================================= */
+
 export const ProgressSlider: FC<ProgressSliderProps> = ({
   children,
-  duration = 5000,
-  fastDuration = 400,
-  vertical = false,
   activeSlider,
+  duration = 5000,
+  vertical = false,
   className,
 }) => {
-  const [active, setActive] = useState<string>(activeSlider);
-  const [progress, setProgress] = useState<number>(0);
-  const [isFastForward, setIsFastForward] = useState<boolean>(false);
-  const frame = useRef<number>(0);
-  const firstFrameTime = useRef<number>(performance.now());
-  const targetValue = useRef<string | null>(null);
-  const [sliderValues, setSliderValues] = useState<string[]>([]);
+  const [active, setActive] = useState(activeSlider);
+  const [progress, setProgress] = useState(0);
 
-  useEffect(() => {
-    const childrenArray = React.Children.toArray(children);
+  const slidersRef = useRef<string[]>([]);
+  const startTimeRef = useRef<number | null>(null);
+  const frameRef = useRef<number | null>(null);
 
-    // Valida e tipa com segurança o componente SliderContent
-    const contentChild = childrenArray.find(
-      (child): child is React.ReactElement<SliderContentProps> =>
-        React.isValidElement(child) && child.type === SliderContent
-    );
-
-    if (contentChild) {
-      // Valida e extrai com segurança as props de cada SliderWrapper
-      const values = React.Children.toArray(contentChild.props.children)
-        .filter(
-          (child): child is React.ReactElement<SliderWrapperProps> =>
-            React.isValidElement(child)
-        )
-        .map((child) => child.props.value);
-
-      setSliderValues(values);
+  const registerSlider = (value: string) => {
+    if (!slidersRef.current.includes(value)) {
+      slidersRef.current.push(value);
     }
-  }, [children]);
+  };
 
-  useEffect(() => {
-    if (sliderValues.length > 0) {
-      firstFrameTime.current = performance.now();
-      frame.current = requestAnimationFrame(animate);
-    }
-    return () => {
-      cancelAnimationFrame(frame.current);
-    };
-  }, [sliderValues, active, isFastForward]);
+  const goToNextSlider = () => {
+    const sliders = slidersRef.current;
 
-  const animate = (now: number) => {
-    const currentDuration = isFastForward ? fastDuration : duration;
-    const elapsedTime = now - firstFrameTime.current;
-    const timeFraction = elapsedTime / currentDuration;
+    if (sliders.length === 0) return;
 
-    if (timeFraction <= 1) {
-      setProgress(
-        isFastForward
-          ? progress + (100 - progress) * timeFraction
-          : timeFraction * 100
-      );
-      frame.current = requestAnimationFrame(animate);
-    } else {
-      if (isFastForward) {
-        setIsFastForward(false);
-        if (targetValue.current !== null) {
-          setActive(targetValue.current);
-          targetValue.current = null;
-        }
-      } else {
-        // Move to the next slide
-        const currentIndex = sliderValues.indexOf(active);
-        const nextIndex = (currentIndex + 1) % sliderValues.length;
-        setActive(sliderValues[nextIndex]);
-      }
-      setProgress(0);
-      firstFrameTime.current = performance.now();
-    }
+    const currentIndex = sliders.indexOf(active);
+
+    const nextIndex =
+      currentIndex === -1 || currentIndex === sliders.length - 1
+        ? 0
+        : currentIndex + 1;
+
+    setActive(sliders[nextIndex]);
+    setProgress(0);
+    startTimeRef.current = null;
   };
 
   const handleButtonClick = (value: string) => {
-    if (value !== active) {
-      const elapsedTime = performance.now() - firstFrameTime.current;
-      const currentProgress = (elapsedTime / duration) * 100;
-      setProgress(currentProgress);
-      targetValue.current = value;
-      setIsFastForward(true);
-      firstFrameTime.current = performance.now();
-    }
+    setActive(value);
+    setProgress(0);
+    startTimeRef.current = null;
   };
+
+  useEffect(() => {
+    setActive(activeSlider);
+    setProgress(0);
+    startTimeRef.current = null;
+  }, [activeSlider]);
+
+  useEffect(() => {
+    const animate = (timestamp: number) => {
+      if (startTimeRef.current === null) {
+        startTimeRef.current = timestamp;
+      }
+
+      const elapsed = timestamp - startTimeRef.current;
+      const nextProgress = Math.min((elapsed / duration) * 100, 100);
+
+      setProgress(nextProgress);
+
+      if (nextProgress >= 100) {
+        goToNextSlider();
+        return;
+      }
+
+      frameRef.current = requestAnimationFrame(animate);
+    };
+
+    frameRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (frameRef.current !== null) {
+        cancelAnimationFrame(frameRef.current);
+      }
+    };
+  }, [active, duration]);
 
   return (
     <ProgressSliderContext.Provider
-      value={{ active, progress, handleButtonClick, vertical }}
+      value={{
+        active,
+        progress,
+        duration,
+        vertical,
+        handleButtonClick,
+        registerSlider,
+      }}
     >
-      <div className={cn("relative", className)}>{children}</div>
+      <div
+        className={cn(
+          "relative isolate w-full overflow-hidden",
+          className
+        )}
+      >
+        {children}
+      </div>
     </ProgressSliderContext.Provider>
   );
 };
+
+/* =========================================================
+   CONTEÚDO
+========================================================= */
 
 export const SliderContent: FC<SliderContentProps> = ({
   children,
   className,
 }) => {
-  return <div className={cn("", className)}>{children}</div>;
+  return (
+    <div className={cn("relative z-0 w-full overflow-hidden", className)}>
+      {children}
+    </div>
+  );
 };
+
+/* =========================================================
+   SLIDE
+========================================================= */
 
 export const SliderWrapper: FC<SliderWrapperProps> = ({
   children,
   value,
   className,
 }) => {
-  const { active } = useProgressSliderContext();
+  const { active, registerSlider } = useProgressSliderContext();
+
+  useEffect(() => {
+    registerSlider(value);
+  }, [value]);
 
   return (
-    <AnimatePresence mode="popLayout">
+    <AnimatePresence mode="wait">
       {active === value && (
         <motion.div
           key={value}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className={cn("", className)}
+          transition={{
+            duration: 0.25,
+            ease: "easeOut",
+          }}
+          className={cn(
+            "relative z-0 block w-full overflow-hidden",
+            className
+          )}
         >
           {children}
         </motion.div>
@@ -197,12 +234,27 @@ export const SliderWrapper: FC<SliderWrapperProps> = ({
   );
 };
 
-export const SliderBtnGroup: FC<ProgressBarProps> = ({
+/* =========================================================
+   GRUPO DOS BOTÕES
+========================================================= */
+
+export const SliderBtnGroup: FC<SliderBtnGroupProps> = ({
   children,
   className,
 }) => {
-  return <div className={cn("", className)}>{children}</div>;
+  return (
+    <div className={cn("relative z-20", className)}>
+      {children}
+    </div>
+  );
 };
+
+/* =========================================================
+   BOTÃO
+
+   Não existe mais fundo branco animado ocupando h-full.
+   O progresso agora é somente uma barra inferior.
+========================================================= */
 
 export const SliderBtn: FC<SliderBtnProps> = ({
   children,
@@ -210,28 +262,52 @@ export const SliderBtn: FC<SliderBtnProps> = ({
   className,
   progressBarClass,
 }) => {
-  const { active, progress, handleButtonClick, vertical } =
-    useProgressSliderContext();
+  const {
+    active,
+    progress,
+    handleButtonClick,
+    registerSlider,
+  } = useProgressSliderContext();
+
+  useEffect(() => {
+    registerSlider(value);
+  }, [value]);
+
+  const isActive = active === value;
 
   return (
     <button
+      type="button"
       className={cn(
-        `relative ${active === value ? "opacity-100" : "opacity-50"}`,
+        "relative isolate overflow-hidden",
+        isActive ? "opacity-100" : "opacity-60",
         className
       )}
       onClick={() => handleButtonClick(value)}
     >
-      {children}
+      <div className="relative z-10">
+        {children}
+      </div>
+
       <div
-        className="absolute inset-0 overflow-hidden -z-10 max-h-full max-w-full"
-        role="progressbar"
-        aria-valuenow={active === value ? progress : 0}
+        className="
+          pointer-events-none
+          absolute
+          bottom-0
+          left-0
+          z-20
+          h-[3px]
+          w-full
+          overflow-hidden
+        "
       >
         <span
-          className={cn("absolute left-0", progressBarClass)}
+          className={cn(
+            "absolute bottom-0 left-0 block h-full",
+            progressBarClass
+          )}
           style={{
-            [vertical ? "height" : "width"]:
-              active === value ? `${progress}%` : "0%",
+            width: isActive ? `${progress}%` : "0%",
           }}
         />
       </div>

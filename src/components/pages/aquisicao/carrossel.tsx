@@ -19,16 +19,9 @@ export interface CarrosselItemProps {
 
 interface CarrosselProps {
   items: CarrosselItemProps[];
-
-  /** Texto pequeno acima do título */
   subtitle?: React.ReactNode;
-
-  /** Título principal da seção */
   heading?: React.ReactNode;
-
-  /** Descrição abaixo do título */
   description?: React.ReactNode;
-
   className?: string;
   duration?: number;
 }
@@ -45,14 +38,9 @@ export default function Carrossel({
 
   return (
     <section className={className}>
-
-      {/* =====================================================
-          CABEÇALHO
-          FICA FORA DO SLIDER PROGRESSIVO
-      ====================================================== */}
+      {/* CABEÇALHO */}
       {(subtitle || heading || description) && (
         <div className="mb-10 max-w-4xl">
-          
           {subtitle && (
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-black/45">
               {subtitle}
@@ -70,33 +58,45 @@ export default function Carrossel({
               {description}
             </div>
           )}
-
         </div>
       )}
 
-      {/* =====================================================
-          SLIDER PROGRESSIVO
-      ====================================================== */}
+      {/* CARROSSEL */}
       <ProgressSlider
         vertical={false}
         activeSlider={items[0].sliderName}
         duration={duration}
+        className="
+          relative
+          isolate
+          overflow-hidden
+          rounded-xl
+        "
       >
-        <SliderContent className="min-h-[280px] sm:min-h-[360px] lg:min-h-[420px] 2xl:min-h-[500px]">
+        {/* IMAGEM */}
+        <SliderContent
+          className="
+            relative
+            z-0
+            h-[280px]
+            w-full
+            sm:h-[360px]
+            lg:h-[420px]
+            2xl:h-[500px]
+          "
+        >
           {items.map((item, index) => (
             <SliderWrapper
               key={index}
               value={item.sliderName}
+              className="h-full w-full"
             >
               <Image
                 className="
-                  h-[280px]
+                  block
+                  h-full
                   w-full
-                  rounded-xl
                   object-cover
-                  sm:h-[360px]
-                  lg:h-[420px]
-                  2xl:h-[500px]
                 "
                 src={item.img}
                 width={1900}
@@ -107,25 +107,24 @@ export default function Carrossel({
           ))}
         </SliderContent>
 
-        {/* =================================================
-            ABAS
-        ================================================= */}
+        {/* ABAS */}
         <SliderBtnGroup
           className="
             absolute
             bottom-0
-            h-fit
-            w-full
-            overflow-hidden
-            rounded-md
-            bg-white/40
-            text-black
-            backdrop-blur-md
-            dark:bg-black/40
-            dark:text-white
+            left-0
+            z-30
             grid
+            h-[105px]
+            w-full
             grid-cols-2
+            items-stretch
+            overflow-hidden
+            bg-white/80
+            text-black
             md:grid-cols-4
+            dark:bg-black/75
+            dark:text-white
           "
         >
           {items.map((item, index) => (
@@ -133,21 +132,25 @@ export default function Carrossel({
               key={index}
               value={item.sliderName}
               className="
+                relative
+                h-[105px]
+                min-h-0
                 cursor-pointer
+                overflow-hidden
                 border-r
+                border-black/10
                 p-3
                 text-left
                 last:border-r-0
+                dark:border-white/10
               "
               progressBarClass="
-                h-full
-                bg-white
-                dark:bg-black
+                bg-black
+                dark:bg-white
               "
             >
               <h2
                 className="
-                  relative
                   mb-2
                   w-fit
                   rounded-full
